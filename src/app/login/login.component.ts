@@ -21,8 +21,13 @@ export class LoginComponent {
   public login() {
     this.spotifyService.login().subscribe(
       token => {
-        console.log(token)
-        this.router.navigate(['/home']);
+        console.log(token);
+        this.spotifyService.getCurrentUser()
+          .subscribe(data=> {
+            console.log("getCurrentUser: ", data);
+            this.router.navigate(['/home', data])
+          },
+            err=> console.error(err));
       },
       err => {
         this.errorMessage = err;
