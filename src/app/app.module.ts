@@ -1,18 +1,46 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, APP_INITIALIZER} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CallbackComponent } from './callback/callback.component';
+import {HomeComponent} from "./home/home.component";
+import {LoginComponent} from "./login/login.component";
+import { HttpModule } from '@angular/http';
+import {APP_BASE_HREF} from "@angular/common";
+import {AppConfig} from "./shared/config/app.config";
+import {SpotifyService} from "./shared/spotify/angular2-spotify";
+import {AuthService} from "./shared/auth/auth.service";
+import {AuthHttp} from "./shared/auth/auth.http";
+import {AuthGuard} from "./shared/auth/auth.guard";
+import {ApiService} from "./shared/api/api.service";
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CallbackComponent,
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, BrowserModule, HttpModule
   ],
-  providers: [],
+  providers: [
+    { provide: APP_BASE_HREF, useValue: '/' },
+    // AppConfig,
+    // { provide: APP_INITIALIZER, useFactory: (config: AppConfig) => () => config.load(), deps: [AppConfig], multi: true },
+    SpotifyService,
+    { provide: 'SpotifyConfig',
+      useValue: {
+        clientId: '5c4759a495c2459ba5c50fba9454d2a4',
+        redirectUri: 'localhost:4200/callback',
+        scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-library-read user-library-modify user-read-private',
+        authToken: localStorage.getItem('angular2-spotify-token')
+      }
+    },
+    ApiService, AuthGuard, AuthHttp, AuthService, AppConfig
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
