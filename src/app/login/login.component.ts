@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {ApiService} from "../shared/api/api.service";
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import {UtilityServiceService} from "../utility-service.service";
+import {routerNgProbeToken} from "@angular/router/src/router_module";
 
 
 @Component({
@@ -26,9 +27,8 @@ export class LoginComponent {
         console.log(token);
         this.spotifyService.getCurrentUser()
           .subscribe(data => {
-              this.user = data;
-              this.utilityService.setUserData(this.user);
-              this.router.navigate(['/home']);
+              localStorage.setItem('user', JSON.stringify(data));
+              this.router.navigate(['home'])
             },
             err => console.error(err));
       },

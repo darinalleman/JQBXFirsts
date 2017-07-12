@@ -15,6 +15,9 @@ import {AuthHttp} from "./shared/auth/auth.http";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {ApiService} from "./shared/api/api.service";
 import {UtilityServiceService} from "./utility-service.service";
+import { NavigationComponent } from './navigation/navigation.component';
+import { SearchComponent } from './search/search.component';
+import { PlaylistsComponent } from './playlists/playlists.component';
 
 
 @NgModule({
@@ -22,7 +25,10 @@ import {UtilityServiceService} from "./utility-service.service";
     AppComponent,
     CallbackComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    NavigationComponent,
+    SearchComponent,
+    PlaylistsComponent
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule
