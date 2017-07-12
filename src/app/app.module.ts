@@ -14,6 +14,7 @@ import {AuthService} from "./shared/auth/auth.service";
 import {AuthHttp} from "./shared/auth/auth.http";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {ApiService} from "./shared/api/api.service";
+import {UtilityServiceService} from "./utility-service.service";
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import {ApiService} from "./shared/api/api.service";
         authToken: localStorage.getItem('angular2-spotify-token')
       }
     },
-    ApiService, AuthGuard, AuthHttp, AuthService, AppConfig
+    ApiService, AuthGuard, AuthHttp, AuthService, AppConfig, UtilityServiceService
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ApiService} from "../shared/api/api.service";
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {UtilityServiceService} from "../utility-service.service";
 
 
 @Component({
@@ -13,8 +14,9 @@ import {SpotifyService} from "../shared/spotify/angular2-spotify";
 export class LoginComponent {
   public loading: boolean = false;
   public errorMessage: string;
+  public user: Object;
 
-  constructor(public router: Router, private apiService: ApiService, private spotifyService: SpotifyService) {
+  constructor(public router: Router, private apiService: ApiService, private spotifyService: SpotifyService, private utilityService: UtilityServiceService) {
 
   }
 
@@ -23,17 +25,19 @@ export class LoginComponent {
       token => {
         console.log(token);
         this.spotifyService.getCurrentUser()
-          .subscribe(data=> {
-            console.log("getCurrentUser: ", data);
-            this.router.navigate(['/home', data])
-          },
-            err=> console.error(err));
+          .subscribe(data => {
+              this.user = data;
+              this.utilityService.setUserData(this.user);
+              this.router.navigate(['/home']);
+            },
+            err => console.error(err));
       },
       err => {
         this.errorMessage = err;
         console.error(this.errorMessage);
       },
-      () => { }
+      () => {
+      }
     );
   }
 
