@@ -1,26 +1,19 @@
-<app-navigation></app-navigation>
-<div class="container">
-  <div class="notification is-success has-text-centered">
-    <p>Successfully logged in as a Spotify user</p>
-  </div>
-  <div class="card">
-    <div class="card-content">
-      <div class="media has-text-centered">
-        <div class="media-left">
-          <figure class="image is-128x128">
-            <img src="{{user.images[0].url}}" alt="Image">
-          </figure>
-        </div>
-        <div class="media-content">
-          <p><span class="title is-5">Display Name: </span> {{user.display_name}}</p>
-          <p><span class="title is-5">User Id: </span> {{user.id}}</p>
-          <p><span class="title is-5">Email: </span> {{user.email}}</p>
-          <p><span class="title is-5">Spotify URI: </span> <a href="{{user.external_urls.spotify}}">{{user.external_urls.spotify}}</a></p>
+
+<div class="container-fluid">
+  <section class="hero is-fullheight is-dark">
+    <app-navigation></app-navigation>
+    <div class="hero-body">
+      <div class="container has-text-centered intro-section">
+        <div class="columns is-vcentered">
+          <div class="column is-8 is-offset-2">
+            <h1 class="title is-2">
+              Welcome to My Spotify app made with Angular 2 and Bulma.
+            </h1>
+            <br>
+            <button class="button is-success is-outlined is-large" (click)="goToSearch()">Get Started</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <pre class="push-down">
-  {{user | json}}
-</pre>
+  </section>
 </div>
