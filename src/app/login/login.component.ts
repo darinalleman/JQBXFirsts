@@ -15,7 +15,7 @@ import {routerNgProbeToken} from "@angular/router/src/router_module";
 export class LoginComponent {
   public loading: boolean = false;
   public errorMessage: string;
-  public user: Object;
+  public user: any;
 
   constructor(public router: Router, private apiService: ApiService, private spotifyService: SpotifyService, private utilityService: UtilityServiceService) {
 

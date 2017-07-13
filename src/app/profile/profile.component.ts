@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public user: Object;
+  public user: any;
   constructor(public utilityService: UtilityServiceService, public router: Router) {
     this.user = JSON.parse(localStorage.getItem('user'));
   }
