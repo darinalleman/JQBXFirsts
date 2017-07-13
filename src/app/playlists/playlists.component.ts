@@ -11,6 +11,7 @@ export class PlaylistsComponent implements OnInit {
   public user: any;
   public playlists: any;
   public options: any;
+  public retrievedPlaylist: any;
 
   constructor(public spotifyService: SpotifyService) {
   }
@@ -22,10 +23,9 @@ export class PlaylistsComponent implements OnInit {
   }
 
   showPlaylist(playlist){
-    console.log(playlist.id, playlist.owner.id);
     this.spotifyService.getPlaylist(playlist.owner.id, playlist.id).subscribe(
       data => {
-        console.log(data);
+         this.retrievedPlaylist = data;
       },
       error => {
         console.log(error);

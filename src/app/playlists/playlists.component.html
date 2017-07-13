@@ -12,14 +12,29 @@
       </div>
     </div>
     <div class="column is-9">
-      <section class="section">
-        <div class="container">
-          <h1 class="title">Section</h1>
-          <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-          </h2>
+      <div class="section playlist-heading" *ngIf="retrievedPlaylist">
+        <pre>{{retrievedPlaylist.images.url|json}}</pre>
+        <div class="columns">
+          <div class="column is-3">
+            <div class="image is-square avatar">
+              <img src="{{retrievedPlaylist.images[0].url}}">
+            </div>
+          </div>
+          <div class="column is-7 name">
+            <p>
+              <span class="title is-bold">{{retrievedPlaylist.name}}</span>
+            </p>
+            <p class="tagline">The users profile bio would go here, of course. It could be two lines</p>
+          </div>
+          <div class="column is-2 go-to-button">
+            <a class="button is-primary is-outlined follow push-down">Check it out!</a>
+          </div>
         </div>
-      </section>
-  </div>
+      </div>
+      <div class="profile-options">
+         <!-- table -->
+      </div>
+
+    </div>
 </div>
 
