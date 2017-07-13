@@ -18,6 +18,9 @@ import {UtilityServiceService} from "./utility-service.service";
 import { NavigationComponent } from './navigation/navigation.component';
 import { SearchComponent } from './search/search.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
+import { HomeNavComponent } from './home/home-nav/home-nav.component';
+import { ProfileComponent } from './profile/profile.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -28,7 +31,10 @@ import { PlaylistsComponent } from './playlists/playlists.component';
     LoginComponent,
     NavigationComponent,
     SearchComponent,
-    PlaylistsComponent
+    PlaylistsComponent,
+    HomeNavComponent,
+    ProfileComponent,
+    FooterComponent
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule

@@ -11,13 +11,12 @@ export class HomeComponent implements OnInit {
   public user: Object;
 
   constructor(public utilityService: UtilityServiceService, public router: Router) {
-    this.user = JSON.parse(localStorage.getItem('user'));
   }
 
   ngOnInit() {
   }
 
   goToSearch() {
-    this.router.navigate(['search'])
+    this.router.navigate(['profile'])
   }
 }
