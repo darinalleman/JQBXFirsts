@@ -6,12 +6,20 @@
         <div class="panel-heading has-text-centered">
           <h1 class="title is-5">Playlists</h1>
         </div>
-        <a class="panel-block has-text-centered" ngFor="let playlist of playlists">
-          <p>Test</p>
+        <a *ngFor="let playlist of playlists" class="panel-block has-text-centered" (click)="showPlaylist(playlist)">
+          {{playlist.name}}
         </a>
       </div>
     </div>
     <div class="column is-9">
-    </div>
+      <section class="section">
+        <div class="container">
+          <h1 class="title">Section</h1>
+          <h2 class="subtitle">
+            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+          </h2>
+        </div>
+      </section>
   </div>
 </div>
+
