@@ -12,29 +12,57 @@
       </div>
     </div>
     <div class="column is-9">
+      <div class="section" *ngIf="!retrievedPlaylist">
+        <div class="notification is-primary">
+          <p>Choose a playlist from the menu on the left.</p>
+        </div>
+      </div>
       <div class="section playlist-heading" *ngIf="retrievedPlaylist">
-        <pre>{{retrievedPlaylist.images.url|json}}</pre>
         <div class="columns">
           <div class="column is-3">
             <div class="image is-square avatar">
               <img src="{{retrievedPlaylist.images[0].url}}">
             </div>
           </div>
-          <div class="column is-7 name">
+          <div class="column is-6 description">
             <p>
               <span class="title is-bold">{{retrievedPlaylist.name}}</span>
             </p>
-            <p class="tagline">The users profile bio would go here, of course. It could be two lines</p>
+            <p class="tagline">{{retrievedPlaylist.description}}</p>
+            <a class="button is-primary is-outlined follow push-down"
+               href="{{retrievedPlaylist.external_urls.spotify}}"> Check it out!</a>
           </div>
-          <div class="column is-2 go-to-button">
-            <a class="button is-primary is-outlined follow push-down">Check it out!</a>
+          <div class="column is-3 go-to-button has-text-centered">
+            <p class="title is-2"> Followers </p>
+            <p class="subtitle is-3">{{retrievedPlaylist.followers.total}}</p>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-12">
+            <div class="playlist-content">
+              <table class="table">
+                <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Artist</th>
+                  <th>Album</th>
+                  <th><i class="fa fa-calendar" aria-hidden="true"></i></th>
+                  <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
+                </tr>
+                <tbody>
+                 <tr *ngFor="let item of retrievedPlaylist.tracks.items">
+                   <td>{{item.track.name}}</td>
+                   <td>{{item.track.artists[0].name}}</td>
+                   <td>{{item.track.album.name}}</td>
+                   <td>{{item.added_at}}</td>
+                   <td>{{item.track.duration_ms}}</td>
+                 </tr>
+              </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-      <div class="profile-options">
-         <!-- table -->
-      </div>
-
     </div>
+  </div>
 </div>
-

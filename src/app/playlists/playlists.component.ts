@@ -25,6 +25,7 @@ export class PlaylistsComponent implements OnInit {
   showPlaylist(playlist){
     this.spotifyService.getPlaylist(playlist.owner.id, playlist.id).subscribe(
       data => {
+        console.log(data.tracks);
          this.retrievedPlaylist = data;
       },
       error => {
