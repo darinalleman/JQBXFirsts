@@ -24,7 +24,6 @@ export class LoginComponent {
   public login() {
     this.spotifyService.login().subscribe(
       token => {
-        console.log(token);
         this.spotifyService.getCurrentUser()
           .subscribe(data => {
               localStorage.setItem('user', JSON.stringify(data));

@@ -31,13 +31,12 @@ export class SearchComponent implements OnInit {
       this.hasQuery = true;
       this.spotifyService.search(this.searchQuery, this.type).subscribe(
         data => {
-          console.log(data);
-          this.returnedSearchData = data.items;
+          this.returnedSearchData = data;
+          console.log(this.returnedSearchData);
           this.artists = data.artists.items;
           this.albums = data.albums.items;
           this.playlists = data.playlists.items;
-          this.tracks = data.tracks.items
-
+          this.tracks = data.tracks.items;
         },
         error => {
           console.log(error);
