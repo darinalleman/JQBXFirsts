@@ -36,6 +36,7 @@ export class SearchComponent implements OnInit {
           this.artists = data.artists.items;
           this.albums = data.albums.items;
           this.playlists = data.playlists.items;
+          this.tracks = data.tracks.items
 
         },
         error => {

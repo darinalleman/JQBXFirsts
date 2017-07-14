@@ -2,7 +2,7 @@
 <div class="container">
   <div class="section">
     <div class="columns">
-      <div class="column is-8">
+      <div class="column is-8 is-offset-2">
         <div class="field is-grouped">
           <p class="control is-expanded">
             <input class="input" type="text" placeholder="Search Spotify" [(ngModel)]="searchQuery">
@@ -13,37 +13,36 @@
             </a>
           </p>
         </div>
-        <h1 class="title is-2 push-down" *ngIf="hasQuery">Showing resusts for <b>{{searchQuery}}</b></h1>
-      </div>
-      <div class="column is-4 has-text-right">
-        <a class="button is-active"><i class="fa fa-th title is-5"></i></a>
-        <a class="button"><i class="fa fa-align-justify title is-5"></i></a>
       </div>
     </div>
+    <h1 class="title is-2 push-down" *ngIf="hasQuery">Showing resusts for <b>{{searchQuery}}</b></h1>
   </div>
-  <div class="section artists" *ngIf="hasQuery">
+  <div class="section artists" *ngIf="hasQuery && artists.length > 0">
     <p class="title is-2">Artists</p>
     <div class="columns">
       <div class="column is-2" *ngFor="let artist of artists">
-        <img class="image is-128x128" src="{{artist.images[0].url}}">
+        <img *ngIf="artist.images.length === 0" src="http://via.placeholder.com/126x126">
+        <img *ngIf="artist.images.length > 0"class="image is-128x128" src="{{artist.images[0].url}}">
         <p class="subtitle">{{artist.name}}</p>
       </div>
     </div>
   </div>
-  <div class="section albums" *ngIf="hasQuery">
+  <div class="section albums" *ngIf="hasQuery && albums.length > 0">
     <p class="title is-2">Albums</p>
     <div class="columns">
       <div class="column is-2" *ngFor="let album of albums">
-        <img class="image is-128x128" src="{{album.images[0].url}}">
+        <img *ngIf="album.images.length === 0" src="http://via.placeholder.com/126x126">
+        <img *ngIf="album.images.length > 0"class="image is-128x128" src="{{album.images[0].url}}">
         <p class="subtitle">{{album.name}}</p>
       </div>
     </div>
   </div>
-  <div class="section playlists" *ngIf="hasQuery">
+  <div class="section playlists" *ngIf="hasQuery && playlists.length > 0">
     <p class="title is-2">Playlists</p>
     <div class="columns">
       <div class="column is-2" *ngFor="let playlist of playlists">
-        <img class="image is-128x128" src="{{playlist.images[0].url}}">
+        <img *ngIf="playlist.images.length === 0" src="http://via.placeholder.com/126x126">
+        <img *ngIf="playlist.images.length > 0"class="image is-128x128" src="{{playlist.images[0].url}}">
         <p class="subtitle">{{playlist.name}}</p>
       </div>
     </div>
@@ -51,7 +50,25 @@
   <div class="section tracks" *ngIf="hasQuery">
     <div class="columns">
       <div class="column is-12">
-        <p>Tracks will go here</p>
+        <table class="table">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th><i class="fa fa-calendar" aria-hidden="true"></i></th>
+            <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
+          </tr>
+          <tbody>
+          <tr *ngFor="let track of tracks">
+            <td>{{track.name}}</td>
+            <td>{{track.artists[0].name}}</td>
+            <td>{{track.album.name}}</td>
+            <td>{{track.duration_ms}}</td>
+            <td><progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress></td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
