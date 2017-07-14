@@ -21,6 +21,7 @@ import { PlaylistsComponent } from './playlists/playlists.component';
 import { HomeNavComponent } from './home/home-nav/home-nav.component';
 import { ProfileComponent } from './profile/profile.component';
 import { FooterComponent } from './footer/footer.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -34,10 +35,10 @@ import { FooterComponent } from './footer/footer.component';
     PlaylistsComponent,
     HomeNavComponent,
     ProfileComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
-    AppRoutingModule, BrowserModule, HttpModule
+    AppRoutingModule, BrowserModule, HttpModule, FormsModule
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },

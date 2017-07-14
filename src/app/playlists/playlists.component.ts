@@ -12,21 +12,33 @@ export class PlaylistsComponent implements OnInit {
   public playlists: any;
   public options: any;
   public retrievedPlaylist: any;
+  public playlistTracks: any;
 
   constructor(public spotifyService: SpotifyService) {
   }
 
   ngOnInit() {
-      this.user = JSON.parse(localStorage.getItem('user'));
-      this.getUserPlaylists();
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.getUserPlaylists();
 
   }
 
-  showPlaylist(playlist){
+  showPlaylist(playlist) {
     this.spotifyService.getPlaylist(playlist.owner.id, playlist.id).subscribe(
       data => {
-        console.log(data.tracks);
-         this.retrievedPlaylist = data;
+        console.log(data);
+        this.retrievedPlaylist = data;
+        this.options = {
+          limit: data.tracks.items.length
+        };
+        this.spotifyService.getPlaylistTracks(playlist.owner.id, this.retrievedPlaylist.id, this.options).subscribe(
+          data => {
+            this.playlistTracks = data.items
+          },
+          error => {
+              console.log(error);
+          }
+        );
       },
       error => {
         console.log(error);
@@ -40,7 +52,7 @@ export class PlaylistsComponent implements OnInit {
     };
     this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
       data => {
-          this.playlists = data.items;
+        this.playlists = data.items;
       },
       error => {
         console.log(error);

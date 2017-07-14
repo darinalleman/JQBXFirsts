@@ -1,1 +1,58 @@
 <app-navigation></app-navigation>
+<div class="container">
+  <div class="section">
+    <div class="columns">
+      <div class="column is-8">
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <input class="input" type="text" placeholder="Search Spotify" [(ngModel)]="searchQuery">
+          </p>
+          <p class="control">
+            <a class="button is-primary" (click)="search()">
+              Search
+            </a>
+          </p>
+        </div>
+        <h1 class="title is-2 push-down" *ngIf="hasQuery">Showing resusts for <b>{{searchQuery}}</b></h1>
+      </div>
+      <div class="column is-4 has-text-right">
+        <a class="button is-active"><i class="fa fa-th title is-5"></i></a>
+        <a class="button"><i class="fa fa-align-justify title is-5"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="section artists" *ngIf="hasQuery">
+    <p class="title is-2">Artists</p>
+    <div class="columns">
+      <div class="column is-2" *ngFor="let artist of artists">
+        <img class="image is-128x128" src="{{artist.images[0].url}}">
+        <p class="subtitle">{{artist.name}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="section albums" *ngIf="hasQuery">
+    <p class="title is-2">Albums</p>
+    <div class="columns">
+      <div class="column is-2" *ngFor="let album of albums">
+        <img class="image is-128x128" src="{{album.images[0].url}}">
+        <p class="subtitle">{{album.name}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="section playlists" *ngIf="hasQuery">
+    <p class="title is-2">Playlists</p>
+    <div class="columns">
+      <div class="column is-2" *ngFor="let playlist of playlists">
+        <img class="image is-128x128" src="{{playlist.images[0].url}}">
+        <p class="subtitle">{{playlist.name}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="section tracks" *ngIf="hasQuery">
+    <div class="columns">
+      <div class="column is-12">
+        <p>Tracks will go here</p>
+      </div>
+    </div>
+  </div>
+</div>

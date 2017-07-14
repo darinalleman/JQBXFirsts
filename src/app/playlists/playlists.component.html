@@ -1,7 +1,7 @@
 <app-navigation></app-navigation>
 <div class="container-fluid">
   <div class="columns">
-    <div class="column is-3">
+    <div class="column is-2">
       <div class="panel push-down push-right">
         <div class="panel-heading has-text-centered">
           <h1 class="title is-5">Playlists</h1>
@@ -11,7 +11,7 @@
         </a>
       </div>
     </div>
-    <div class="column is-9">
+    <div class="column is-10">
       <div class="section" *ngIf="!retrievedPlaylist">
         <div class="notification is-primary">
           <p>Choose a playlist from the menu on the left.</p>
@@ -50,12 +50,12 @@
                   <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
                 </tr>
                 <tbody>
-                 <tr *ngFor="let item of retrievedPlaylist.tracks.items">
-                   <td>{{item.track.name}}</td>
-                   <td>{{item.track.artists[0].name}}</td>
-                   <td>{{item.track.album.name}}</td>
-                   <td>{{item.added_at}}</td>
-                   <td>{{item.track.duration_ms}}</td>
+                 <tr *ngFor="let track of playlistTracks">
+                   <td>{{track.track.name}}</td>
+                   <td>{{track.track.artists[0].name}}</td>
+                   <td>{{track.track.album.name}}</td>
+                   <td>{{track.added_at | date: 'MM-dd-yyyy'}}</td>
+                   <td>{{track.track.duration_ms}}</td>
                  </tr>
               </tbody>
               </table>
