@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {SpotifyService} from '../shared/spotify/angular2-spotify';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-search',
@@ -22,12 +23,12 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(){
+  search() {
     this.type = 'album,artist,track,playlist';
-    if(!this.searchQuery){
+    if (!this.searchQuery) {
       this.hasQuery = false;
       return false;
-    }else{
+    } else {
       this.hasQuery = true;
       this.spotifyService.search(this.searchQuery, this.type).subscribe(
         data => {
@@ -43,7 +44,20 @@ export class SearchComponent implements OnInit {
         }
       )
     }
-
+  }
+  loadMoreTracks() {
+    this.options = {
+      offset: 20
+    };
+    this.spotifyService.search(this.searchQuery, this.type, this.options).subscribe(
+      data => {
+        console.log(data);
+      this.tracks = _.concat(this.tracks, data.tracks.items);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }
