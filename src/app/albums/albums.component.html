@@ -1,3 +1,22 @@
-<p>
-  albums works!
-</p>
+<div class="columns">
+  <div class="column push-left">
+    <div class="columns is-multiline push-left">
+      <div class="column is-2" *ngFor="let album of albums">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-square">
+              <img src="{{album.album.images[0].url}}" alt="">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <span class="title is-5">{{album.album.name}}</span>
+              <p>By {{album.album.artists[0].name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

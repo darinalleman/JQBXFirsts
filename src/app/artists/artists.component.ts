@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SpotifyService} from "../shared/spotify/angular2-spotify";
 
 @Component({
   selector: 'app-artists',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./artists.component.scss']
 })
 export class ArtistsComponent implements OnInit {
+  public artists: any;
+  public options: any;
 
-  constructor() { }
+  constructor(public spotifyService: SpotifyService) { }
 
   ngOnInit() {
+  }
+
+  getSavedArtists(){
+    this.options = {
+      limit: 50
+    };
   }
 
 }

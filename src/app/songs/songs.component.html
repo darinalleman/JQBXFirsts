@@ -1,3 +1,15 @@
-<p>
-  songs works!
-</p>
+<div class="columns">
+  <div class="column push-left">
+    <table class="table is-striped">
+      <tbody>
+      <tr *ngFor="let track of tracks; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{track.track.name}}</td>
+        <td>{{track.track.album.artists[0].name}} - {{track.track.album.name}}</td>
+        <td>{{track.track.duration_ms}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

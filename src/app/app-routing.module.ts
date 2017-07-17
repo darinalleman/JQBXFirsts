@@ -43,6 +43,7 @@ const routes: Routes = [
         path: 'your-music',
         component: YourMusicComponent,
         children: [
+          { path: '', redirectTo: 'playlists', pathMatch: 'full' },
           {
             path: 'playlists',
             component: PlaylistsComponent
