@@ -1,13 +1,12 @@
-<app-navigation></app-navigation>
-<div class="container profile">
+<div class="container-fluid profile">
   <div class="section profile-heading">
     <div class="columns user-profile">
-      <div class="column is-one-quarter is-offset-3">
+      <div class="column is-3">
         <div class="image is-128x128 avatar">
           <img src="{{user.images[0].url}}">
         </div>
       </div>
-      <div class="column">
+      <div class="column is-8">
         <p><span class="title is-5">Display Name: </span> {{user.display_name}}</p>
         <p><span class="title is-5">User Id: </span> {{user.id}}</p>
         <p><span class="title is-5">Email: </span> {{user.email}}</p>
@@ -15,9 +14,11 @@
         <p><span class="title is-5">Href: </span> <a href="{{user.href}}">{{user.external_urls.spotify}}</a></p>
         <p><span class="title is-5">Followers: </span> {{user.followers.total}}</p>
       </div>
+      <div class="column is-1">
+        <button class="button is-primary" (click)="logout()">Logout</button>
+      </div>
     </div>
   </div>
   <div class="profile-options">
   </div>
 </div>
-<app-footer></app-footer>

@@ -15,13 +15,16 @@ import {AuthHttp} from "./shared/auth/auth.http";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {ApiService} from "./shared/api/api.service";
 import {UtilityServiceService} from "./utility-service.service";
-import { NavigationComponent } from './navigation/navigation.component';
 import { SearchComponent } from './search/search.component';
 import { PlaylistsComponent } from './playlists/playlists.component';
-import { HomeNavComponent } from './home/home-nav/home-nav.component';
 import { ProfileComponent } from './profile/profile.component';
-import { FooterComponent } from './footer/footer.component';
 import {FormsModule} from "@angular/forms";
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { MainComponent } from './main/main.component';
+import { YourMusicComponent } from './your-music/your-music.component';
+import { SongsComponent } from './songs/songs.component';
+import { AlbumsComponent } from './albums/albums.component';
+import { ArtistsComponent } from './artists/artists.component';
 
 
 @NgModule({
@@ -30,12 +33,15 @@ import {FormsModule} from "@angular/forms";
     CallbackComponent,
     HomeComponent,
     LoginComponent,
-    NavigationComponent,
     SearchComponent,
     PlaylistsComponent,
-    HomeNavComponent,
     ProfileComponent,
-    FooterComponent,
+    SideNavComponent,
+    MainComponent,
+    YourMusicComponent,
+    SongsComponent,
+    AlbumsComponent,
+    ArtistsComponent,
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule

@@ -6,8 +6,14 @@ import {HomeComponent} from "./home/home.component";
 import {SearchComponent} from "./search/search.component";
 import {PlaylistsComponent} from "./playlists/playlists.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {MainComponent} from "./main/main.component";
+import {YourMusicComponent} from "./your-music/your-music.component";
+import {SongsComponent} from "./songs/songs.component";
+import {AlbumsComponent} from "./albums/albums.component";
+import {ArtistsComponent} from "./artists/artists.component";
 
 const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent
@@ -21,16 +27,46 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'profile',
-    component: ProfileComponent
+    path: 'your-music',
+    component: YourMusicComponent
   },
   {
-    path: 'search',
-    component: SearchComponent
-  },
-  {
-    path: 'playlists',
-    component: PlaylistsComponent
+    path: 'main',
+    component: MainComponent,
+    children: [
+      { path: '', redirectTo: 'search', pathMatch: 'full' },
+      {
+        path: 'search',
+        component: SearchComponent
+      },
+      {
+        path: 'your-music',
+        component: YourMusicComponent,
+        children: [
+          {
+            path: 'playlists',
+            component: PlaylistsComponent
+          },
+          {
+            path: 'songs',
+            component: SongsComponent
+          }
+          ,
+          {
+            path: 'albums',
+            component: AlbumsComponent
+          },
+          {
+            path: 'artists',
+            component: ArtistsComponent
+          }
+        ]
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
+      }
+    ]
   }
 ];
 

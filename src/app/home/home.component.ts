@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  goToSearch() {
-    this.router.navigate(['profile'])
+  goToMain() {
+    this.router.navigate(['main'])
   }
 }

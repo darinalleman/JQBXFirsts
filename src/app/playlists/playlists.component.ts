@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
-import * as _ from "lodash";
 
 @Component({
   selector: 'app-playlists',
@@ -11,8 +10,6 @@ export class PlaylistsComponent implements OnInit {
   public user: any;
   public playlists: any;
   public options: any;
-  public retrievedPlaylist: any;
-  public playlistTracks: any;
 
   constructor(public spotifyService: SpotifyService) {
   }
@@ -23,35 +20,13 @@ export class PlaylistsComponent implements OnInit {
 
   }
 
-  showPlaylist(playlist) {
-    this.spotifyService.getPlaylist(playlist.owner.id, playlist.id).subscribe(
-      data => {
-        console.log(data);
-        this.retrievedPlaylist = data;
-        this.options = {
-          limit: data.tracks.items.length
-        };
-        this.spotifyService.getPlaylistTracks(playlist.owner.id, this.retrievedPlaylist.id, this.options).subscribe(
-          data => {
-            this.playlistTracks = data.items
-          },
-          error => {
-              console.log(error);
-          }
-        );
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  };
-
   getUserPlaylists() {
     this.options = {
       limit: 40
     };
     this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
       data => {
+        console.log(data);
         this.playlists = data.items;
       },
       error => {

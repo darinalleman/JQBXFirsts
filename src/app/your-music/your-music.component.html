@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="tabs is-centered">
+        <ul>
+          <li routerLinkActive="is-active"><a routerLink="/main/your-music/playlists">Playlists</a></li>
+          <li routerLinkActive="is-active"><a routerLink="/main/your-music/songs">Songs</a></li>
+          <li routerLinkActive="is-active"><a routerLink="/main/your-music/albums">Albums</a></li>
+          <li routerLinkActive="is-active"><a routerLink="/main/your-music/artists">Artists</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="column is-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
