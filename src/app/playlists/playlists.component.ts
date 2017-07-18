@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {Router} from "@angular/router";
+import {UtilityServiceService} from "../utility-service.service";
 
 @Component({
   selector: 'app-playlists',
@@ -11,7 +13,7 @@ export class PlaylistsComponent implements OnInit {
   public playlists: any;
   public options: any;
 
-  constructor(public spotifyService: SpotifyService) {
+  constructor(public spotifyService: SpotifyService, public router: Router, public utilityService: UtilityServiceService) {
   }
 
   ngOnInit() {
@@ -26,13 +28,16 @@ export class PlaylistsComponent implements OnInit {
     };
     this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
       data => {
-        console.log(data);
         this.playlists = data.items;
       },
       error => {
         console.log(error);
       }
     )
+  }
+  goToPlaylist(playlist) {
+    this.utilityService.setPlayList(playlist)
+    this.router.navigate(['main/playlist'])
   }
 
 }

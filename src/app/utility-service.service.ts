@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UtilityServiceService {
   public userData: Object;
+  public playlist: any;
 
   constructor() { }
 
@@ -12,6 +13,13 @@ export class UtilityServiceService {
 
   getUserData () {
     return this.userData;
+  }
+
+  setPlayList (playlist) {
+      this.playlist = playlist
+  }
+  getPlaylist() {
+    return this.playlist;
   }
 
 }
