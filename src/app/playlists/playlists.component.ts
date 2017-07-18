@@ -36,7 +36,7 @@ export class PlaylistsComponent implements OnInit {
     )
   }
   goToPlaylist(playlist) {
-    this.utilityService.setPlayList(playlist)
+    localStorage.setItem('playlist', JSON.stringify(playlist));
     this.router.navigate(['main/playlist'])
   }
 
