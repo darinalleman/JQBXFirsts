@@ -9,8 +9,6 @@ import {UtilityServiceService} from "../utility-service.service";
 })
 export class PlaylistComponent implements OnInit {
   public playlist: any;
-  public playlistId: string;
-  public playlistOwner: string;
 
   constructor(public spotifyService: SpotifyService, public utilityService: UtilityServiceService) {
   }
@@ -21,6 +19,14 @@ export class PlaylistComponent implements OnInit {
 
   loadPlaylist() {
     this.playlist = this.utilityService.getPlaylist();
-    console.log(this.playlist)
+    this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id).subscribe(
+      data => {
+        console.log(data);
+        this.playlist = data;
+      },
+      error => {
+        console.log(error)
+      }
+    );
   }
 }
