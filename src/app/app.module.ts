@@ -26,6 +26,7 @@ import { SongsComponent } from './songs/songs.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { ArtistsComponent } from './artists/artists.component';
 import { PlaylistComponent } from './playlist/playlist.component';
+import { AlbumComponent } from './album/album.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
     AlbumsComponent,
     ArtistsComponent,
     PlaylistComponent,
+    AlbumComponent,
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule

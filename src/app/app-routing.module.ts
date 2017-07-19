@@ -12,6 +12,7 @@ import {SongsComponent} from "./songs/songs.component";
 import {AlbumsComponent} from "./albums/albums.component";
 import {ArtistsComponent} from "./artists/artists.component";
 import {PlaylistComponent} from "./playlist/playlist.component";
+import {AlbumComponent} from "./album/album.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -43,6 +44,10 @@ const routes: Routes = [
       {
         path: 'playlist',
         component: PlaylistComponent
+      },
+      {
+        path: 'album',
+        component: AlbumComponent
       },
       {
         path: 'your-music',

@@ -1,11 +1,19 @@
 <div class="columns">
-  <div class="column push-left">
-    <table class="table is-striped">
+  <div class="column is-10 is-offset-1 push-left">
+    <table class="table">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Ablum</th>
+        <th><i class="fa fa-clock-o"></i></th>
+      </tr>
+      </thead>
       <tbody>
       <tr *ngFor="let track of tracks; let i = index">
         <td>{{i + 1}}</td>
         <td>{{track.track.name}}</td>
-        <td>{{track.track.album.artists[0].name}} - {{track.track.album.name}}</td>
+        <td >{{track.track.album.artists[0].name}} - {{track.track.album.name}}</td>
         <td>{{track.track.duration_ms}}</td>
       </tr>
       </tbody>

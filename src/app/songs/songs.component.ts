@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import * as moment from 'moment';
+import * as _ from "lodash";
 
 @Component({
   selector: 'app-songs',
@@ -22,8 +24,10 @@ export class SongsComponent implements OnInit {
     };
     this.spotifyService.getSavedUserTracks(this.options).subscribe(
       data => {
-        console.log(data);
         this.tracks = data.items;
+        _.each(this.tracks, track => {
+          track.track.duration_ms = moment(track.track.duration_ms).format('m:ss')
+        })
       },
       error => {
         console.log(error);

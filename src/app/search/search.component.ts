@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-search',
@@ -33,11 +35,14 @@ export class SearchComponent implements OnInit {
       this.spotifyService.search(this.searchQuery, this.type).subscribe(
         data => {
           this.returnedSearchData = data;
-          console.log(this.returnedSearchData);
           this.artists = data.artists.items;
           this.albums = data.albums.items;
           this.playlists = data.playlists.items;
           this.tracks = data.tracks.items;
+          _.each(this.tracks, track => {
+            track.duration_ms = moment(track.duration_ms).format('m:ss');
+          });
+
         },
         error => {
           console.log(error);
@@ -51,7 +56,6 @@ export class SearchComponent implements OnInit {
     };
     this.spotifyService.search(this.searchQuery, this.type, this.options).subscribe(
       data => {
-        console.log(data);
       this.tracks = _.concat(this.tracks, data.tracks.items);
       },
       error => {

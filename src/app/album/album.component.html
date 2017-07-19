@@ -3,14 +3,14 @@
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="{{playlist.images[0].url}}" alt="Image">
+          <img src="{{album.album.images[0].url}}" alt="Image">
         </figure>
       </div>
       <div class="card-content has-text-centered">
-        <p class="title is-2">{{playlist.name}}</p>
-        <p>{{playlist.description}}</p>
+        <p class="title is-2">{{album.album.name}}</p>
+        <span class="subtitle is-5 push-up">{{album.album.artists[0].name}}</span>
+        <p class="push">{{album.album.release_date | date: 'yyyy'}} - {{album.album.tracks.total}} songs</p>
         <br>
-        <p class="subtitle is-4">{{playlist.tracks.total}} songs</p>
         <button class="button is-primary is-medium">Play</button>
       </div>
     </div>
@@ -21,16 +21,14 @@
       <tr>
         <th></th>
         <th>Title</th>
-        <th>Ablum</th>
         <th><i class="fa fa-clock-o"></i></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let track of playlist.tracks.items; let i = index">
+      <tr *ngFor="let track of album.album.tracks.items; let i = index">
         <td>{{i + 1}}</td>
-        <td>{{track.track.name}}</td>
-        <td>{{track.track.artists[0].name}} - {{track.track.album.name}}</td>
-        <td>{{track.track.duration_ms}}</td>
+        <td>{{track.name}}</td>
+        <td>{{track.duration_ms}}</td>
       </tr>
       </tbody>
     </table>
