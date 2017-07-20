@@ -13,6 +13,10 @@ import {AlbumsComponent} from "./albums/albums.component";
 import {ArtistsComponent} from "./artists/artists.component";
 import {PlaylistComponent} from "./playlist/playlist.component";
 import {AlbumComponent} from "./album/album.component";
+import {BrowseComponent} from "./browse/browse.component";
+import {FeaturedComponent} from "./featured/featured.component";
+import {GenreMoodsComponent} from "./genre-moods/genre-moods.component";
+import {NewReleasesComponent} from "./new-releases/new-releases.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -76,6 +80,26 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'browse',
+        component: BrowseComponent,
+        children: [
+          { path: '', redirectTo: 'featured', pathMatch: 'full' },
+          {
+            path: 'featured',
+            component: FeaturedComponent
+          },
+          {
+            path: 'genre-moods',
+            component: GenreMoodsComponent
+          }
+          ,
+          {
+            path: 'new-releases',
+            component: NewReleasesComponent
+          },
+        ]
       }
     ]
   }

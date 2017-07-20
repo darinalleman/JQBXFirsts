@@ -27,6 +27,10 @@ import { AlbumsComponent } from './albums/albums.component';
 import { ArtistsComponent } from './artists/artists.component';
 import { PlaylistComponent } from './playlist/playlist.component';
 import { AlbumComponent } from './album/album.component';
+import { BrowseComponent } from './browse/browse.component';
+import { FeaturedComponent } from './featured/featured.component';
+import { GenreMoodsComponent } from './genre-moods/genre-moods.component';
+import { NewReleasesComponent } from './new-releases/new-releases.component';
 
 
 @NgModule({
@@ -46,6 +50,10 @@ import { AlbumComponent } from './album/album.component';
     ArtistsComponent,
     PlaylistComponent,
     AlbumComponent,
+    BrowseComponent,
+    FeaturedComponent,
+    GenreMoodsComponent,
+    NewReleasesComponent,
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule

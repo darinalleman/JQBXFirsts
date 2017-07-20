@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="columns">
+    <div class="column is-12">
+      <div class="tabs is-centered push-left">
+        <ul>
+          <li routerLinkActive="is-active"><a routerLink="/main/browse/featured">Featured</a></li>
+          <li routerLinkActive="is-active"><a routerLink="/main/browse/genre-moods">Genre  & Moods</a></li>
+          <li routerLinkActive="is-active"><a routerLink="/main/browse/new-releases">New Releases</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="columns tab-data">
+    <div class="column is-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

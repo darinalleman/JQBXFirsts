@@ -1,0 +1,17 @@
+<p class="title is-2 has-text-centered">Genres & Moods</p>
+<div class="columns is-multiline push-left">
+  <div class="column is-2" *ngFor="let category of categories?.categories.items">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{category?.icons[0].url}}" alt="">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="content has-text-centered clickable">
+          <p class="title is-5 truncate">{{category?.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

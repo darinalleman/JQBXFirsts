@@ -1,0 +1,17 @@
+<p class="title is-2 has-text-centered">{{featuredPlaylists?.message}}</p>
+<div class="columns is-multiline push-left">
+  <div class="column is-2" *ngFor="let featured of featuredPlaylists?.playlists.items">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{featured.images[0].url}}" alt="">
+        </figure>
+      </div>
+      <div class="card-content">
+        <div class="content has-text-centered clickable">
+          <p class="title is-5 truncate">{{featured?.name}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
