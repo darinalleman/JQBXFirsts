@@ -17,6 +17,7 @@ import {BrowseComponent} from "./browse/browse.component";
 import {FeaturedComponent} from "./featured/featured.component";
 import {GenreMoodsComponent} from "./genre-moods/genre-moods.component";
 import {NewReleasesComponent} from "./new-releases/new-releases.component";
+import {AuthGuard} from "./shared/auth/auth.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -30,11 +31,14 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'your-music',
-    component: YourMusicComponent
+    component: YourMusicComponent,
+    canActivate: [AuthGuard]
+
   },
   {
     path: 'main',
@@ -101,7 +105,8 @@ const routes: Routes = [
           },
         ]
       }
-    ]
+    ],
+    canActivate: [AuthGuard]
   }
 ];
 
