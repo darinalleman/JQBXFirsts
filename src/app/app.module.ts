@@ -31,6 +31,7 @@ import { BrowseComponent } from './browse/browse.component';
 import { FeaturedComponent } from './featured/featured.component';
 import { GenreMoodsComponent } from './genre-moods/genre-moods.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { NewReleasesComponent } from './new-releases/new-releases.component';
     FeaturedComponent,
     GenreMoodsComponent,
     NewReleasesComponent,
+    CategoryComponent,
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule

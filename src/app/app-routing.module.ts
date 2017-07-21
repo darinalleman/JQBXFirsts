@@ -18,6 +18,7 @@ import {FeaturedComponent} from "./featured/featured.component";
 import {GenreMoodsComponent} from "./genre-moods/genre-moods.component";
 import {NewReleasesComponent} from "./new-releases/new-releases.component";
 import {AuthGuard} from "./shared/auth/auth.guard";
+import {CategoryComponent} from "./category/category.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'album',
         component: AlbumComponent
+      },
+      {
+        path: 'category',
+        component: CategoryComponent
       },
       {
         path: 'your-music',
@@ -102,7 +107,7 @@ const routes: Routes = [
           {
             path: 'new-releases',
             component: NewReleasesComponent
-          },
+          }
         ]
       }
     ],

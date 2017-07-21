@@ -19,9 +19,8 @@ export class AlbumComponent implements OnInit {
     this.album = JSON.parse(localStorage.getItem('album'));
     _.each(this.album.album.tracks.items, track => {
         console.log(track);
-        track = moment(track).format('m:ss');
+        track.duration_ms = moment(track.duration_ms).format('m:ss');
     });
-    console.log(this.album)
   }
 
 }
