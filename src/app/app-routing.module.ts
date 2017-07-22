@@ -19,6 +19,7 @@ import {GenreMoodsComponent} from "./genre-moods/genre-moods.component";
 import {NewReleasesComponent} from "./new-releases/new-releases.component";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {CategoryComponent} from "./category/category.component";
+import {ArtistComponent} from "./artist/artist.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -61,6 +62,10 @@ const routes: Routes = [
       {
         path: 'category',
         component: CategoryComponent
+      },
+      {
+        path: 'artist',
+        component: ArtistComponent
       },
       {
         path: 'your-music',

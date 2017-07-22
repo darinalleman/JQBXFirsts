@@ -29,14 +29,12 @@ export class GenreMoodsComponent implements OnInit {
         this.categories = data;
       },
       error => {
-
         console.log(error);
       }
     )
   }
 
   goToCategory(category) {
-    console.log(category);
     localStorage.setItem('category', JSON.stringify(category));
     this.router.navigate(['main/category'])
   }

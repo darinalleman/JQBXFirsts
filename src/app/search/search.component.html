@@ -16,7 +16,7 @@
     </div>
     <h1 class="title is-2 push-down" *ngIf="hasQuery">Showing resusts for <b>{{searchQuery}}</b></h1>
   </div>
-  <div class="section artists push-left" *ngIf="hasQuery && artists.length > 0">
+  <div class="section artists push-left" *ngIf="hasQuery && artists?.length > 0">
     <p class="title is-2">Artists</p>
     <div class="columns">
       <div class="column is-2" *ngFor="let artist of artists">
@@ -26,7 +26,7 @@
       </div>
     </div>
   </div>
-  <div class="section albums push-left" *ngIf="hasQuery && albums.length > 0">
+  <div class="section albums push-left" *ngIf="hasQuery && albums?.length > 0">
     <p class="title is-2">Albums</p>
     <div class="columns">
       <div class="column is-2" *ngFor="let album of albums">
@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="section playlists push-left" *ngIf="hasQuery && playlists.length > 0">
+  <div class="section playlists push-left" *ngIf="hasQuery && playlists?.length > 0">
     <p class="title is-2">Playlists</p>
     <div class="columns">
       <div class="column is-2" *ngFor="let playlist of playlists">
@@ -46,7 +46,7 @@
       </div>
     </div>
   </div>
-  <div class="section tracks push-left" *ngIf="hasQuery && tracks.length > 0">
+  <div class="section tracks push-left" *ngIf="hasQuery && tracks?.length > 0">
     <div class="columns">
       <div class="column is-12">
         <table class="table">

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-category',
@@ -11,7 +12,7 @@ export class CategoryComponent implements OnInit {
   public categoryPlaylists: any;
   private options: any;
 
-  constructor(public spotifyService: SpotifyService) {
+  constructor(public spotifyService: SpotifyService, public router: Router) {
   }
 
   ngOnInit() {
@@ -21,7 +22,7 @@ export class CategoryComponent implements OnInit {
   loadCategory() {
     this.options = {
       limit: 50
-    }
+    };
     this.category = JSON.parse(localStorage.getItem('category'));
     this.spotifyService.getCategoryPlaylists(this.category.id, this.options).subscribe(
       data => {
@@ -30,7 +31,11 @@ export class CategoryComponent implements OnInit {
       error => {
         console.log(error);
       }
-    )
-    console.log(this.category)
+    );
   }
+
+  goToPlaylist(playlist) {
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+    this.router.navigate(['main/playlist'])
+  };
 }

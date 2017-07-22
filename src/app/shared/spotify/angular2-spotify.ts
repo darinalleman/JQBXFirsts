@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, Response, Request } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import {Injectable} from '@angular/core';
+import {Http, Headers, Response, Request} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {SafeResourceUrl} from '@angular/platform-browser';
 
 export interface SpotifyConfig {
   clientId: string;
@@ -57,34 +57,35 @@ export class SpotifyService {
   //#region albums
 
   /**
-* Gets an album
-* Pass in album id or spotify uri
-*/
+   * Gets an album
+   * Pass in album id or spotify uri
+   */
   getAlbum(album: string) {
     album = this.getIdFromUri(album);
     return this.api({
       method: 'get',
-      url: `/albums/${album}`
+      url: `/albums/${album}`,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 
   /**
-* Gets albums
-* Pass in comma separated string or array of album ids
-*/
+   * Gets albums
+   * Pass in comma separated string or array of album ids
+   */
   getAlbums(albums: string | Array<string>) {
     let albumList = this.mountItemList(albums);
     return this.api({
       method: 'get',
       url: `/albums`,
-      search: { ids: albumList.toString() }
+      search: {ids: albumList.toString()}
     }).map(res => res.json());
   }
 
   /**
-* Get Album Tracks
-* Pass in album id or spotify uri
-*/
+   * Get Album Tracks
+   * Pass in album id or spotify uri
+   */
   getAlbumTracks(album: string, options?: SpotifyOptions) {
     album = this.getIdFromUri(album);
     return this.api({
@@ -99,8 +100,8 @@ export class SpotifyService {
   //#region artists
 
   /**
-* Get an Artist
-*/
+   * Get an Artist
+   */
   getArtist(artist: string) {
     artist = this.getIdFromUri(artist);
     return this.api({
@@ -110,14 +111,25 @@ export class SpotifyService {
   }
 
   /**
-* Get multiple artists
-*/
+   * Get multiple artists
+   */
   getArtists(artists: string | Array<string>) {
     let artistList = this.mountItemList(artists);
     return this.api({
       method: 'get',
       url: `/artists/`,
-      search: { ids: artists.toString() }
+      search: {ids: artists.toString()}
+    }).map(res => res.json());
+  }
+
+  getFollowedArtists(type: string, options?: SpotifyOptions) {
+    options = options || {};
+    options.type = type;
+    return this.api({
+      method: 'get',
+      url: `/me/following`,
+      search: options,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 
@@ -140,7 +152,7 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/artists/${artist}/top-tracks`,
-      search: { country: country }
+      search: {country: country}
     }).map(res => res.json());
   }
 
@@ -151,7 +163,6 @@ export class SpotifyService {
       url: `/artists/${artist}/related-artists`
     }).map(res => res.json());
   }
-
 
 
   //#endregion
@@ -222,7 +233,7 @@ export class SpotifyService {
     return this.api({
       method: 'put',
       url: `/me/following`,
-      search: { type: type, ids: ids.toString() },
+      search: {type: type, ids: ids.toString()},
       headers: this.getHeaders()
     });
   }
@@ -231,7 +242,7 @@ export class SpotifyService {
     return this.api({
       method: 'delete',
       url: `/me/following`,
-      search: { type: type, ids: ids.toString() },
+      search: {type: type, ids: ids.toString()},
       headers: this.getHeaders()
     });
   }
@@ -240,7 +251,7 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/me/following/contains`,
-      search: { type: type, ids: ids.toString() },
+      search: {type: type, ids: ids.toString()},
       headers: this.getHeaders()
     }).map(res => res.json());
   }
@@ -249,7 +260,7 @@ export class SpotifyService {
     return this.api({
       method: 'put',
       url: `/users/${userId}/playlists/${playlistId}/followers`,
-      body: { public: !!isPublic },
+      body: {public: !!isPublic},
       headers: this.getHeaders(true)
     });
   }
@@ -266,7 +277,7 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/users/${userId}/playlists/${playlistId}/followers/contains`,
-      search: { ids: ids.toString() },
+      search: {ids: ids.toString()},
       headers: this.getHeaders()
     }).map(res => res.json());
   }
@@ -291,7 +302,7 @@ export class SpotifyService {
       method: 'get',
       url: `/me/tracks/contains`,
       headers: this.getHeaders(),
-      search: { ids: trackList.toString() }
+      search: {ids: trackList.toString()}
     }).map(res => res.json());
   }
 
@@ -302,7 +313,7 @@ export class SpotifyService {
       method: 'put',
       url: `/me/tracks`,
       headers: this.getHeaders(),
-      search: { ids: trackList.toString() }
+      search: {ids: trackList.toString()}
     });
   }
 
@@ -313,7 +324,7 @@ export class SpotifyService {
       method: 'delete',
       url: `/me/tracks`,
       headers: this.getHeaders(),
-      search: { ids: trackList.toString() }
+      search: {ids: trackList.toString()}
     });
   }
 
@@ -333,7 +344,7 @@ export class SpotifyService {
       method: 'put',
       url: `/me/albums`,
       headers: this.getHeaders(),
-      search: { ids: albumList.toString() }
+      search: {ids: albumList.toString()}
     });
   }
 
@@ -344,7 +355,7 @@ export class SpotifyService {
       method: 'delete',
       url: `/me/albums`,
       headers: this.getHeaders(),
-      search: { ids: albumList.toString() }
+      search: {ids: albumList.toString()}
     });
   }
 
@@ -355,7 +366,7 @@ export class SpotifyService {
       method: 'get',
       url: `/me/albums/contains`,
       headers: this.getHeaders(),
-      search: { ids: albumList.toString() }
+      search: {ids: albumList.toString()}
     }).map(res => res.json());
   }
 
@@ -413,7 +424,7 @@ export class SpotifyService {
       trackList[index] = value.indexOf('spotify:') === -1 ? 'spotify:track:' + value : value;
     });
 
-    let search = { uris: trackList.toString() };
+    let search = {uris: trackList.toString()};
     if (!!options) search['position'] = options.position;
 
     return this.api({
@@ -436,7 +447,7 @@ export class SpotifyService {
       method: 'delete',
       url: `/users/${userId}/playlists/${playlistId}/tracks`,
       headers: this.getHeaders(true),
-      body: { tracks: trackUris }
+      body: {tracks: trackUris}
     }).map(res => res.json());
   }
 
@@ -459,7 +470,7 @@ export class SpotifyService {
       method: 'put',
       url: `/users/${userId}/playlists/${playlistId}/tracks`,
       headers: this.getHeaders(),
-      search: { uris: trackList.toString() }
+      search: {uris: trackList.toString()}
     }).map(res => res.json());
   }
 
@@ -496,10 +507,10 @@ export class SpotifyService {
   //#region search
 
   /**
-* Search Spotify
-* q = search query
-* type = artist, album or track
-*/
+   * Search Spotify
+   * q = search query
+   * type = artist, album or track
+   */
   search(q: string, type: string, options?: SpotifyOptions) {
     options = options || {};
     options.q = q;
@@ -530,7 +541,7 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/tracks/`,
-      search: { ids: trackList.toString() }
+      search: {ids: trackList.toString()}
     }).map(res => res.json());
   }
 
@@ -593,7 +604,8 @@ export class SpotifyService {
       if (obj.hasOwnProperty(key)) {
         parts.push(encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]));
       }
-    };
+    }
+    ;
     return parts.join('&');
   };
 

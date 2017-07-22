@@ -32,6 +32,7 @@ import { FeaturedComponent } from './featured/featured.component';
 import { GenreMoodsComponent } from './genre-moods/genre-moods.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { CategoryComponent } from './category/category.component';
+import { ArtistComponent } from './artist/artist.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { CategoryComponent } from './category/category.component';
     GenreMoodsComponent,
     NewReleasesComponent,
     CategoryComponent,
+    ArtistComponent,
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule

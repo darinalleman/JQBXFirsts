@@ -23,7 +23,6 @@ export class AlbumsComponent implements OnInit {
     };
     this.spotifyService.getSavedUserAlbums(this.options).subscribe(
         data => {
-          console.log(data);
           this.albums = data.items
         },
       error => {

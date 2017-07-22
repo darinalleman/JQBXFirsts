@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-releases',
@@ -9,7 +10,8 @@ import {SpotifyService} from "../shared/spotify/angular2-spotify";
 export class NewReleasesComponent implements OnInit {
 public newReleases: any;
 public options: any;
-  constructor(public spotifyService: SpotifyService) { }
+  private album: any;
+  constructor(public spotifyService: SpotifyService, public router: Router) { }
 
   ngOnInit() {
     this.getNewReleases();
@@ -19,11 +21,25 @@ public options: any;
     this.spotifyService.getNewReleases().subscribe(
       data => {
         this.newReleases = data;
-        console.log(data);
       },
       error => {
         console.log(error);
       }
     )
   }
+
+  goToAlbum(album) {
+    this.spotifyService.getAlbum(album.id).subscribe(
+      data => {
+        this.album = {
+          album: data
+        };
+        localStorage.setItem('album', JSON.stringify(this.album));
+        this.router.navigate(['main/album'])
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
 }

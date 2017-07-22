@@ -7,7 +7,7 @@
           <img src="{{featured.images[0].url}}" alt="">
         </figure>
       </div>
-      <div class="card-content">
+      <div class="card-content" (click)="goToPlaylist(featured)">
         <div class="content has-text-centered clickable">
           <p class="title is-5 truncate">{{featured?.name}}</p>
         </div>
