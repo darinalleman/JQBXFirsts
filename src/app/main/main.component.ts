@@ -1,6 +1,5 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Subscription} from "rxjs";
-import {UtilityServiceService} from "../utility-service.service";
 
 @Component({
   selector: 'app-main',
@@ -9,7 +8,7 @@ import {UtilityServiceService} from "../utility-service.service";
 })
 export class MainComponent implements OnInit,  OnDestroy {
 
-  constructor(private utilService: UtilityServiceService) {
+  constructor() {
   }
 
   ngOnInit() {

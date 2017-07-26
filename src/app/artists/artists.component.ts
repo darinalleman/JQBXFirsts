@@ -27,7 +27,6 @@ export class ArtistsComponent implements OnInit {
     this.spotifyService.getFollowedArtists(this.type).subscribe(
       data => {
         this.artists = data.artists.items;
-        console.log(this.artists);
       },
       error => {
         console.log(error);
@@ -35,7 +34,8 @@ export class ArtistsComponent implements OnInit {
     )
   }
 
-  goToArtist() {
+  goToArtist(artist) {
+    localStorage.setItem('artist', JSON.stringify(artist));
     this.router.navigate(['main/artist'])
   };
 

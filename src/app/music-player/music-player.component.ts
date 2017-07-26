@@ -14,7 +14,6 @@ export class MusicPlayerComponent implements OnInit {
 
   ngOnInit() {
     this.getUserDevices();
-    this.getTrack();
   }
   getUserDevices() {
     this.spotifyService.getUserDevices().subscribe(

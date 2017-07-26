@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <section>
+     <p class="title is-1 has-text-centered">Popular</p>
+    <table class="table is-table-striped">
+      <tbody>
+      <tr *ngFor="let track of topTracks; let i = index">
+        <td>{{i + 1}}</td>
+        <td>{{track.name}}</td>
+        <td>{{track.duration_ms}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

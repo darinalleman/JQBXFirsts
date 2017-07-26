@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
-import {UtilityServiceService} from "../utility-service.service";
 import {Router} from "@angular/router";
 import {ApiService} from "../shared/api/api.service";
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
@@ -16,7 +15,7 @@ export class HomeComponent implements OnInit {
   public user: any;
 
 
-  constructor(public router:Router, private apiService:ApiService, private spotifyService:SpotifyService, private utilityService:UtilityServiceService) {
+  constructor(public router:Router, private apiService:ApiService, private spotifyService:SpotifyService) {
   }
 
   public login() {

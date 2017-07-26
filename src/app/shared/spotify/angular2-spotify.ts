@@ -39,7 +39,7 @@ export class SpotifyService {
   public redirectUri: string;
   public scope: string;
   public showDialog: boolean;
-  public authToken?: string;
+  public authToken: string;
   public apiBase: string;
   public userInfo: any;
   public playListInfo: any;
@@ -107,7 +107,8 @@ export class SpotifyService {
     artist = this.getIdFromUri(artist);
     return this.api({
       method: 'get',
-      url: `/artists/${artist}`
+      url: `/artists/${artist}`,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 
@@ -153,7 +154,8 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/artists/${artist}/top-tracks`,
-      search: {country: country}
+      search: {country: country},
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 

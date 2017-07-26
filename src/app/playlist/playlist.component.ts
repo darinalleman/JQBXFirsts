@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
-import {UtilityServiceService} from "../utility-service.service";
 import * as moment from 'moment';
 import * as _ from "lodash";
 
@@ -11,12 +10,15 @@ import * as _ from "lodash";
 })
 export class PlaylistComponent implements OnInit {
   public playlist: any;
+  public user: any;
+  public followed: boolean;
 
-  constructor(public spotifyService: SpotifyService, public utilService: UtilityServiceService) {
+  constructor(public spotifyService: SpotifyService) {
   }
 
   ngOnInit() {
     this.loadPlaylist();
+     this.checkIfUserFollowsPlaylist();
   }
 
   loadPlaylist() {
@@ -32,9 +34,40 @@ export class PlaylistComponent implements OnInit {
         console.log(error)
       }
     );
+  };
+
+  checkIfUserFollowsPlaylist() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.spotifyService.playlistFollowingContains(this.playlist.owner.id, this.playlist.id, this.user.id).subscribe(
+      data => {
+         this.followed = data[0];
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
-  playTrack(track) {
-    localStorage.setItem('song', JSON.stringify(track));
+  followPlaylist() {
+      this.spotifyService.followPlaylist(this.playlist.owner.id, this.playlist.id).subscribe(
+        data => {
+          this.checkIfUserFollowsPlaylist();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+  };
+
+  unfollowPlaylist() {
+     this.spotifyService.unfollowPlaylist(this.playlist.owner.id, this.playlist.id).subscribe(
+       data => {
+         this.checkIfUserFollowsPlaylist();
+       },
+       error => {
+         console.log(error);
+       }
+     );
+
   }
 }

@@ -19,6 +19,8 @@ import {NewReleasesComponent} from "./new-releases/new-releases.component";
 import {AuthGuard} from "./shared/auth/auth.guard";
 import {CategoryComponent} from "./category/category.component";
 import {ArtistComponent} from "./artist/artist.component";
+import {OverviewComponent} from "./overview/overview.component";
+import {RelatedArtistsComponent} from "./related-artists/related-artists.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -40,7 +42,7 @@ const routes: Routes = [
     path: 'main',
     component: MainComponent,
     children: [
-      { path: '', redirectTo: 'search', pathMatch: 'full' },
+      { path: '', redirectTo: 'your-music', pathMatch: 'full' },
       {
         path: 'search',
         component: SearchComponent
@@ -59,7 +61,18 @@ const routes: Routes = [
       },
       {
         path: 'artist',
-        component: ArtistComponent
+        component: ArtistComponent,
+        children: [
+          { path: '', redirectTo: 'overview', pathMatch: 'full' },
+          {
+            path: 'overview',
+            component: OverviewComponent
+          },
+          {
+            path: 'related-artists',
+            component: RelatedArtistsComponent
+          },
+        ]
       },
       {
         path: 'your-music',
