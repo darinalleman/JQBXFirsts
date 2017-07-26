@@ -8,16 +8,8 @@ import {UtilityServiceService} from "../utility-service.service";
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit,  OnDestroy {
-  show: any;
-  subscription: Subscription;
 
   constructor(private utilService: UtilityServiceService) {
-    // subscribe to home component messages
-    this.subscription = this.utilService.getPlayer().subscribe(
-      show => {
-        console.log(show);
-        this.show = show;
-      });
   }
 
   ngOnInit() {
@@ -25,6 +17,5 @@ export class MainComponent implements OnInit,  OnDestroy {
 
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.subscription.unsubscribe();
   }
 }

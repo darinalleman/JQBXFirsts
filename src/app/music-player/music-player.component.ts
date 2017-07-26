@@ -7,23 +7,28 @@ import {SpotifyService} from "../shared/spotify/angular2-spotify";
   styleUrls: ['./music-player.component.scss']
 })
 export class MusicPlayerComponent implements OnInit {
-  private devices: any;
+  public devices: any;
+  public track: any;
 
   constructor(public spotifyService: SpotifyService) { }
 
   ngOnInit() {
     this.getUserDevices();
+    this.getTrack();
   }
-
   getUserDevices() {
     this.spotifyService.getUserDevices().subscribe(
       data => {
         this.devices = data.devices;
-        console.log(this.devices);
       },
       error => {
         console.log(error)
       }
     )
   };
+
+  getTrack() {
+    this.track = JSON.parse(localStorage.getItem('song'));
+    console.log(this.track);
+  }
 }

@@ -34,13 +34,7 @@ export class PlaylistComponent implements OnInit {
     );
   }
 
-  showPlayer(): void {
-    // send message to subscribers via observable subject
-    this.utilService.showPlayer(true);
-  }
-
-  clearPlayer(): void {
-    // clear message
-    this.utilService.clearPlayer();
+  playTrack(track) {
+    localStorage.setItem('song', JSON.stringify(track));
   }
 }
