@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {LoginComponent} from "./login/login.component";
 import {CallbackComponent} from "./callback/callback.component";
 import {HomeComponent} from "./home/home.component";
 import {SearchComponent} from "./search/search.component";
@@ -22,19 +21,14 @@ import {CategoryComponent} from "./category/category.component";
 import {ArtistComponent} from "./artist/artist.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'callback',
     component: CallbackComponent
   },
   {
     path: 'home',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
+    component: HomeComponent
   },
   {
     path: 'your-music',

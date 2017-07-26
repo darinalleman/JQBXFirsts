@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {UtilityServiceService} from "../utility-service.service";
 import {Router} from "@angular/router";
+import {ApiService} from "../shared/api/api.service";
+import {SpotifyService} from "../shared/spotify/angular2-spotify";
 
 
 @Component({
@@ -9,17 +11,35 @@ import {Router} from "@angular/router";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public user: Object;
+  public loading: boolean = false;
+  public errorMessage: string;
+  public user: any;
 
-  constructor(public utilityService: UtilityServiceService, public router: Router) {
+
+  constructor(public router:Router, private apiService:ApiService, private spotifyService:SpotifyService, private utilityService:UtilityServiceService) {
+  }
+
+  public login() {
+    this.spotifyService.login().subscribe(
+      token => {
+        this.spotifyService.getCurrentUser()
+          .subscribe(data => {
+              localStorage.setItem('user', JSON.stringify(data));
+              this.router.navigate(['main'])
+            },
+            err => console.error(err));
+      },
+      err => {
+        this.errorMessage = err;
+        console.error(this.errorMessage);
+      },
+      () => {
+      }
+    );
   }
 
   ngOnInit() {
 
-  }
-
-  goToMain() {
-    this.router.navigate(['main'])
   }
 
 }

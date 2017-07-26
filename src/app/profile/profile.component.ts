@@ -19,6 +19,6 @@ export class ProfileComponent implements OnInit {
   logout() {
     localStorage.removeItem('user');
     localStorage.removeItem('angular2-spotify-token');
-    this.router.navigate(['login']);
+    this.router.navigate(['home']);
   }
 }

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CallbackComponent } from './callback/callback.component';
 import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
 import { HttpModule } from '@angular/http';
 import {APP_BASE_HREF} from "@angular/common";
 import {AppConfig} from "./shared/config/app.config";
@@ -45,7 +44,6 @@ import { MusicPlayerComponent } from './music-player/music-player.component';
     AppComponent,
     CallbackComponent,
     HomeComponent,
-    LoginComponent,
     SearchComponent,
     PlaylistsComponent,
     ProfileComponent,
