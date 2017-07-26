@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {UtilityServiceService} from "../utility-service.service";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
   goToMain() {
     this.router.navigate(['main'])
   }
+
 }

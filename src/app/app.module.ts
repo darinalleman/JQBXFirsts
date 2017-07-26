@@ -33,6 +33,11 @@ import { GenreMoodsComponent } from './genre-moods/genre-moods.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { CategoryComponent } from './category/category.component';
 import { ArtistComponent } from './artist/artist.component';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
+// custom-option.ts
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MusicPlayerComponent } from './music-player/music-player.component';
+
 
 
 @NgModule({
@@ -58,9 +63,10 @@ import { ArtistComponent } from './artist/artist.component';
     NewReleasesComponent,
     CategoryComponent,
     ArtistComponent,
+    MusicPlayerComponent,
   ],
   imports: [
-    AppRoutingModule, BrowserModule, HttpModule, FormsModule
+    AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, ToastModule.forRoot()
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },
@@ -73,7 +79,7 @@ import { ArtistComponent } from './artist/artist.component';
         redirectUri: 'localhost:4200/callback',
         scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-library-read user-library-modify user-read-private',
         authToken: localStorage.getItem('angular2-spotify-token')
-      }
+      },
     },
     ApiService, AuthGuard, AuthHttp, AuthService, AppConfig, UtilityServiceService
   ],

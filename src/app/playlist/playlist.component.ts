@@ -12,7 +12,7 @@ import * as _ from "lodash";
 export class PlaylistComponent implements OnInit {
   public playlist: any;
 
-  constructor(public spotifyService: SpotifyService, public utilityService: UtilityServiceService) {
+  constructor(public spotifyService: SpotifyService, public utilService: UtilityServiceService) {
   }
 
   ngOnInit() {
@@ -32,5 +32,15 @@ export class PlaylistComponent implements OnInit {
         console.log(error)
       }
     );
+  }
+
+  showPlayer(): void {
+    // send message to subscribers via observable subject
+    this.utilService.showPlayer(true);
+  }
+
+  clearPlayer(): void {
+    // clear message
+    this.utilService.clearPlayer();
   }
 }

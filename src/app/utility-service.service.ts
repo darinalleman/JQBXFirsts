@@ -1,25 +1,19 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {Subject, Observable} from "rxjs";
 
 @Injectable()
 export class UtilityServiceService {
-  public userData: Object;
-  public playlist: any;
+  private subject = new Subject<any>();
 
-  constructor() { }
-
-  setUserData (data) {
-      this.userData = data
+  showPlayer(show: boolean) {
+    this.subject.next({player: show});
   }
 
-  getUserData () {
-    return this.userData;
+  clearPlayer() {
+    this.subject.next();
   }
 
-  setPlayList (playlist) {
-      this.playlist = playlist
+  getPlayer(): Observable<any> {
+    return this.subject.asObservable();
   }
-  getPlaylist() {
-    return this.playlist;
-  }
-
 }
