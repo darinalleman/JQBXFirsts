@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CallbackComponent } from './callback/callback.component';
 import { HomeComponent } from "./home/home.component";
 import { HttpModule } from '@angular/http';
-import { APP_BASE_HREF} from "@angular/common";
+import {APP_BASE_HREF, CommonModule} from "@angular/common";
 import { AppConfig} from "./shared/config/app.config";
 import { SpotifyService} from "./shared/spotify/angular2-spotify";
 import { AuthService} from "./shared/auth/auth.service";
@@ -30,13 +30,13 @@ import { GenreMoodsComponent } from './genre-moods/genre-moods.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { CategoryComponent } from './category/category.component';
 import { ArtistComponent } from './artist/artist.component';
-import { ToastModule } from 'ng2-toastr/ng2-toastr';
-// custom-option.ts
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { WebPlayerService } from "./web-player.service";
 import { OverviewComponent } from './overview/overview.component';
 import { RelatedArtistsComponent } from './related-artists/related-artists.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 
@@ -67,7 +67,7 @@ import { RelatedArtistsComponent } from './related-artists/related-artists.compo
     RelatedArtistsComponent,
   ],
   imports: [
-    AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, ToastModule.forRoot()
+    AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule,  CommonModule, ToastrModule.forRoot()
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },

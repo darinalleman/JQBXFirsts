@@ -72,7 +72,8 @@ const routes: Routes = [
             path: 'related-artists',
             component: RelatedArtistsComponent
           },
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'your-music',
@@ -96,7 +97,8 @@ const routes: Routes = [
             path: 'artists',
             component: ArtistsComponent
           }
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'profile',
@@ -120,7 +122,8 @@ const routes: Routes = [
             path: 'new-releases',
             component: NewReleasesComponent
           }
-        ]
+        ],
+        canActivate: [AuthGuard]
       }
     ],
     canActivate: [AuthGuard]
