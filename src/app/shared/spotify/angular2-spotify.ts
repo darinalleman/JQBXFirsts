@@ -141,7 +141,8 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/artists/${artist}/albums`,
-      search: options
+      search: options,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 
@@ -163,7 +164,8 @@ export class SpotifyService {
     artist = this.getIdFromUri(artist);
     return this.api({
       method: 'get',
-      url: `/artists/${artist}/related-artists`
+      url: `/artists/${artist}/related-artists`,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 

@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <section>
+  <div class="section top-tracks">
      <p class="title is-1 has-text-centered">Popular</p>
     <table class="table is-table-striped">
       <tbody>
@@ -10,5 +10,71 @@
       </tr>
       </tbody>
     </table>
-  </section>
+  </div>
+  <div class=" section columns albums">
+    <div class="column push-left">
+      <p class="title is-1 has-text-centered">Albums</p>
+      <div class="columns is-multiline push-left">
+        <div class="column is-2" *ngFor="let album of artistAlbums">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img src="{{album?.images[0].url}}" alt="">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content has-text-centered clickable" (click)="goToAlbum(album)">
+                <p class="title is-5 truncate">{{album.name}}</p>
+                <p>By {{album.artists[0].name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" section columns singles">
+    <div class="column push-left">
+      <p class="title is-1 has-text-centered">Singles</p>
+      <div class="columns is-multiline push-left">
+        <div class="column is-2" *ngFor="let single of singles">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img *ngIf="single.images.length > 0" src="{{single?.images[0].url}}" alt="">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content has-text-centered clickable" (click)="goToAlbum(single)">
+                <p class="title is-5 truncate">{{single.name}}</p>
+                <p>By {{single.artists[0].name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" section columns compilations" *ngIf="compilations?.length > 0">
+    <div class="column push-left">
+      <p class="title is-1 has-text-centered">Compilations</p>
+      <div class="columns is-multiline push-left">
+        <div class="column is-2" *ngFor="let compilation of compilations">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img src="{{compilation?.images[0].url}}" alt="">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content has-text-centered clickable" (click)="goToAlbum(compilation)">
+                <p class="title is-5 truncate">{{compilation.name}}</p>
+                <p>By {{compilation.artists[0].name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

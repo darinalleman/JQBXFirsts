@@ -12,10 +12,17 @@ export class OverviewComponent implements OnInit {
   public artist: any;
   public user: any;
   public topTracks: any;
+  public options: any;
+  public artistAlbums: any;
+  public singles: any;
+  public compilations: any;
   constructor(public spotifyService: SpotifyService) { }
 
   ngOnInit() {
     this.loadTopTracks();
+    this.loadArtistAlbums();
+    this.loadArtistSingles();
+    this.loadCompliations();
   }
 
   loadTopTracks(){
@@ -24,7 +31,6 @@ export class OverviewComponent implements OnInit {
     this.spotifyService.getArtistTopTracks(this.artist.id, this.user.country).subscribe(
       data => {
         this.topTracks = data.tracks;
-        console.log(this.topTracks);
         _.each(this.topTracks, track => {
           track.duration_ms = moment(track.duration_ms).format('m:ss');
         })
@@ -34,5 +40,52 @@ export class OverviewComponent implements OnInit {
       }
     )
   }
+
+  loadArtistAlbums() {
+    this.options = {
+      album_type: 'album',
+      limit: 50
+    };
+    this.spotifyService.getArtistAlbums(this.artist.id, this.options).subscribe(
+      data => {
+        this.artistAlbums = data.items;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  loadArtistSingles() {
+    this.options = {
+      album_type: 'single',
+      limit: 50
+    };
+    this.spotifyService.getArtistAlbums(this.artist.id, this.options).subscribe(
+      data => {
+        this.singles = data.items;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
+
+  loadCompliations() {
+    this.options = {
+      album_type: 'compilation',
+      limit: 50
+    };
+    this.spotifyService.getArtistAlbums(this.artist.id, this.options).subscribe(
+      data => {
+        this.compilations = data.items;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
 
 }
