@@ -7,12 +7,12 @@
             <div class="columns">
               <div class="column is-3 is-pulled-right">
                 <figure class="image is-128x128">
-                  <img class="img-circle" src="{{artist.images[0].url}}">
+                  <img class="img-circle" src="{{artist?.images[0].url}}">
                 </figure>
               </div>
               <div class="column is-9 push-down">
-                <p class="title is-1">{{artist.name}}</p>
-                <p class="subtitle is-5">{{artist.followers.total}} followers</p>
+                <p class="title is-1">{{artist?.name}}</p>
+                <p class="subtitle is-5">{{artist?.followers.total}} followers</p>
               </div>
             </div>
           </div>

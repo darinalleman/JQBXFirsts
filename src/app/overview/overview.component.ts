@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import * as moment from 'moment';
 import * as _ from "lodash";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-overview',
@@ -16,7 +17,10 @@ export class OverviewComponent implements OnInit {
   public artistAlbums: any;
   public singles: any;
   public compilations: any;
-  constructor(public spotifyService: SpotifyService) { }
+  public album: any;
+
+  constructor(public spotifyService: SpotifyService, public router: Router) {
+  }
 
   ngOnInit() {
     this.loadTopTracks();
@@ -25,7 +29,7 @@ export class OverviewComponent implements OnInit {
     this.loadCompliations();
   }
 
-  loadTopTracks(){
+  loadTopTracks() {
     this.artist = JSON.parse(localStorage.getItem('artist'));
     this.user = JSON.parse(localStorage.getItem('user'));
     this.spotifyService.getArtistTopTracks(this.artist.id, this.user.country).subscribe(
@@ -71,7 +75,6 @@ export class OverviewComponent implements OnInit {
     )
   };
 
-
   loadCompliations() {
     this.options = {
       album_type: 'compilation',
@@ -86,6 +89,21 @@ export class OverviewComponent implements OnInit {
       }
     )
   };
+
+  goToAlbum(album) {
+     this.spotifyService.getAlbum(album.id).subscribe(
+       data => {
+         this.album = {
+           album: data
+         };
+         localStorage.setItem('album', JSON.stringify(this.album));
+         this.router.navigate(['main/album']);
+       },
+       error => {
+         console.log(error);
+       }
+     );
+  }
 
 
 }

@@ -19,7 +19,7 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-square">
-                <img src="{{album?.images[0].url}}" alt="">
+                <img *ngIf="album?.images.length > 0" src="{{album?.images[0].url}}" alt="">
               </figure>
             </div>
             <div class="card-content">
@@ -41,13 +41,13 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-square">
-                <img *ngIf="single.images.length > 0" src="{{single?.images[0].url}}" alt="">
+                <img *ngIf="single?.images.length > 0" src="{{single?.images[0].url}}" alt="">
               </figure>
             </div>
             <div class="card-content">
               <div class="content has-text-centered clickable" (click)="goToAlbum(single)">
                 <p class="title is-5 truncate">{{single.name}}</p>
-                <p>By {{single.artists[0].name}}</p>
+                <p>By {{single?.artists[0].name}}</p>
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-square">
-                <img src="{{compilation?.images[0].url}}" alt="">
+                <img *ngIf="compilation?.images.length > 0" src="{{compilation?.images[0].url}}" alt="">
               </figure>
             </div>
             <div class="card-content">
