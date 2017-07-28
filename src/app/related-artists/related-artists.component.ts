@@ -32,6 +32,7 @@ export class RelatedArtistsComponent implements OnInit {
 
   goToArtist(artist) {
     localStorage.setItem('artist', JSON.stringify(artist));
+    console.log(artist);
     this.router.navigate(['main/artist']);
   };
 
