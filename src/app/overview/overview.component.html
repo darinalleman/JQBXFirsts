@@ -11,7 +11,7 @@
       </tbody>
     </table>
   </div>
-  <div class=" section columns albums">
+  <div class=" section columns albums" *ngIf="artistAlbums?.length > 0">
     <div class="column push-left">
       <p class="title is-1 has-text-centered">Albums</p>
       <div class="columns is-multiline push-left">
@@ -33,7 +33,7 @@
       </div>
     </div>
   </div>
-  <div class=" section columns singles">
+  <div class=" section columns singles" *ngIf="singles?.length > 0">
     <div class="column push-left">
       <p class="title is-1 has-text-centered">Singles</p>
       <div class="columns is-multiline push-left">

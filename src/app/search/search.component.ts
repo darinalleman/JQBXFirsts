@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -19,10 +20,15 @@ export class SearchComponent implements OnInit {
   public albums: any;
   public playlists: any;
   public tracks: any;
+  public album: any;
 
-  constructor(public spotifyService: SpotifyService) { }
+  constructor(public spotifyService: SpotifyService, public router: Router) { }
 
   ngOnInit() {
+    if(JSON.parse(localStorage.getItem('searchQuery'))){
+      this.searchQuery = JSON.parse(localStorage.getItem('searchQuery'));
+      this.search();
+    }
   }
 
   search() {
@@ -32,6 +38,7 @@ export class SearchComponent implements OnInit {
       return false;
     } else {
       this.hasQuery = true;
+      localStorage.setItem('searchQuery', JSON.stringify(this.searchQuery));
       this.spotifyService.search(this.searchQuery, this.type).subscribe(
         data => {
           this.returnedSearchData = data;
@@ -64,4 +71,28 @@ export class SearchComponent implements OnInit {
     )
   }
 
+  goToArtist(artist) {
+    localStorage.setItem('artist', JSON.stringify(artist));
+    this.router.navigate(['main/artist'])
+  };
+
+  goToAlbum(album) {
+    this.spotifyService.getAlbum(album.id).subscribe(
+      data => {
+        this.album = {
+          album: data
+        };
+        localStorage.setItem('album', JSON.stringify(this.album));
+        this.router.navigate(['main/album'])
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
+
+  goToPlaylist(playlist) {
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+    this.router.navigate(['main/playlist'])
+  }
 }
