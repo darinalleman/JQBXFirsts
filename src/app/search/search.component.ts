@@ -35,6 +35,7 @@ export class SearchComponent implements OnInit {
     this.type = 'album,artist,track,playlist';
     if (!this.searchQuery) {
       this.hasQuery = false;
+      localStorage.setItem('searchQuery', JSON.stringify(''));
       return false;
     } else {
       this.hasQuery = true;
