@@ -22,7 +22,6 @@ export class ArtistComponent implements OnInit {
   }
 
   loadArtist() {
-    console.log('here');
     this.spotifyService.getArtist(JSON.parse(localStorage.getItem('artist')).id).subscribe(
       data => {
         this.artist = data;

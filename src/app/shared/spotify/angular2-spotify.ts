@@ -292,6 +292,15 @@ export class SpotifyService {
 
   //#region library
 
+  getUserTopArtistsAndTracks(type: string, options?: SpotifyOptions) {
+    return this.api({
+      method: 'get',
+      url: `/me/top/${type}`,
+      headers: this.getHeaders(),
+      search: options
+    }).map(res => res.json());
+  }
+
   getSavedUserTracks(options?: SpotifyOptions) {
     return this.api({
       method: 'get',
