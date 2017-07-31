@@ -12,7 +12,7 @@
         <br>
         <p class="subtitle is-4">{{playlist.tracks.total}} songs</p>
         <div *ngIf="user.id != playlist.owner.id">
-          <button class="button is-primary is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
+          <button class="button is-primary is-outlined is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
           <button class="button is-primary is-medium" *ngIf="followed === true" (click)="unfollowPlaylist()">Unfollow</button>
         </div>
       </div>

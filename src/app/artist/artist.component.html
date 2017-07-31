@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="column is-6">
-            <button class="button is-primary is-medium clickable is-pulled-right push-down follow-button" *ngIf="isFollowing === false" (click)="followArtist()">Follow</button>
+            <button class="button is-primary is-medium is-outlined clickable is-pulled-right push-down follow-button" *ngIf="isFollowing === false" (click)="followArtist()">Follow</button>
             <button class="button is-primary is-medium clickable is-pulled-right push-down follow-button" *ngIf="isFollowing === true" (click)="unfollowArtist()">Unfollow</button>
           </div>
         </div>
