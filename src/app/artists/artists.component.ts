@@ -24,7 +24,7 @@ export class ArtistsComponent implements OnInit {
       limit: 50
     };
     this.type = 'artist';
-    this.spotifyService.getFollowedArtists(this.type).subscribe(
+    this.spotifyService.getFollowedArtists(this.type, this.options).subscribe(
       data => {
         this.artists = data.artists.items;
       },
