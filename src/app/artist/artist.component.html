@@ -7,16 +7,16 @@
             <div class="columns">
               <div class="column is-3 is-pulled-right">
                 <figure class="image is-128x128">
-                  <img class="img-circle" src="{{artist?.images[0].url}}">
+                  <img class="img-circle artist-image" src="{{artist?.images[0].url}}">
                 </figure>
               </div>
               <div class="column is-9 push-down">
-                <p class="title is-1">{{artist?.name}}</p>
-                <p class="subtitle is-5">{{artist?.followers.total}} followers</p>
+                <p class="title is-1 artist-title">{{artist?.name}}</p>
+                <p class="subtitle artist-followers">{{artist?.followers.total}} followers</p>
               </div>
             </div>
           </div>
-          <div class="column is-6">
+          <div class="column is-6 follow-buttons">
             <button class="button is-primary is-medium is-outlined clickable is-pulled-right push-down follow-button" *ngIf="isFollowing === false" (click)="followArtist()">Follow</button>
             <button class="button is-primary is-medium clickable is-pulled-right push-down follow-button" *ngIf="isFollowing === true" (click)="unfollowArtist()">Unfollow</button>
           </div>
