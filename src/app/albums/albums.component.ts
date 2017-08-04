@@ -13,6 +13,7 @@ export class AlbumsComponent implements OnInit {
   public albums: any;
   public options: any;
   public offset: any;
+  public albumsTotal: any;
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
 
@@ -27,6 +28,7 @@ export class AlbumsComponent implements OnInit {
     };
     this.spotifyService.getSavedUserAlbums(this.options).subscribe(
         data => {
+          this.albumsTotal = data.total;
           this.albums = data.items
         },
       error => {

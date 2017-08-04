@@ -69,7 +69,7 @@
           </tbody>
         </table>
         <br>
-        <button class="button is-outlined is-primary is-centered" (click)="loadMoreTracks()">Load More Tracks</button>
+        <button class="button is-primary is-outlined  is-fullwidth" *ngIf="track?.length <= tracksTotal" (click)="loadMoreTracks()">Load More Tracks</button>
       </div>
     </div>
   </div>

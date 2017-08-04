@@ -11,6 +11,8 @@ import {SpotifyService} from "../shared/spotify/angular2-spotify";
 export class AlbumComponent implements OnInit {
   public album: any;
   private saved: boolean;
+  public options: any;
+  public albumTracks: any;
 
   constructor(public spotifyService: SpotifyService) {
   }
@@ -21,10 +23,21 @@ export class AlbumComponent implements OnInit {
   }
 
   loadAlbum() {
+    this.options = {
+      limit: 50
+    };
     this.album = JSON.parse(localStorage.getItem('album'));
-    _.each(this.album.album.tracks.items, track => {
-      track.duration_ms = moment(track.duration_ms).format('m:ss');
-    });
+    this.spotifyService.getAlbumTracks(this.album.album.id, this.options).subscribe(
+      data => {
+        this.albumTracks = data.items;
+        _.each(this.albumTracks, track => {
+          track.duration_ms = moment(track.duration_ms).format('m:ss');
+        });
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   checkAlbum() {

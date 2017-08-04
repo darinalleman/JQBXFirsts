@@ -27,7 +27,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let track of album.album.tracks.items; let i = index" class="clickable">
+      <tr *ngFor="let track of albumTracks; let i = index" class="clickable">
         <td>{{i + 1}}</td>
         <td>{{track.name}}</td>
         <td>{{track.duration_ms}}</td>

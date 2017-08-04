@@ -1,5 +1,5 @@
 <div class="columns">
-  <div class="column push-left">
+  <div class="column is-12 push-left">
     <div class="columns is-multiline push-left">
       <div class="column is-2" *ngFor="let album of albums">
         <div class="card">
@@ -17,7 +17,11 @@
         </div>
       </div>
     </div>
-    <button class="button is-outlined is-primary is-centered" (click)="loadMoreAlbums()">Load More Albums</button>
+    <div class="columns push-left">
+      <div class="column is-12">
+        <button class="button is-primary is-outlined  is-fullwidth" *ngIf="albums?.length < albumsTotal" (click)="loadMoreAlbums()">Load More Albums</button>
+      </div>
+    </div>
   </div>
 </div>
 

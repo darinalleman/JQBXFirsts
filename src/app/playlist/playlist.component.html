@@ -29,7 +29,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr class="clickable" *ngFor="let track of playlist.tracks.items; let i = index">
+      <tr class="clickable" *ngFor="let track of tracks; let i = index">
         <td>{{i + 1}}</td>
         <td>{{track.track.name}}</td>
         <td>{{track.track.artists[0].name}} - {{track.track.album.name}}</td>
@@ -37,5 +37,6 @@
       </tr>
       </tbody>
     </table>
+    <button class="button is-primary is-outlined is-fullwidth" *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks</button>
   </div>
 </div>

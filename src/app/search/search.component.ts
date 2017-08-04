@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   public tracks: any;
   public album: any;
   public offset: any;
+  public tracksTotal: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -50,6 +51,7 @@ export class SearchComponent implements OnInit {
           this.albums = data.albums.items;
           this.playlists = data.playlists.items;
           this.tracks = data.tracks.items;
+          this.tracksTotal = data.tracks.total;
           _.each(this.tracks, track => {
             track.duration_ms = moment(track.duration_ms).format('m:ss');
           });
@@ -62,17 +64,17 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  loadMoreTracks(next) {
+  loadMoreTracks() {
     this.offset = this.offset + 20;
     this.options = {
       offset: this.offset
     };
     this.spotifyService.search(this.searchQuery, this.type, this.options).subscribe(
       data => {
-        this.tracks = _.concat(this.tracks, data.tracks.items);
-        _.each(this.tracks, track => {
+        _.each(data.tracks.items, track => {
           track.duration_ms = moment(track.duration_ms).format('m:ss');
         });
+        this.tracks = _.concat(this.tracks, data.tracks.items);
       },
       error => {
         console.log(error);
