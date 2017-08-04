@@ -13,7 +13,7 @@
       <tr *ngFor="let track of tracks; let i = index" class="clickable">
         <td>{{i + 1}}</td>
         <td>{{track.track.name}}</td>
-        <td >{{track.track.album.artists[0].name}} - {{track.track.album.name}}</td>
+        <td>{{track.track.album.artists[0].name}} - {{track.track.album.name}}</td>
         <td>{{track.track.duration_ms}}</td>
       </tr>
       </tbody>

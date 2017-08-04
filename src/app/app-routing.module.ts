@@ -27,18 +27,10 @@ const routes: Routes = [
   {
     path: 'callback',
     component: CallbackComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'your-music',
-    component: YourMusicComponent,
-    canActivate: [AuthGuard]
-
   },
   {
     path: 'main',
@@ -47,19 +39,23 @@ const routes: Routes = [
       { path: '', redirectTo: 'your-music', pathMatch: 'full' },
       {
         path: 'search',
-        component: SearchComponent
+        component: SearchComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'playlist',
-        component: PlaylistComponent
+        component: PlaylistComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'album',
-        component: AlbumComponent
+        component: AlbumComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'category',
         component: CategoryComponent,
+        canActivate: [AuthGuard]
 
       },
       {
@@ -76,6 +72,7 @@ const routes: Routes = [
             component: RelatedArtistsComponent
           },
         ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'your-music',
@@ -99,11 +96,13 @@ const routes: Routes = [
             path: 'artists',
             component: ArtistsComponent
           }
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'browse',

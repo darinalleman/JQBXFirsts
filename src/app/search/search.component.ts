@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -21,11 +21,14 @@ export class SearchComponent implements OnInit {
   public playlists: any;
   public tracks: any;
   public album: any;
+  public offset: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) { }
+  constructor(public spotifyService: SpotifyService, public router: Router) {
+  }
 
   ngOnInit() {
-    if(JSON.parse(localStorage.getItem('searchQuery'))){
+    this.offset = 0;
+    if (JSON.parse(localStorage.getItem('searchQuery'))) {
       this.searchQuery = JSON.parse(localStorage.getItem('searchQuery'));
       this.search();
     }
@@ -58,13 +61,18 @@ export class SearchComponent implements OnInit {
       )
     }
   }
-  loadMoreTracks() {
+
+  loadMoreTracks(next) {
+    this.offset = this.offset + 20;
     this.options = {
-      offset: 20
+      offset: this.offset
     };
     this.spotifyService.search(this.searchQuery, this.type, this.options).subscribe(
       data => {
-      this.tracks = _.concat(this.tracks, data.tracks.items);
+        this.tracks = _.concat(this.tracks, data.tracks.items);
+        _.each(this.tracks, track => {
+          track.duration_ms = moment(track.duration_ms).format('m:ss');
+        });
       },
       error => {
         console.log(error);

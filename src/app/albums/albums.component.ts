@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import {Router} from "@angular/router";
+import * as _ from 'lodash';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-albums',
@@ -10,10 +12,12 @@ import {Router} from "@angular/router";
 export class AlbumsComponent implements OnInit {
   public albums: any;
   public options: any;
+  public offset: any;
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
 
   ngOnInit() {
+    this.offset = 0;
     this.getSavedAlbums();
   }
 
@@ -30,6 +34,23 @@ export class AlbumsComponent implements OnInit {
       }
     )
   };
+
+  loadMoreAlbums() {
+    this.offset = this.offset + 20;
+    this.options = {
+      offset: this.offset
+    };
+
+    this.spotifyService.getSavedUserAlbums(this.options).subscribe(
+      data => {
+        this.albums = _.concat(this.albums, data.items);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
   goToAlbum(album) {
     localStorage.setItem('album', JSON.stringify(album));
     this.router.navigate(['main/album'])
