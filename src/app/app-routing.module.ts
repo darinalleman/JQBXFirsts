@@ -26,11 +26,13 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'callback',
-    component: CallbackComponent
+    component: CallbackComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'your-music',
@@ -57,7 +59,8 @@ const routes: Routes = [
       },
       {
         path: 'category',
-        component: CategoryComponent
+        component: CategoryComponent,
+
       },
       {
         path: 'artist',
@@ -73,7 +76,6 @@ const routes: Routes = [
             component: RelatedArtistsComponent
           },
         ],
-        canActivate: [AuthGuard]
       },
       {
         path: 'your-music',
@@ -97,8 +99,7 @@ const routes: Routes = [
             path: 'artists',
             component: ArtistsComponent
           }
-        ],
-        canActivate: [AuthGuard]
+        ]
       },
       {
         path: 'profile',
