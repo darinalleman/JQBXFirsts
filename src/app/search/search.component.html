@@ -3,8 +3,12 @@
     <div class="columns">
       <div class="column is-12">
         <div class="field is-grouped">
-          <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Search Spotify" [(ngModel)]="searchQuery" (keyup.enter)="search()">
+          <p class="control has-icons-left has-icons-right is-expanded">
+            <input class=" input" type="text" placeholder="Search Spotify" [(ngModel)]="searchQuery"
+                   (keyup.enter)="search()">
+            <span class="icon is-small is-left">
+                 <i class="fa fa-search"></i>
+            </span>
           </p>
           <p class="control">
             <a class="button is-primary" (click)="search()">
@@ -21,7 +25,7 @@
     <div class="columns">
       <div class="column is-2 clickable" *ngFor="let artist of artists" (click)="goToArtist(artist)">
         <img *ngIf="artist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-        <img *ngIf="artist.images.length > 0"class="image is-128x128" src="{{artist.images[0].url}}">
+        <img *ngIf="artist.images.length > 0" class="image is-128x128" src="{{artist.images[0].url}}">
         <p class="subtitle truncate">{{artist.name}}</p>
       </div>
     </div>
@@ -31,7 +35,7 @@
     <div class="columns">
       <div class="column is-2 clickable" *ngFor="let album of albums" (click)="goToAlbum(album)">
         <img *ngIf="album.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-        <img *ngIf="album.images.length > 0"class="image is-128x128" src="{{album.images[0].url}}">
+        <img *ngIf="album.images.length > 0" class="image is-128x128" src="{{album.images[0].url}}">
         <p class="subtitle truncate">{{album.name}}</p>
       </div>
     </div>
@@ -41,7 +45,7 @@
     <div class="columns">
       <div class="column is-2 clickable" *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist)">
         <img *ngIf="playlist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-        <img *ngIf="playlist.images.length > 0"class="image is-128x128" src="{{playlist.images[0].url}}">
+        <img *ngIf="playlist.images.length > 0" class="image is-128x128" src="{{playlist.images[0].url}}">
         <p class="subtitle truncate">{{playlist.name}}</p>
       </div>
     </div>
@@ -64,12 +68,16 @@
             <td>{{track.artists[0].name}}</td>
             <td>{{track.album.name}}</td>
             <td>{{track.duration_ms}}</td>
-            <td><progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress></td>
+            <td>
+              <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>
+            </td>
           </tr>
           </tbody>
         </table>
         <br>
-        <button class="button is-primary is-outlined  is-fullwidth" *ngIf="track?.length <= tracksTotal" (click)="loadMoreTracks()">Load More Tracks</button>
+        <button class="button is-primary is-outlined  is-fullwidth" *ngIf="track?.length <= tracksTotal"
+                (click)="loadMoreTracks()">Load More Tracks
+        </button>
       </div>
     </div>
   </div>
