@@ -1,5 +1,5 @@
 <div class="columns push-left push-down">
-  <div class="column is-3">
+  <div class="column is-4">
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
@@ -12,13 +12,13 @@
         <br>
         <p class="subtitle is-4">{{playlist.tracks.total}} songs</p>
         <div *ngIf="user.id != playlist.owner.id">
-          <button class="button is-primary is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
+          <button class="button is-primary is-outlined is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
           <button class="button is-primary is-medium" *ngIf="followed === true" (click)="unfollowPlaylist()">Unfollow</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="column is-9">
+  <div class="column is-8">
     <table class="table table-striped">
       <thead>
       <tr>
@@ -29,7 +29,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr class="clickable" *ngFor="let track of playlist.tracks.items; let i = index">
+      <tr class="clickable" *ngFor="let track of tracks; let i = index">
         <td>{{i + 1}}</td>
         <td>{{track.track.name}}</td>
         <td>{{track.track.artists[0].name}} - {{track.track.album.name}}</td>
@@ -37,5 +37,6 @@
       </tr>
       </tbody>
     </table>
+    <button class="button is-primary is-outlined is-fullwidth" *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks</button>
   </div>
 </div>

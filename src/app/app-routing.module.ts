@@ -26,17 +26,11 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'callback',
-    component: CallbackComponent
+    component: CallbackComponent,
   },
   {
     path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'your-music',
-    component: YourMusicComponent,
-    canActivate: [AuthGuard]
-
+    component: HomeComponent,
   },
   {
     path: 'main',
@@ -45,19 +39,24 @@ const routes: Routes = [
       { path: '', redirectTo: 'your-music', pathMatch: 'full' },
       {
         path: 'search',
-        component: SearchComponent
+        component: SearchComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'playlist',
-        component: PlaylistComponent
+        component: PlaylistComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'album',
-        component: AlbumComponent
+        component: AlbumComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'category',
-        component: CategoryComponent
+        component: CategoryComponent,
+        canActivate: [AuthGuard]
+
       },
       {
         path: 'artist',
@@ -72,7 +71,8 @@ const routes: Routes = [
             path: 'related-artists',
             component: RelatedArtistsComponent
           },
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'your-music',
@@ -96,11 +96,13 @@ const routes: Routes = [
             path: 'artists',
             component: ArtistsComponent
           }
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'browse',
@@ -120,7 +122,8 @@ const routes: Routes = [
             path: 'new-releases',
             component: NewReleasesComponent
           }
-        ]
+        ],
+        canActivate: [AuthGuard]
       }
     ],
     canActivate: [AuthGuard]

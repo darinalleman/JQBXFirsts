@@ -92,7 +92,8 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/albums/${album}/tracks`,
-      search: options
+      search: options,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 
@@ -141,7 +142,8 @@ export class SpotifyService {
     return this.api({
       method: 'get',
       url: `/artists/${artist}/albums`,
-      search: options
+      search: options,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 
@@ -163,7 +165,8 @@ export class SpotifyService {
     artist = this.getIdFromUri(artist);
     return this.api({
       method: 'get',
-      url: `/artists/${artist}/related-artists`
+      url: `/artists/${artist}/related-artists`,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 
@@ -289,6 +292,15 @@ export class SpotifyService {
   //#endregion
 
   //#region library
+
+  getUserTopArtistsAndTracks(type: string, options?: SpotifyOptions) {
+    return this.api({
+      method: 'get',
+      url: `/me/top/${type}`,
+      headers: this.getHeaders(),
+      search: options
+    }).map(res => res.json());
+  }
 
   getSavedUserTracks(options?: SpotifyOptions) {
     return this.api({

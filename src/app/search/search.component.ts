@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -19,19 +20,30 @@ export class SearchComponent implements OnInit {
   public albums: any;
   public playlists: any;
   public tracks: any;
+  public album: any;
+  public offset: any;
+  public tracksTotal: any;
 
-  constructor(public spotifyService: SpotifyService) { }
+  constructor(public spotifyService: SpotifyService, public router: Router) {
+  }
 
   ngOnInit() {
+    this.offset = 0;
+    if (JSON.parse(localStorage.getItem('searchQuery'))) {
+      this.searchQuery = JSON.parse(localStorage.getItem('searchQuery'));
+      this.search();
+    }
   }
 
   search() {
     this.type = 'album,artist,track,playlist';
     if (!this.searchQuery) {
       this.hasQuery = false;
+      localStorage.setItem('searchQuery', JSON.stringify(''));
       return false;
     } else {
       this.hasQuery = true;
+      localStorage.setItem('searchQuery', JSON.stringify(this.searchQuery));
       this.spotifyService.search(this.searchQuery, this.type).subscribe(
         data => {
           this.returnedSearchData = data;
@@ -39,6 +51,7 @@ export class SearchComponent implements OnInit {
           this.albums = data.albums.items;
           this.playlists = data.playlists.items;
           this.tracks = data.tracks.items;
+          this.tracksTotal = data.tracks.total;
           _.each(this.tracks, track => {
             track.duration_ms = moment(track.duration_ms).format('m:ss');
           });
@@ -50,13 +63,18 @@ export class SearchComponent implements OnInit {
       )
     }
   }
+
   loadMoreTracks() {
+    this.offset = this.offset + 20;
     this.options = {
-      offset: 20
+      offset: this.offset
     };
     this.spotifyService.search(this.searchQuery, this.type, this.options).subscribe(
       data => {
-      this.tracks = _.concat(this.tracks, data.tracks.items);
+        _.each(data.tracks.items, track => {
+          track.duration_ms = moment(track.duration_ms).format('m:ss');
+        });
+        this.tracks = _.concat(this.tracks, data.tracks.items);
       },
       error => {
         console.log(error);
@@ -64,4 +82,28 @@ export class SearchComponent implements OnInit {
     )
   }
 
+  goToArtist(artist) {
+    localStorage.setItem('artist', JSON.stringify(artist));
+    this.router.navigate(['main/artist'])
+  };
+
+  goToAlbum(album) {
+    this.spotifyService.getAlbum(album.id).subscribe(
+      data => {
+        this.album = {
+          album: data
+        };
+        localStorage.setItem('album', JSON.stringify(this.album));
+        this.router.navigate(['main/album'])
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
+
+  goToPlaylist(playlist) {
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+    this.router.navigate(['main/playlist'])
+  }
 }

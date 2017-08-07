@@ -1,7 +1,8 @@
-import {Component, OnInit, ViewContainerRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {ApiService} from "../shared/api/api.service";
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   public user: any;
 
 
-  constructor(public router:Router, private apiService:ApiService, private spotifyService:SpotifyService) {
+  constructor(public router: Router, private apiService: ApiService, private spotifyService: SpotifyService, private toastrService: ToastrService) {
   }
 
   public login() {
@@ -36,9 +37,13 @@ export class HomeComponent implements OnInit {
       }
     );
   }
+  showSuccess() {
+    this.toastrService.success('Hello world!', 'Toastr fun!');
+  }
 
   ngOnInit() {
 
   }
+
 
 }
