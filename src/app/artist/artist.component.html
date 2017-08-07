@@ -4,11 +4,22 @@
       <div class="container-fluid">
         <div class="columns">
           <div class="column is-6">
-              <p class="title is-1">{{artist.name}}</p>
-              <p class="subtitle is-5">{{artist.followers.total}} followers</p>
+            <div class="columns">
+              <div class="column is-3">
+                <figure class="image is-128x128">
+                  <img src="{{artist.images[0].url}}">
+                </figure>
+              </div>
+              <div class="column is-9">
+                <p class="title is-1">{{artist.name}}</p>
+                <p class="subtitle is-5">{{artist.followers.total}} followers</p>
+              </div>
+            </div>
           </div>
           <div class="column is-6">
-            <button class="button is-primary is-medium clickable inline is-pulled-right push-down follow-button">Follow</button>
+            <button class="button is-primary is-medium clickable inline is-pulled-right push-down follow-button">
+              Follow
+            </button>
           </div>
         </div>
       </div>
