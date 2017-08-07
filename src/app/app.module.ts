@@ -36,6 +36,7 @@ import { WebPlayerService } from "./web-player.service";
 import { OverviewComponent } from './overview/overview.component';
 import { RelatedArtistsComponent } from './related-artists/related-artists.component';
 import { ToastrModule } from 'ngx-toastr';
+import {StickyModule} from 'ng2-sticky-kit/ng2-sticky-kit';
 
 
 
@@ -64,10 +65,10 @@ import { ToastrModule } from 'ngx-toastr';
     ArtistComponent,
     MusicPlayerComponent,
     OverviewComponent,
-    RelatedArtistsComponent,
+    RelatedArtistsComponent
   ],
   imports: [
-    AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule,  CommonModule, ToastrModule.forRoot()
+    AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule,  CommonModule, StickyModule, ToastrModule.forRoot()
   ],
   providers: [
     { provide: APP_BASE_HREF, useValue: '/' },

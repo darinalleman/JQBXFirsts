@@ -46,6 +46,7 @@ export class AlbumsComponent implements OnInit {
     this.spotifyService.getSavedUserAlbums(this.options).subscribe(
       data => {
         this.albums = _.concat(this.albums, data.items);
+        document.getElementById("loadMoreAlbums").blur();
       },
       error => {
         console.log(error);

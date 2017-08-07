@@ -75,7 +75,7 @@
           </tbody>
         </table>
         <br>
-        <button class="button is-primary is-outlined  is-fullwidth" *ngIf="tracks?.length < tracksTotal"
+        <button id="loadMoreSearchTracks" class="button is-primary is-outlined  is-fullwidth" *ngIf="tracks?.length < tracksTotal"
                 (click)="loadMoreTracks()">Load More Tracks
         </button>
       </div>

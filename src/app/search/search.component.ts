@@ -75,6 +75,7 @@ export class SearchComponent implements OnInit {
           track.duration_ms = moment(track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.tracks.items);
+        document.getElementById("loadMoreSearchTracks").blur();
       },
       error => {
         console.log(error);

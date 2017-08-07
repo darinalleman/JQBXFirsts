@@ -19,7 +19,7 @@
     </div>
     <div class="columns push-left">
       <div class="column is-12">
-        <button class="button is-primary is-outlined  is-fullwidth" *ngIf="albums?.length < albumsTotal" (click)="loadMoreAlbums()">Load More Albums</button>
+        <button id="loadMoreAlbums" class="button is-primary is-outlined  is-fullwidth" *ngIf="albums?.length < albumsTotal" (click)="loadMoreAlbums()">Load More Albums</button>
       </div>
     </div>
   </div>

@@ -66,6 +66,7 @@ export class PlaylistComponent implements OnInit {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);
+        document.getElementById("loadMorePlaylistTracks").blur();
       },
       error => {
         console.log(error);
