@@ -46,6 +46,7 @@ export class SearchComponent implements OnInit {
       localStorage.setItem('searchQuery', JSON.stringify(this.searchQuery));
       this.spotifyService.search(this.searchQuery, this.type).subscribe(
         data => {
+          console.log(data);
           this.returnedSearchData = data;
           this.artists = data.artists.items;
           this.albums = data.albums.items;
