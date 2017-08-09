@@ -7,12 +7,14 @@
         </figure>
       </div>
       <div class="card-content has-text-centered">
-        <p class="is-size-3 truncate">{{playlist.name}}</p>
-        <p class="is-size-6">{{playlist.description}}</p>
+        <p class="is-size-3 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
+        <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
         <p class="is-size-5">{{playlist.tracks.total}} songs</p>
         <div *ngIf="user.id != playlist.owner.id" class="push-down">
           <button class="button is-primary is-outlined is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
           <button class="button is-primary is-medium" *ngIf="followed === true" (click)="unfollowPlaylist()">Unfollow</button>
+        </div>
+        <div *ngIf="user.id === playlist.owner.id" class="push-down">
           <button class="button is-medium" (click)="toggleEditModal()"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
         </div>
       </div>
@@ -57,7 +59,7 @@
               <div class="column is-8">
                 <div class="field has-addons">
                   <p class="control full-width">
-                    <input type="text" class="input" placeholder="Playlist Name">
+                    <input type="text" class="input" placeholder="Playlist Name" [(ngModel)]="newPlaylistName">
                   </p>
                 </div>
               </div>
@@ -78,7 +80,7 @@
               <div class="column">
                 <div class="field">
                   <div class="control">
-                    <textarea class="textarea" type="text" placeholder="Playlist Description"></textarea>
+                    <textarea class="textarea" type="text" placeholder="Playlist Description" [(ngModel)]="newPlaylistDescription"></textarea>
                   </div>
                 </div>
               </div>

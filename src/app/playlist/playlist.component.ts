@@ -10,12 +10,18 @@ import * as _ from 'lodash';
 })
 export class PlaylistComponent implements OnInit {
   public playlist: any;
+  public playlistName: any;
+  public playlistDescription: any;
   public user: any;
   public followed: boolean;
   public options: any;
   public offset: any;
   public tracks: any;
   public tracksTotal: any;
+  public playlistDetails: any;
+  public newPlaylistName: string;
+  public newPlaylistDescription: string;
+  public playlistSecurity: boolean;
 
   constructor(public spotifyService: SpotifyService) {
   }
@@ -34,6 +40,8 @@ export class PlaylistComponent implements OnInit {
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
         this.playlist = data;
+        this.playlistName = this.playlist.name;
+        this.playlistDescription = this.playlist.description;
         this.spotifyService.getPlaylistTracks(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
           data => {
             this.tracks = data.items;
@@ -119,7 +127,22 @@ export class PlaylistComponent implements OnInit {
   };
 
   saveChanges() {
-    console.log('here', this.playlist.owner.id, this.playlist.id);
+    this.playlistDetails = {
+      'description': this.newPlaylistDescription,
+      'public': true,
+      'name': this.newPlaylistName
+    };
+
+    this.spotifyService.updatePlaylistDetails(this.playlist.owner.id, this.playlist.id, this.playlistDetails).subscribe(
+      data => {
+        console.log(data);
+        this.loadPlaylist();
+        this.closeEditModal();
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }
