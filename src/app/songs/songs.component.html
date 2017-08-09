@@ -18,6 +18,8 @@
       </tr>
       </tbody>
     </table>
+    <button id="loadMoreSongsButton" class="button is-primary is-outlined is-fullwidth"
+    (click)="loadMoreTracks()" *ngIf="tracks?.length < totalTracks">Load More Tracks</button>
   </div>
 </div>
 
