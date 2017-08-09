@@ -7,11 +7,10 @@
         </figure>
       </div>
       <div class="card-content has-text-centered">
-        <p class="title is-2">{{playlist.name}}</p>
-        <p>{{playlist.description}}</p>
-        <br>
-        <p class="subtitle is-4">{{playlist.tracks.total}} songs</p>
-        <div *ngIf="user.id != playlist.owner.id">
+        <p class="is-size-3">{{playlist.name}}</p>
+        <p class="is-size-6">{{playlist.description}}</p>
+        <p class="is-size-5">{{playlist.tracks.total}} songs</p>
+        <div *ngIf="user.id != playlist.owner.id" class="push-down">
           <button class="button is-primary is-outlined is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
           <button class="button is-primary is-medium" *ngIf="followed === true" (click)="unfollowPlaylist()">Unfollow</button>
         </div>

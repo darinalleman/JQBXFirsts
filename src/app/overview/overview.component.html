@@ -1,17 +1,19 @@
 <div class="container-fluid">
-  <div class="section top-tracks">
-     <p class="title is-1 has-text-centered">Popular</p>
-    <table class="table is-table-striped">
-      <tbody>
-      <tr *ngFor="let track of topTracks; let i = index" class="clickable">
-        <td>{{i + 1}}</td>
-        <td>{{track.name}}</td>
-        <td>{{track.duration_ms}}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="section columns top-tracks">
+    <div class="column">
+      <p class="title is-1 has-text-centered">Popular</p>
+      <table class="table is-table-striped is-fullwidth">
+        <tbody>
+        <tr *ngFor="let track of topTracks; let i = index" class="clickable">
+          <td>{{i + 1}}</td>
+          <td>{{track.name}}</td>
+          <td>{{track.duration_ms}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class=" section columns albums" *ngIf="artistAlbums?.length > 0">
+  <div class="section columns albums" *ngIf="artistAlbums?.length > 0">
     <div class="column push-left">
       <p class="title is-1 has-text-centered">Albums</p>
       <div class="columns is-multiline push-left">
@@ -33,7 +35,7 @@
       </div>
     </div>
   </div>
-  <div class=" section columns singles" *ngIf="singles?.length > 0">
+  <div class="section columns singles" *ngIf="singles?.length > 0">
     <div class="column push-left">
       <p class="title is-1 has-text-centered">Singles</p>
       <div class="columns is-multiline push-left">
@@ -55,7 +57,7 @@
       </div>
     </div>
   </div>
-  <div class=" section columns compilations" *ngIf="compilations?.length > 0">
+  <div class="section columns compilations" *ngIf="compilations?.length > 0">
     <div class="column push-left">
       <p class="title is-1 has-text-centered">Compilations</p>
       <div class="columns is-multiline push-left">

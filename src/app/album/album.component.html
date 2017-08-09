@@ -7,7 +7,7 @@
         </figure>
       </div>
       <div class="card-content has-text-centered">
-        <p class="title is-2 truncate">{{album.album.name}}</p>
+        <p class="is-size-3 truncate">{{album.album.name}}</p>
         <span class="subtitle is-5 push-up">{{album.album.artists[0].name}}</span>
         <p class="push">{{album.album.release_date | date: 'yyyy'}} - {{album.album.tracks.total}} songs</p>
         <br>
@@ -18,7 +18,7 @@
     </div>
   </div>
   <div class="column is-8">
-    <table class="table table-striped">
+    <table class="table table-striped is-fullwidth">
       <thead>
       <tr>
         <th></th>
