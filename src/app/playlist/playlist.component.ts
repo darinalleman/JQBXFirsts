@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-playlist',
@@ -66,13 +66,13 @@ export class PlaylistComponent implements OnInit {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);
-        document.getElementById("loadMorePlaylistTracks").blur();
+        document.getElementById('loadMorePlaylistTracks').blur();
       },
       error => {
         console.log(error);
       }
     );
-  }
+  };
 
   checkIfUserFollowsPlaylist() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -84,7 +84,7 @@ export class PlaylistComponent implements OnInit {
         console.log(error);
       }
     )
-  }
+  };
 
   followPlaylist() {
     this.spotifyService.followPlaylist(this.playlist.owner.id, this.playlist.id).subscribe(
@@ -106,6 +106,20 @@ export class PlaylistComponent implements OnInit {
         console.log(error);
       }
     );
+  };
 
+  closeEditModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('is-active');
   }
+
+  toggleEditModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.toggle('is-active');
+  };
+
+  saveChanges() {
+    console.log('here', this.playlist.owner.id, this.playlist.id);
+  }
+
 }
