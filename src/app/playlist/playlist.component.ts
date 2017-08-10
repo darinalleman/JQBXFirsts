@@ -39,6 +39,7 @@ export class PlaylistComponent implements OnInit {
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
+        console.log(data);
         this.playlist = data;
         this.playlistName = this.playlist.name;
         this.playlistDescription = this.playlist.description;
@@ -123,6 +124,8 @@ export class PlaylistComponent implements OnInit {
 
   toggleEditModal() {
     const modal = document.getElementById('modal');
+    this.newPlaylistName = this.playlistName;
+    this.newPlaylistDescription = this.playlistDescription;
     modal.classList.toggle('is-active');
   };
 
@@ -134,8 +137,9 @@ export class PlaylistComponent implements OnInit {
     };
 
     this.spotifyService.updatePlaylistDetails(this.playlist.owner.id, this.playlist.id, this.playlistDetails).subscribe(
-      data => {
-        console.log(data);
+      () => {
+        this.newPlaylistDescription = '';
+        this.newPlaylistName = '';
         this.loadPlaylist();
         this.closeEditModal();
       },
