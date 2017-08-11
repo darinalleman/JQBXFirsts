@@ -13,6 +13,9 @@
 .push-left{
   margin-right: 8px;
 }
+.padding{
+  padding: 10px;
+}
 body{
   overflow: visible !important;
 }
@@ -58,6 +61,14 @@ body{
   &:hover{
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22) !important;
   }
+}
+
+.remove-margin-bottom-spacing {
+  margin-bottom: 5px !important;
+}
+
+.full-width{
+  width: 100%;
 }
 
 /*

@@ -1,6 +1,6 @@
 <p class="title is-2 has-text-centered">New Albums and Singles</p>
 <div class="columns is-multiline push-left">
-  <div class="column is-2" *ngFor="let new of newReleases?.albums.items">
+  <div class="column is-2" *ngFor="let new of newReleases">
     <div class="card card-hover">
       <div class="card-image">
         <figure class="image is-4by3">
@@ -9,9 +9,17 @@
       </div>
       <div class="card-content" (click)="goToAlbum(new)">
         <div class="content has-text-centered clickable">
-          <p class="title is-5 truncate">{{new.name}}</p>
+          <p class="is-size-5 truncate">{{new.name}}</p>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="columns push-left">
+  <div class="column is-12">
+    <button id="loadMoreNewReleases" class="button is-primary is-outlined is-fullwidth"
+            (click)="loadMoreNewReleases()" *ngIf="newReleases?.length < totalNewReleases">
+      Load More New Releases
+    </button>
   </div>
 </div>

@@ -7,13 +7,15 @@
         </figure>
       </div>
       <div class="card-content has-text-centered">
-        <p class="title is-2">{{playlist.name}}</p>
-        <p>{{playlist.description}}</p>
-        <br>
-        <p class="subtitle is-4">{{playlist.tracks.total}} songs</p>
-        <div *ngIf="user.id != playlist.owner.id">
+        <p class="is-size-3 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
+        <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
+        <p class="is-size-5">{{playlist.tracks.total}} songs</p>
+        <div *ngIf="user.id != playlist.owner.id" class="push-down">
           <button class="button is-primary is-outlined is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
           <button class="button is-primary is-medium" *ngIf="followed === true" (click)="unfollowPlaylist()">Unfollow</button>
+        </div>
+        <div *ngIf="user.id === playlist.owner.id" class="push-down">
+          <button class="button is-medium" (click)="toggleEditModal()"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
         </div>
       </div>
     </div>
@@ -38,5 +40,46 @@
       </tbody>
     </table>
     <button id="loadMorePlaylistTracks" class="button is-primary is-outlined is-fullwidth" *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks</button>
+  </div>
+</div>
+
+
+<div class="modal" id="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title text-white">{{playlist.name}}</p>
+      <button class="delete" (click)="closeEditModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="container-fluid">
+        <div class="columns">
+          <div class="column">
+            <div class="columns">
+              <div class="column is-12">
+                <div class="field has-addons">
+                  <p class="control full-width">
+                    <input type="text" class="input" placeholder="Playlist Name" [(ngModel)]="newPlaylistName">
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <div class="control">
+                    <textarea class="textarea" type="text" placeholder="Playlist Description" [(ngModel)]="newPlaylistDescription"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button" (click)="closeEditModal()">Cancel</a>
+      <a class="button is-primary is-outlined is-pulled-right" (click)="saveChanges()">Save changes</a>
+    </footer>
   </div>
 </div>

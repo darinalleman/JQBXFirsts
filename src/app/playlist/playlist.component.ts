@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-playlist',
@@ -10,12 +10,18 @@ import * as _ from "lodash";
 })
 export class PlaylistComponent implements OnInit {
   public playlist: any;
+  public playlistName: any;
+  public playlistDescription: any;
   public user: any;
   public followed: boolean;
   public options: any;
   public offset: any;
   public tracks: any;
   public tracksTotal: any;
+  public playlistDetails: any;
+  public newPlaylistName: string;
+  public newPlaylistDescription: string;
+  public playlistSecurity: boolean;
 
   constructor(public spotifyService: SpotifyService) {
   }
@@ -33,7 +39,10 @@ export class PlaylistComponent implements OnInit {
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
+        console.log(data);
         this.playlist = data;
+        this.playlistName = this.playlist.name;
+        this.playlistDescription = this.playlist.description;
         this.spotifyService.getPlaylistTracks(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
           data => {
             this.tracks = data.items;
@@ -66,13 +75,13 @@ export class PlaylistComponent implements OnInit {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);
-        document.getElementById("loadMorePlaylistTracks").blur();
+        document.getElementById('loadMorePlaylistTracks').blur();
       },
       error => {
         console.log(error);
       }
     );
-  }
+  };
 
   checkIfUserFollowsPlaylist() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -84,7 +93,7 @@ export class PlaylistComponent implements OnInit {
         console.log(error);
       }
     )
-  }
+  };
 
   followPlaylist() {
     this.spotifyService.followPlaylist(this.playlist.owner.id, this.playlist.id).subscribe(
@@ -106,6 +115,38 @@ export class PlaylistComponent implements OnInit {
         console.log(error);
       }
     );
+  };
 
+  closeEditModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('is-active');
   }
+
+  toggleEditModal() {
+    const modal = document.getElementById('modal');
+    this.newPlaylistName = this.playlistName;
+    this.newPlaylistDescription = this.playlistDescription;
+    modal.classList.toggle('is-active');
+  };
+
+  saveChanges() {
+    this.playlistDetails = {
+      'description': this.newPlaylistDescription,
+      'public': true,
+      'name': this.newPlaylistName
+    };
+
+    this.spotifyService.updatePlaylistDetails(this.playlist.owner.id, this.playlist.id, this.playlistDetails).subscribe(
+      () => {
+        this.newPlaylistDescription = '';
+        this.newPlaylistName = '';
+        this.loadPlaylist();
+        this.closeEditModal();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
 }
