@@ -23,6 +23,7 @@ export class SearchComponent implements OnInit {
   public album: any;
   public offset: any;
   public tracksTotal: any;
+  public noResults: boolean;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -47,16 +48,20 @@ export class SearchComponent implements OnInit {
       this.spotifyService.search(this.searchQuery, this.type).subscribe(
         data => {
           console.log(data);
-          this.returnedSearchData = data;
-          this.artists = data.artists.items;
-          this.albums = data.albums.items;
-          this.playlists = data.playlists.items;
-          this.tracks = data.tracks.items;
-          this.tracksTotal = data.tracks.total;
-          _.each(this.tracks, track => {
-            track.duration_ms = moment(track.duration_ms).format('m:ss');
-          });
-
+          if(data.artists.items.length === 0 && data.albums.items.length === 0 && data.playlists.items.length === 0 && data.tracks.items.length === 0){
+             this.noResults = true;
+          }else{
+            this.noResults = false;
+            this.returnedSearchData = data;
+            this.artists = data.artists.items;
+            this.albums = data.albums.items;
+            this.playlists = data.playlists.items;
+            this.tracks = data.tracks.items;
+            this.tracksTotal = data.tracks.total;
+            _.each(this.tracks, track => {
+              track.duration_ms = moment(track.duration_ms).format('m:ss');
+            });
+          }
         },
         error => {
           console.log(error);
@@ -107,5 +112,17 @@ export class SearchComponent implements OnInit {
   goToPlaylist(playlist) {
     localStorage.setItem('playlist', JSON.stringify(playlist));
     this.router.navigate(['main/playlist'])
+  }
+
+  clearFieldsAndData() {
+    this.returnedSearchData = {};
+    this.artists = [];
+    this.albums = [];
+    this.playlists = [];
+    this.tracks = [];
+    localStorage.removeItem('searchQuery');
+    this.hasQuery = false;
+    this.searchQuery = '';
+    this.noResults = false;
   }
 }
