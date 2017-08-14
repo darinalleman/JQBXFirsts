@@ -69,10 +69,10 @@
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
           <tbody>
-          <tr *ngFor="let track of tracks">
+          <tr *ngFor="let track of tracks" class="clickable">
             <td>{{track.name}}</td>
-            <td>{{track.artists[0].name}}</td>
-            <td>{{track.album.name}}</td>
+            <td class="td-hover">{{track.artists[0].name}}</td>
+            <td class="td-hover">{{track.album.name}}</td>
             <td>{{track.duration_ms}}</td>
             <td>
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>
