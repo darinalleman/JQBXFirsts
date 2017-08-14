@@ -1,5 +1,10 @@
 <div class="container-fluid">
   <div class="section">
+    <div class="message is-danger" *ngIf="noResults">
+      <div class="message-body">
+        <p>No results found, try a different search.</p>
+      </div>
+    </div>
     <div class="columns">
       <div class="column is-12">
         <div class="field is-grouped">
@@ -11,16 +16,17 @@
             </span>
           </p>
           <p class="control">
-            <a class="button is-primary" (click)="search()">
+            <a class="button is-primary is-outlined" (click)="search()">
               Search
             </a>
+            <a class="button is-danger is-outlined" (click)="clearFieldsAndData()">Reset</a>
           </p>
         </div>
       </div>
     </div>
-    <h1 class="title is-2 push-down" *ngIf="hasQuery">Showing resusts for <b>{{searchQuery}}</b></h1>
+    <h1 class="title is-2 push-down" *ngIf="hasQuery && !noResults">Showing results for <b>{{searchQuery}}</b></h1>
   </div>
-  <div class="section artists push-left" *ngIf="hasQuery && artists?.length > 0">
+  <div class="section artists push-left" *ngIf="hasQuery && artists?.length > 0 && !noResults">
     <p class="title is-2">Artists</p>
     <div class="columns">
       <div class="column is-2 clickable" *ngFor="let artist of artists" (click)="goToArtist(artist)">
@@ -30,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="section albums push-left" *ngIf="hasQuery && albums?.length > 0">
+  <div class="section albums push-left" *ngIf="hasQuery && albums?.length > 0 && !noResults">
     <p class="title is-2">Albums</p>
     <div class="columns">
       <div class="column is-2 clickable" *ngFor="let album of albums" (click)="goToAlbum(album)">
@@ -40,7 +46,7 @@
       </div>
     </div>
   </div>
-  <div class="section playlists push-left" *ngIf="hasQuery && playlists?.length > 0">
+  <div class="section playlists push-left" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
     <p class="title is-2">Playlists</p>
     <div class="columns">
       <div class="column is-2 clickable" *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist)">
@@ -50,10 +56,10 @@
       </div>
     </div>
   </div>
-  <div class="section tracks push-left" *ngIf="hasQuery && tracks?.length > 0">
+  <div class="section tracks push-left" *ngIf="hasQuery && tracks?.length > 0 && !noResults">
     <div class="columns">
       <div class="column is-12">
-        <table class="table">
+        <table class="table search-table">
           <thead>
           <tr>
             <th>Title</th>
