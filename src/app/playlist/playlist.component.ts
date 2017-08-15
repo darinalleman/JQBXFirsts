@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-playlist',
@@ -22,8 +23,9 @@ export class PlaylistComponent implements OnInit {
   public newPlaylistName: string;
   public newPlaylistDescription: string;
   public playlistSecurity: boolean;
+  public album: any;
 
-  constructor(public spotifyService: SpotifyService) {
+  constructor(public spotifyService: SpotifyService, public router: Router) {
   }
 
   ngOnInit() {
@@ -147,6 +149,26 @@ export class PlaylistComponent implements OnInit {
         console.log(error);
       }
     )
-  }
+  };
+
+  goToArtist(artist) {
+    localStorage.setItem('artist', JSON.stringify(artist));
+    this.router.navigate(['main/artist'])
+  };
+
+  goToAlbum(album) {
+    this.spotifyService.getAlbum(album.id).subscribe(
+      data => {
+        this.album = {
+          album: data
+        };
+        localStorage.setItem('album', JSON.stringify(this.album));
+        this.router.navigate(['main/album'])
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
 
 }

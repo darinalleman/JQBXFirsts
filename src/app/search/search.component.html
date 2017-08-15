@@ -71,8 +71,8 @@
           <tbody>
           <tr *ngFor="let track of tracks" class="clickable">
             <td>{{track.name}}</td>
-            <td class="td-hover">{{track.artists[0].name}}</td>
-            <td class="td-hover">{{track.album.name}}</td>
+            <td class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</td>
+            <td class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</td>
             <td>{{track.duration_ms}}</td>
             <td>
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>
