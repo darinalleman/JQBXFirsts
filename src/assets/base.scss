@@ -99,10 +99,11 @@ tbody{
   tr:hover{
     color: white;
     background-color: #00d1b2 !important;
-    //td:hover{
-    //  text-decoration: underline;
-    //  cursor: pointer;
-    //  font-weight: 600;
+    //.td-hover {
+    //  &:hover{
+    //    text-decoration: underline;
+    //    cursor: pointer;
+    //  }
     //}
   }
 }
