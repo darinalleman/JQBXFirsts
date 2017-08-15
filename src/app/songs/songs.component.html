@@ -5,7 +5,8 @@
       <tr>
         <th></th>
         <th>Title</th>
-        <th>Ablum</th>
+        <th>Artist</th>
+        <th>Album</th>
         <th><i class="fa fa-clock-o"></i></th>
       </tr>
       </thead>
@@ -13,7 +14,8 @@
       <tr *ngFor="let track of tracks; let i = index" class="clickable">
         <td>{{i + 1}}</td>
         <td>{{track.track.name}}</td>
-        <td>{{track.track.album.artists[0].name}} - {{track.track.album.name}}</td>
+        <td class="td-hover" (click)="goToArtist(track.track.album.artists[0])">{{track.track.album.artists[0].name}}</td>
+        <td class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</td>
         <td>{{track.track.duration_ms}}</td>
       </tr>
       </tbody>

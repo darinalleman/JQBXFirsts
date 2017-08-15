@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import * as moment from 'moment';
 import * as _ from "lodash";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-songs',
@@ -13,7 +14,9 @@ export class SongsComponent implements OnInit {
   public options: any;
   public offset: any;
   public totalTracks: any;
-  constructor(public spotifyService: SpotifyService) {
+  public album: any;
+
+  constructor(public spotifyService: SpotifyService, public router: Router) {
   }
 
   ngOnInit() {
@@ -38,6 +41,7 @@ export class SongsComponent implements OnInit {
       }
     )
   }
+
   loadMoreTracks() {
     this.offset = this.offset + 50;
     this.options = {
@@ -56,5 +60,26 @@ export class SongsComponent implements OnInit {
         console.log(error);
       }
     )
-  }
+  };
+
+  goToArtist(artist) {
+    console.log(artist);
+    localStorage.setItem('artist', JSON.stringify(artist));
+    this.router.navigate(['main/artist'])
+  };
+
+  goToAlbum(album) {
+    this.spotifyService.getAlbum(album.id).subscribe(
+      data => {
+        this.album = {
+          album: data
+        };
+        localStorage.setItem('album', JSON.stringify(this.album));
+        this.router.navigate(['main/album'])
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
 }
