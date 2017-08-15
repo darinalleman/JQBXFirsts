@@ -24,6 +24,7 @@ export class PlaylistComponent implements OnInit {
   public newPlaylistDescription: string;
   public playlistSecurity: boolean;
   public album: any;
+  public updated: boolean;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -38,6 +39,7 @@ export class PlaylistComponent implements OnInit {
     this.options = {
       limit: 100
     };
+    this.updated = false;
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
@@ -144,8 +146,11 @@ export class PlaylistComponent implements OnInit {
         this.newPlaylistName = '';
         this.loadPlaylist();
         this.closeEditModal();
+        this.updated = true;
+        this.showNotifcation()
       },
       error => {
+        this.updated = false;
         console.log(error);
       }
     )
@@ -169,6 +174,18 @@ export class PlaylistComponent implements OnInit {
         console.log(error);
       }
     );
+  };
+
+  hideNotifcation() {
+    const hideNotification = document.getElementById('hidePlaylistUpdatedNotication');
+    hideNotification.style.display = 'none';
+  };
+
+  showNotifcation() {
+    const hideNotification = document.getElementById('hidePlaylistUpdatedNotication');
+    if (hideNotification) {
+      hideNotification.style.display = 'block';
+    }
   };
 
 }
