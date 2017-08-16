@@ -18,6 +18,8 @@ export class OverviewComponent implements OnInit {
   public singles: any;
   public compilations: any;
   public album: any;
+  private playObject: any;
+  private selectedRow: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -92,19 +94,36 @@ export class OverviewComponent implements OnInit {
   };
 
   goToAlbum(album) {
-     this.spotifyService.getAlbum(album.id).subscribe(
-       data => {
-         this.album = {
-           album: data
-         };
-         localStorage.setItem('album', JSON.stringify(this.album));
-         this.router.navigate(['main/album']);
-       },
-       error => {
-         console.log(error);
-       }
-     );
-  }
+    this.spotifyService.getAlbum(album.id).subscribe(
+      data => {
+        this.album = {
+          album: data
+        };
+        localStorage.setItem('album', JSON.stringify(this.album));
+        this.router.navigate(['main/album']);
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  };
 
+  startSong(songUri) {
+    this.playObject = {
+      "uris": [songUri]
+    };
+    this.spotifyService.startResumePlayer(this.playObject).subscribe(
+      () => {
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
+  setClickedRow(index, songUri) {
+    this.selectedRow = index;
+    this.startSong(songUri);
+  };
 
 }
