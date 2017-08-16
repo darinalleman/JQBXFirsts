@@ -45,7 +45,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr class="clickable" *ngFor="let track of tracks; let i = index">
+          <tr class="clickable" *ngFor="let track of tracks; let i = index" (click)="setClickedRow(i, track.track.uri)" [class.is-selected]="i == selectedRow">
             <td>{{i + 1}}</td>
             <td>{{track.track.name}}</td>
             <td class="td-hover" (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</td>

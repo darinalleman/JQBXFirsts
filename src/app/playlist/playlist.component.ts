@@ -25,6 +25,8 @@ export class PlaylistComponent implements OnInit {
   public playlistSecurity: boolean;
   public album: any;
   public updated: boolean;
+  private playObject: any;
+  public selectedRow: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -146,8 +148,8 @@ export class PlaylistComponent implements OnInit {
         this.newPlaylistName = '';
         this.loadPlaylist();
         this.closeEditModal();
+        this.showNotifcation();
         this.updated = true;
-        this.showNotifcation()
       },
       error => {
         this.updated = false;
@@ -186,6 +188,24 @@ export class PlaylistComponent implements OnInit {
     if (hideNotification) {
       hideNotification.style.display = 'block';
     }
+  };
+
+  startSong(songUri) {
+    this.playObject = {
+      "uris": [songUri]
+    };
+    this.spotifyService.startResumePlayer(this.playObject).subscribe(
+      () => {
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
+  setClickedRow(index, songUri) {
+    this.selectedRow = index;
+    this.startSong(songUri);
   };
 
 }

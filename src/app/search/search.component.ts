@@ -24,6 +24,8 @@ export class SearchComponent implements OnInit {
   public offset: any;
   public tracksTotal: any;
   public noResults: boolean;
+  private playObject: any;
+  private selectedRow: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -124,5 +126,23 @@ export class SearchComponent implements OnInit {
     this.hasQuery = false;
     this.searchQuery = '';
     this.noResults = false;
-  }
+  };
+
+  startSong(songUri) {
+    this.playObject = {
+      "uris": [songUri]
+    };
+    this.spotifyService.startResumePlayer(this.playObject).subscribe(
+      () => {
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
+  setClickedRow(index, songUri) {
+    this.selectedRow = index;
+    this.startSong(songUri);
+  };
 }

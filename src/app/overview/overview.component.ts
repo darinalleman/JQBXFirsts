@@ -34,6 +34,7 @@ export class OverviewComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.spotifyService.getArtistTopTracks(this.artist.id, this.user.country).subscribe(
       data => {
+        console.log(data);
         this.topTracks = data.tracks;
         _.each(this.topTracks, track => {
           track.duration_ms = moment(track.duration_ms).format('m:ss');

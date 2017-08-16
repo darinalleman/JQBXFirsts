@@ -69,10 +69,10 @@
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
           <tbody>
-          <tr *ngFor="let track of tracks" class="clickable">
+          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)" [class.is-selected]="i == selectedRow">
             <td>{{track.name}}</td>
-            <td class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</td>
-            <td class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</td>
+            <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
+            <td><span class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</span></td>
             <td>{{track.duration_ms}}</td>
             <td>
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>
