@@ -15,6 +15,8 @@ export class SongsComponent implements OnInit {
   public offset: any;
   public totalTracks: any;
   public album: any;
+  public playObject: any;
+  public selectedRow: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -81,5 +83,23 @@ export class SongsComponent implements OnInit {
         console.log(error);
       }
     );
+  };
+
+  startSong(songUri) {
+    this.playObject = {
+      "uris": [songUri]
+    };
+    this.spotifyService.startResumePlayer(this.playObject).subscribe(
+      () => {
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
+  setClickedRow(index, songUri) {
+    this.selectedRow = index;
+    this.startSong(songUri);
   };
 }

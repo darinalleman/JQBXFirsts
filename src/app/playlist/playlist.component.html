@@ -1,47 +1,64 @@
 <div class="columns push-left push-down">
-  <div class="column is-3">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="{{playlist.images[0].url}}" alt="Image">
-        </figure>
+  <div class="column is-12">
+    <div id="hidePlaylistUpdatedNotication"  class="notification is-primary" *ngIf="updated">
+      <button class="delete" (click)="hideNotifcation()"></button>
+      <p>Playlist successfully updated</p>
+    </div>
+    <div class="columns">
+      <div class="column is-3">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="{{playlist.images[0].url}}" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content has-text-centered">
+            <p class="is-size-3 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
+            <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
+            <p class="is-size-5">{{playlist.tracks.total}} songs</p>
+            <div *ngIf="user.id != playlist.owner.id" class="push-down">
+              <button class="button is-primary is-outlined is-medium" *ngIf="followed === false"
+                      (click)="followPlaylist()">
+                Follow
+              </button>
+              <button class="button is-primary is-medium" *ngIf="followed === true" (click)="unfollowPlaylist()">
+                Unfollow
+              </button>
+            </div>
+            <div *ngIf="user.id === playlist.owner.id" class="push-down">
+              <button class="button is-medium" (click)="toggleEditModal()"><i class="fa fa-pencil"
+                                                                              aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="card-content has-text-centered">
-        <p class="is-size-3 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
-        <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
-        <p class="is-size-5">{{playlist.tracks.total}} songs</p>
-        <div *ngIf="user.id != playlist.owner.id" class="push-down">
-          <button class="button is-primary is-outlined is-medium" *ngIf="followed === false" (click)="followPlaylist()">Follow</button>
-          <button class="button is-primary is-medium" *ngIf="followed === true" (click)="unfollowPlaylist()">Unfollow</button>
-        </div>
-        <div *ngIf="user.id === playlist.owner.id" class="push-down">
-          <button class="button is-medium" (click)="toggleEditModal()"><i class="fa fa-pencil" aria-hidden="true"></i> </button>
-        </div>
+      <div class="column is-9">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th><i class="fa fa-clock-o"></i></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="clickable" *ngFor="let track of tracks; let i = index" (click)="setClickedRow(i, track.track.uri)" [class.is-selected]="i == selectedRow">
+            <td>{{i + 1}}</td>
+            <td>{{track.track.name}}</td>
+            <td><span class="td-hover" (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span></td>
+            <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
+            <td>{{track.track.duration_ms}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <button id="loadMorePlaylistTracks" class="button is-primary is-outlined is-fullwidth"
+                *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks
+        </button>
       </div>
     </div>
-  </div>
-  <div class="column is-9">
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Artist</th>
-        <th>Album</th>
-        <th><i class="fa fa-clock-o"></i></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="clickable" *ngFor="let track of tracks; let i = index">
-        <td>{{i + 1}}</td>
-        <td>{{track.track.name}}</td>
-        <td class="td-hover" (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</td>
-        <td class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</td>
-        <td>{{track.track.duration_ms}}</td>
-      </tr>
-      </tbody>
-    </table>
-    <button id="loadMorePlaylistTracks" class="button is-primary is-outlined is-fullwidth" *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks</button>
   </div>
 </div>
 
@@ -59,18 +76,21 @@
           <div class="column">
             <div class="columns">
               <div class="column">
-                <div class="field has-addons">
-                  <p class="control full-width">
+                <div class="field">
+                  <label class="label">Playlist Name</label>
+                  <div class="control full-width">
                     <input type="text" class="input" placeholder="Playlist Name" [(ngModel)]="newPlaylistName">
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="columns">
               <div class="column">
                 <div class="field">
+                  <label class="label">Playlist Description</label>
                   <div class="control">
-                    <textarea class="textarea" type="text" placeholder="Playlist Description" [(ngModel)]="newPlaylistDescription"></textarea>
+                    <textarea class="textarea" type="text" placeholder="Playlist Description"
+                              [(ngModel)]="newPlaylistDescription"></textarea>
                   </div>
                 </div>
               </div>

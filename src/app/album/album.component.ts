@@ -14,6 +14,8 @@ export class AlbumComponent implements OnInit {
   private saved: boolean;
   public options: any;
   public albumTracks: any;
+  private playObject: any;
+  private selectedRow: any;
 
   constructor(public spotifyService: SpotifyService, public router:Router) {
   }
@@ -78,6 +80,24 @@ export class AlbumComponent implements OnInit {
   goToArtist(artist) {
     localStorage.setItem('artist', JSON.stringify(artist));
     this.router.navigate(['main/artist'])
+  };
+
+  startSong(songUri) {
+    this.playObject = {
+      "uris": [songUri]
+    };
+    this.spotifyService.startResumePlayer(this.playObject).subscribe(
+      () => {
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  };
+
+  setClickedRow(index, songUri) {
+    this.selectedRow = index;
+    this.startSong(songUri);
   };
 
 }

@@ -564,13 +564,23 @@ export class SpotifyService {
 
 
   //$region play
-    getUserDevices() {
-      return this.api({
-        method: 'get',
-        url: `/me/player/devices/`,
-        headers: this.getHeaders()
-      }).map(res => res.json());
-    }
+  getUserDevices() {
+    return this.api({
+      method: 'get',
+      url: `/me/player/devices/`,
+      headers: this.getHeaders()
+    }).map(res => res.json());
+  }
+
+  startResumePlayer(options: Object) {
+    return this.api({
+      method: 'put',
+      url: `/me/player/play/`,
+      headers: this.getHeaders(),
+      body: options
+    }).map(res => res.json());
+  }
+
 
   //# end region
 

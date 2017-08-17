@@ -32,7 +32,6 @@ import { CategoryComponent } from './category/category.component';
 import { ArtistComponent } from './artist/artist.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MusicPlayerComponent } from './music-player/music-player.component';
-import { WebPlayerService } from "./web-player.service";
 import { OverviewComponent } from './overview/overview.component';
 import { RelatedArtistsComponent } from './related-artists/related-artists.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -83,7 +82,7 @@ import {StickyModule} from 'ng2-sticky-kit/ng2-sticky-kit';
         authToken: localStorage.getItem('angular2-spotify-token')
       },
     },
-    ApiService, AuthGuard, AuthHttp, AuthService, AppConfig, WebPlayerService
+    ApiService, AuthGuard, AuthHttp, AuthService, AppConfig
   ],
   bootstrap: [AppComponent]
 })

@@ -26,8 +26,4 @@ export class MusicPlayerComponent implements OnInit {
     )
   };
 
-  getTrack() {
-    this.track = JSON.parse(localStorage.getItem('song'));
-    console.log(this.track);
-  }
 }
