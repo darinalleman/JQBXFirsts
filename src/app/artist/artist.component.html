@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container-fluid">
         <div class="columns">
-          <div class="column is-10">
+          <div class="column is-12">
             <div class="columns">
               <div class="column is-2">
                 <figure class="image is-128x128 is-pulled-right">
@@ -13,12 +13,10 @@
               <div class="column is-10 is-pulled-left">
                 <p class="title is-1 artist-title">{{artist?.name}}</p>
                 <p class="subtitle artist-followers">{{artist?.followers.total}} followers</p>
+                <button class="button is-primary is-medium is-outlined clickable follow-button" *ngIf="isFollowing === false" (click)="followArtist()">Follow</button>
+                <button class="button is-primary is-medium clickable follow-button" *ngIf="isFollowing === true" (click)="unfollowArtist()">Unfollow</button>
               </div>
             </div>
-          </div>
-          <div class="column is-2 follow-buttons">
-            <button class="button is-primary is-medium is-outlined clickable is-pulled-right push-down follow-button" *ngIf="isFollowing === false" (click)="followArtist()">Follow</button>
-            <button class="button is-primary is-medium clickable is-pulled-right push-down follow-button" *ngIf="isFollowing === true" (click)="unfollowArtist()">Unfollow</button>
           </div>
         </div>
       </div>
