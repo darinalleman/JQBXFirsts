@@ -65,11 +65,13 @@
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>
+            <th>Action</th>
             <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
           <tbody>
-          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)" [class.is-selected]="i == selectedRow">
+          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)"
+              [class.is-selected]="i == selectedRow">
             <td>{{track.name}}</td>
             <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
             <td><span class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</span></td>
@@ -81,7 +83,8 @@
           </tbody>
         </table>
         <br>
-        <button id="loadMoreSearchTracks" class="button is-primary is-outlined  is-fullwidth" *ngIf="tracks?.length < tracksTotal"
+        <button id="loadMoreSearchTracks" class="button is-primary is-outlined  is-fullwidth"
+                *ngIf="tracks?.length < tracksTotal"
                 (click)="loadMoreTracks()">Load More Tracks
         </button>
       </div>
