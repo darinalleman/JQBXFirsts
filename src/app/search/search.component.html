@@ -107,14 +107,14 @@
             <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
             <td><span class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</span></td>
             <td>{{track.duration_ms}}</td>
-            <td>
+            <td class="popularity">
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>
             </td>
           </tr>
           </tbody>
         </table>
         <br>
-        <button id="loadMoreSearchTracks" class="button is-primary is-outlined  is-fullwidth"
+        <button id="loadMoreSearchTracks" class="button is-primary is-outlined is-fullwidth"
                 *ngIf="tracks?.length < tracksTotal"
                 (click)="loadMoreTracks()">Load More Tracks
         </button>
