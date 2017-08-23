@@ -27,7 +27,7 @@
     <h1 class="title is-2 push-down" *ngIf="hasQuery && !noResults">Showing results for <b>{{searchQuery}}</b></h1>
   </div>
   <div class="section artists push-left" *ngIf="hasQuery && artists?.length > 0 && !noResults">
-    <p class="title is-2">Artists</p>
+    <p class="title is-2 has-text-centered">Artists</p>
     <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let artist of artists" (click)="goToArtist(artist)">
         <div class="card card-hover">
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="section albums push-left" *ngIf="hasQuery && albums?.length > 0 && !noResults">
-    <p class="title is-2">Albums</p>
+    <p class="title is-2 has-text-centered">Albums</p>
     <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let album of albums" (click)="goToAlbum(album)">
         <div class="card card-hover">
@@ -67,7 +67,7 @@
     </div>
   </div>
   <div class="section playlists push-left" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
-    <p class="title is-2">Playlists</p>
+    <p class="title is-2 has-text-centered">Playlists</p>
     <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist)">
         <div class="card card-hover">
@@ -95,7 +95,6 @@
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>
-            <th>Action</th>
             <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
