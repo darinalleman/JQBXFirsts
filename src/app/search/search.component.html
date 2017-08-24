@@ -19,7 +19,9 @@
             <a class="button is-primary is-outlined" (click)="search()">
               Search
             </a>
-            <a class="button is-danger is-outlined" (click)="clearFieldsAndData()">Reset</a>
+            <a class="button is-danger is-outlined" (click)="clearFieldsAndData()">
+              Reset
+            </a>
           </p>
         </div>
       </div>
@@ -27,32 +29,62 @@
     <h1 class="title is-2 push-down" *ngIf="hasQuery && !noResults">Showing results for <b>{{searchQuery}}</b></h1>
   </div>
   <div class="section artists push-left" *ngIf="hasQuery && artists?.length > 0 && !noResults">
-    <p class="title is-2">Artists</p>
-    <div class="columns">
+    <p class="title is-2 has-text-centered">Artists</p>
+    <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let artist of artists" (click)="goToArtist(artist)">
-        <img *ngIf="artist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-        <img *ngIf="artist.images.length > 0" class="image is-128x128" src="{{artist.images[0].url}}">
-        <p class="subtitle truncate push-down">{{artist.name}}</p>
+        <div class="card card-hover">
+          <div class="card-image">
+            <figure class="image is-square">
+              <img *ngIf="artist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
+              <img *ngIf="artist.images.length > 0" class="image is-128x128" src="{{artist.images[0].url}}">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <p class="subtitle truncate push-down">{{artist.name}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="section albums push-left" *ngIf="hasQuery && albums?.length > 0 && !noResults">
-    <p class="title is-2">Albums</p>
-    <div class="columns">
+    <p class="title is-2 has-text-centered">Albums</p>
+    <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let album of albums" (click)="goToAlbum(album)">
-        <img *ngIf="album.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-        <img *ngIf="album.images.length > 0" class="image is-128x128" src="{{album.images[0].url}}">
-        <p class="subtitle truncate push-down">{{album.name}}</p>
+        <div class="card card-hover">
+          <div class="card-image">
+            <figure class="image is-square">
+              <img *ngIf="album.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
+              <img *ngIf="album.images.length > 0" class="image is-128x128" src="{{album.images[0].url}}">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <p class="subtitle truncate push-down">{{album.name}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="section playlists push-left" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
-    <p class="title is-2">Playlists</p>
-    <div class="columns">
+    <p class="title is-2 has-text-centered">Playlists</p>
+    <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist)">
-        <img *ngIf="playlist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-        <img *ngIf="playlist.images.length > 0" class="image is-128x128" src="{{playlist.images[0].url}}">
-        <p class="subtitle truncate push-down">{{playlist.name}}</p>
+        <div class="card card-hover">
+          <div class="card-image">
+            <figure class="image is-square">
+              <img *ngIf="playlist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
+              <img *ngIf="playlist.images.length > 0" class="image is-128x128" src="{{playlist.images[0].url}}">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content has-text-centered">
+              <p class="subtitle truncate push-down">{{playlist.name}}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -69,19 +101,21 @@
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
           <tbody>
-          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)" [class.is-selected]="i == selectedRow">
+          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)"
+              [class.is-selected]="i == selectedRow">
             <td>{{track.name}}</td>
             <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
             <td><span class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</span></td>
             <td>{{track.duration_ms}}</td>
-            <td>
+            <td class="popularity">
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>
             </td>
           </tr>
           </tbody>
         </table>
         <br>
-        <button id="loadMoreSearchTracks" class="button is-primary is-outlined  is-fullwidth" *ngIf="tracks?.length < tracksTotal"
+        <button id="loadMoreSearchTracks" class="button is-primary is-outlined is-fullwidth"
+                *ngIf="tracks?.length < tracksTotal"
                 (click)="loadMoreTracks()">Load More Tracks
         </button>
       </div>
