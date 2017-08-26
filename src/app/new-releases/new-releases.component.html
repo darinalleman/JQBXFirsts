@@ -3,13 +3,13 @@
   <div class="column is-2" *ngFor="let new of newReleases">
     <div class="card card-hover">
       <div class="card-image">
-        <figure class="image is-4by3">
+        <figure class="image is-square">
           <img src="{{new?.images[0].url}}" alt="no image">
         </figure>
       </div>
       <div class="card-content" (click)="goToAlbum(new)">
         <div class="content has-text-centered clickable">
-          <p class="is-size-5 truncate">{{new.name}}</p>
+          <p class="is-size-6 truncate">{{new.name}}</p>
         </div>
       </div>
     </div>

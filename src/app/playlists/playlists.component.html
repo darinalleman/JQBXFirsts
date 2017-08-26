@@ -2,14 +2,14 @@
   <div class="column is-2" *ngFor="let playlist of playlists">
     <div class="card card-hover">
       <div class="card-image">
-        <figure class="image is-4by3">
+        <figure class="image is-square">
           <img src="{{playlist.images[0].url}}" alt="">
         </figure>
       </div>
       <div class="card-content">
         <div class="content has-text-centered clickable" (click)="goToPlaylist(playlist)">
-          <p class="title is-5 truncate remove-margin-bottom-spacing">{{playlist.name}}</p>
-          <p class="owner truncate">By {{playlist.owner.id}}</p>
+          <p class="title is-6 truncate remove-margin-bottom-spacing">{{playlist.name}}</p>
+          <p class="owner is-size-6 truncate">By {{playlist.owner.id}}</p>
         </div>
       </div>
     </div>

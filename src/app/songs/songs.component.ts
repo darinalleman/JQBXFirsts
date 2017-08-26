@@ -53,7 +53,7 @@ export class SongsComponent implements OnInit {
     this.spotifyService.getSavedUserTracks(this.options).subscribe(
       data => {
         _.each(data.items, track => {
-          track.duration_ms = moment(track.duration_ms).format('m:ss');
+          track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);
         document.getElementById("loadMoreSongsButton").blur();
