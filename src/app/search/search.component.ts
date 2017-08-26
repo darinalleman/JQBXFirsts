@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  public selectedDropdown: any;
   public searchQuery: string;
   public type: string;
   public returnedSearchData: any;
@@ -145,4 +146,9 @@ export class SearchComponent implements OnInit {
     this.selectedRow = index;
     this.startSong(songUri);
   };
+
+  setActiveDropdown(index) {
+    console.log(index);
+    this.selectedDropdown = index;
+  }
 }

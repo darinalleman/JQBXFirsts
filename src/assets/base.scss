@@ -63,12 +63,22 @@ body{
   }
 }
 
+.modal-card-head{
+  background-color: #00b89c;
+}
+
 .remove-margin-bottom-spacing {
   margin-bottom: 5px !important;
 }
 
 .full-width{
   width: 100%;
+}
+
+.dropdown-item{
+   &:hover{
+     background-color: #efefef;
+   }
 }
 
 
@@ -99,7 +109,10 @@ body{
 tbody{
   tr{
     td{
-      font-size: 1em;
+      font-size: 15px;
+      .dropdown{
+        visibility: hidden;
+      }
     }
   }
 
@@ -109,7 +122,15 @@ tbody{
     .td-hover {
       &:hover{
         text-decoration: underline;
-        cursor: pointer;
+        cursor: hand;
+      }
+    }
+    .dropdown{
+      visibility: visible;
+      .dropdown-trigger{
+         span{
+           font-weight: 900;
+         }
       }
     }
   }
