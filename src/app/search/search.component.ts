@@ -148,7 +148,6 @@ export class SearchComponent implements OnInit {
   };
 
   setActiveDropdown(index) {
-    console.log(index);
     this.selectedDropdown = index;
   }
 }
