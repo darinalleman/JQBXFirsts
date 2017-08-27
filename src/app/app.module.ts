@@ -31,7 +31,6 @@ import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { CategoryComponent } from './category/category.component';
 import { ArtistComponent } from './artist/artist.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MusicPlayerComponent } from './music-player/music-player.component';
 import { OverviewComponent } from './overview/overview.component';
 import { RelatedArtistsComponent } from './related-artists/related-artists.component';
 import { ToastrModule } from 'ngx-toastr';
@@ -62,9 +61,8 @@ import {StickyModule} from 'ng2-sticky-kit/ng2-sticky-kit';
     NewReleasesComponent,
     CategoryComponent,
     ArtistComponent,
-    MusicPlayerComponent,
     OverviewComponent,
-    RelatedArtistsComponent
+    RelatedArtistsComponent,
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule,  CommonModule, StickyModule, ToastrModule.forRoot()
