@@ -11,6 +11,9 @@ export class PlaylistsComponent implements OnInit {
   public user: any;
   public playlists: any;
   public options: any;
+  private playlistDetails: any;
+  private newPlaylistDescription: any;
+  private newPlaylistName: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
@@ -34,9 +37,36 @@ export class PlaylistsComponent implements OnInit {
       }
     )
   }
+
   goToPlaylist(playlist) {
     localStorage.setItem('playlist', JSON.stringify(playlist));
     this.router.navigate(['main/playlist'])
+  }
+
+  closeCreateModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.remove('is-active');
+  }
+
+  toggleCreateModal() {
+    const modal = document.getElementById('modal');
+    modal.classList.toggle('is-active');
+  };
+
+  createNewPlaylist() {
+    this.playlistDetails = {
+      'description': this.newPlaylistDescription,
+      'public': true,
+      'name': this.newPlaylistName
+    };
+    this.spotifyService.createPlaylist(this.user.id, this.playlistDetails).subscribe(
+      () => {
+        this.closeCreateModal();
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }

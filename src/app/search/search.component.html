@@ -97,15 +97,30 @@
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>
+            <th></th>
             <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
           <tbody>
-          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)"
+          <tr *ngFor="let track of tracks; let i = index" class="clickable"
               [class.is-selected]="i == selectedRow">
             <td>{{track.name}}</td>
             <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
             <td><span class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</span></td>
+            <td>
+              <div class="dropdown" (click)="setActiveDropdown(i)" [class.is-active]="i == selectedDropdown">
+                <div class="dropdown-trigger">
+                    <span>...</span>
+                </div>
+                <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                  <div class="dropdown-content">
+                    <div class="dropdown-item">
+                      Add To Playlist
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
             <td>{{track.duration_ms}}</td>
             <td class="popularity">
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>

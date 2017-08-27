@@ -1,11 +1,11 @@
 <div class="columns push-left push-down">
   <div class="column is-12">
-    <div id="hidePlaylistUpdatedNotication"  class="notification is-primary" *ngIf="updated">
+    <div id="hidePlaylistUpdatedNotication" class="notification is-primary" *ngIf="updated">
       <button class="delete" (click)="hideNotifcation()"></button>
       <p>Playlist successfully updated</p>
     </div>
-    <div class="columns">
-      <div class="column is-3">
+    <div class="columns" *ngIf="playlist.tracks.items.length > 0">
+      <div class="column is-4">
         <div class="card">
           <div class="card-image">
             <figure class="image is-square">
@@ -33,7 +33,7 @@
           </div>
         </div>
       </div>
-      <div class="column is-9">
+      <div class="column is-8">
         <table class="table table-striped">
           <thead>
           <tr>
@@ -45,10 +45,12 @@
           </tr>
           </thead>
           <tbody>
-          <tr class="clickable" *ngFor="let track of tracks; let i = index" (click)="setClickedRow(i, track.track.uri)" [class.is-selected]="i == selectedRow">
+          <tr class="clickable" *ngFor="let track of tracks; let i = index" (click)="setClickedRow(i, track.track.uri)"
+              [class.is-selected]="i == selectedRow">
             <td>{{i + 1}}</td>
             <td>{{track.track.name}}</td>
-            <td><span class="td-hover" (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span></td>
+            <td><span class="td-hover"
+                      (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span></td>
             <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
             <td>{{track.track.duration_ms}}</td>
           </tr>
@@ -57,6 +59,13 @@
         <button id="loadMorePlaylistTracks" class="button is-primary is-outlined is-fullwidth"
                 *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks
         </button>
+      </div>
+    </div>
+    <div class="columns" *ngIf="playlist.tracks.items.length  === 0">
+      <div class="column">
+        <div class="notification is-danger">
+          <p>This playlist has no data. Go explore and add some songs to it!</p>
+        </div>
       </div>
     </div>
   </div>
