@@ -4,12 +4,12 @@
       <button class="delete" (click)="hideNotifcation()"></button>
       <p>Playlist successfully updated</p>
     </div>
-    <div class="columns" *ngIf="playlist.tracks.items.length > 0">
+    <div class="columns" *ngIf="playlist?.tracks.items?.length > 0">
       <div class="column is-4">
         <div class="card">
           <div class="card-image">
             <figure class="image is-square">
-              <img src="{{playlist.images[0].url}}" alt="Image">
+              <img src="{{playlist?.images[0].url}}" alt="Image">
             </figure>
           </div>
           <div class="card-content has-text-centered">
@@ -61,7 +61,7 @@
         </button>
       </div>
     </div>
-    <div class="columns" *ngIf="playlist.tracks.items.length  === 0">
+    <div class="columns" *ngIf="playlist?.tracks.items?.length  === 0">
       <div class="column">
         <div class="notification is-danger">
           <p>This playlist has no data. Go explore and add some songs to it!</p>

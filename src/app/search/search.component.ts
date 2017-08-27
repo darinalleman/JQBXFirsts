@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  playlistOptions: any;
   public selectedDropdown: any;
   public searchQuery: string;
   public type: string;
@@ -27,16 +28,33 @@ export class SearchComponent implements OnInit {
   public noResults: boolean;
   private playObject: any;
   private selectedRow: any;
+  public user: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router) {
   }
 
   ngOnInit() {
+    this.loadPlaylistOptions();
     this.offset = 0;
     if (JSON.parse(localStorage.getItem('searchQuery'))) {
       this.searchQuery = JSON.parse(localStorage.getItem('searchQuery'));
       this.search();
     }
+  }
+
+  loadPlaylistOptions() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.options = {
+      limit: 50
+    };
+    this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
+      data => {
+        this.playlistOptions = data.items;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   search() {
@@ -150,4 +168,19 @@ export class SearchComponent implements OnInit {
   setActiveDropdown(index) {
     this.selectedDropdown = index;
   }
+
+  addToPlaylist(songURI, playlist) {
+    this.options = {
+      "uris": [songURI]
+    };
+    this.spotifyService.addPlaylistTracks(playlist.owner.id, playlist.id, this.options).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
 }
