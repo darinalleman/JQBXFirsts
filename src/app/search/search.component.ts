@@ -66,7 +66,10 @@ export class SearchComponent implements OnInit {
     } else {
       this.hasQuery = true;
       localStorage.setItem('searchQuery', JSON.stringify(this.searchQuery));
-      this.spotifyService.search(this.searchQuery, this.type).subscribe(
+      this.options = {
+          limit: 12
+      };
+      this.spotifyService.search(this.searchQuery, this.type , this.options).subscribe(
         data => {
           if (data.artists.items.length === 0 && data.albums.items.length === 0 && data.playlists.items.length === 0 && data.tracks.items.length === 0) {
             this.noResults = true;
@@ -110,7 +113,6 @@ export class SearchComponent implements OnInit {
   }
 
   goToArtist(artist) {
-    console.log(artist);
     localStorage.setItem('artist', JSON.stringify(artist));
     this.router.navigate(['main/artist'])
   };
@@ -165,14 +167,12 @@ export class SearchComponent implements OnInit {
     this.startSong(songUri);
   };
 
-  setActiveDropdown(index) {
-    this.selectedDropdown = index;
-  }
 
   addToPlaylist(songURI, playlist) {
     this.spotifyService.addPlaylistTracks(playlist.owner.id, playlist.id, songURI).subscribe(
-      data => {
-        console.log(data);
+      () => {
+        const dropdown = document.getElementById('dropdown');
+        dropdown.classList.remove('is-active');
       },
       error => {
         console.log(error);

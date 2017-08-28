@@ -103,17 +103,6 @@ tbody{
   tr{
     td{
       font-size: 15px;
-      .dropdown{
-        visibility: hidden;
-      }
-      .dropdown-list{
-        &:hover{
-          background-color: #efefef;
-        }
-      }
-      .dropdown-title{
-        cursor: not-allowed;
-      }
     }
   }
 
@@ -124,19 +113,6 @@ tbody{
       &:hover{
         text-decoration: underline;
         cursor: hand;
-      }
-    }
-    .dropdown{
-      visibility: visible;
-      .dropdown-trigger{
-         span{
-           font-weight: 900;
-         }
-      }
-      .dropdown-content{
-        max-height: 300px;
-        overflow-y: scroll;
-        border: 1px solid black;
       }
     }
   }
