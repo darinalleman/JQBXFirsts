@@ -4,7 +4,7 @@
       <p class="title section-title is-1 has-text-centered">Popular</p>
       <table class="table is-table-striped is-fullwidth">
         <tbody>
-        <tr *ngFor="let track of topTracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)" [class.is-selected]="i == selectedRow">
+        <tr *ngFor="let track of topTracks; let i = index" class="clickable" (click)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
           <td>{{i + 1}}</td>
           <td>{{track.name}}</td>
           <td>{{track.duration_ms}}</td>

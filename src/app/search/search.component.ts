@@ -3,6 +3,7 @@ import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import {Router} from "@angular/router";
+import {ActiveSongService} from "../music-player/active-song.service";
 
 
 @Component({
@@ -29,7 +30,7 @@ export class SearchComponent implements OnInit {
   private selectedRow: any;
   public user: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService) {
   }
 
   ngOnInit() {
@@ -145,9 +146,10 @@ export class SearchComponent implements OnInit {
     )
   };
 
-  setClickedRow(index, songUri) {
+  setClickedRow(index, track) {
     this.selectedRow = index;
-    this.startSong(songUri);
+    this.startSong(track.uri);
+    this.activeSongService.currentSong.next(track);
   };
 
 

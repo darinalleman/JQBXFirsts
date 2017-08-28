@@ -101,7 +101,7 @@
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
           <tbody>
-          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)"
+          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track)"
               [class.is-selected]="i == selectedRow">
             <td>{{track.name}}</td>
             <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
