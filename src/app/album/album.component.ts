@@ -33,7 +33,7 @@ export class AlbumComponent implements OnInit {
     this.spotifyService.getAlbumTracks(this.album.album.id, this.options).subscribe(
       data => {
         this.albumTracks = data.items;
-        _.each(this.albumTracks, track => {
+        _.each(this.albumTracks, (track: any) => {
           track.duration_ms = moment(track.duration_ms).format('m:ss');
         });
       },

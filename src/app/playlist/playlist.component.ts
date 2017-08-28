@@ -22,7 +22,6 @@ export class PlaylistComponent implements OnInit {
   public playlistDetails: any;
   public newPlaylistName: string;
   public newPlaylistDescription: string;
-  public playlistSecurity: boolean;
   public album: any;
   public updated: boolean;
   private playObject: any;
@@ -53,7 +52,7 @@ export class PlaylistComponent implements OnInit {
           data => {
             this.tracks = data.items;
             this.tracksTotal = data.total;
-            _.each(this.tracks, track => {
+            _.each(this.tracks, (track: any) => {
               track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
             });
           },
@@ -77,7 +76,7 @@ export class PlaylistComponent implements OnInit {
 
     this.spotifyService.getPlaylistTracks(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
-        _.each(data.items, track => {
+        _.each(data.items, (track: any) => {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);

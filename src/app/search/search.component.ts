@@ -11,7 +11,6 @@ import {Router} from "@angular/router";
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  playlistOptions: any;
   public selectedDropdown: any;
   public searchQuery: string;
   public type: string;
@@ -34,27 +33,11 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadPlaylistOptions();
     this.offset = 0;
     if (JSON.parse(localStorage.getItem('searchQuery'))) {
       this.searchQuery = JSON.parse(localStorage.getItem('searchQuery'));
       this.search();
     }
-  }
-
-  loadPlaylistOptions() {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.options = {
-      limit: 50
-    };
-    this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
-      data => {
-        this.playlistOptions = data.items;
-      },
-      error => {
-        console.log(error);
-      }
-    )
   }
 
   search() {
@@ -81,7 +64,7 @@ export class SearchComponent implements OnInit {
             this.playlists = data.playlists.items;
             this.tracks = data.tracks.items;
             this.tracksTotal = data.tracks.total;
-            _.each(this.tracks, track => {
+            _.each(this.tracks, (track: any) => {
               track.duration_ms = moment(track.duration_ms).format('m:ss');
             });
           }
@@ -100,11 +83,11 @@ export class SearchComponent implements OnInit {
     };
     this.spotifyService.search(this.searchQuery, this.type, this.options).subscribe(
       data => {
-        _.each(data.tracks.items, track => {
+        _.each(data.tracks.items, (track: any) => {
           track.duration_ms = moment(track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.tracks.items);
-        document.getElementById("loadMoreSearchTracks").blur();
+        document.getElementById('loadMoreSearchTracks').blur();
       },
       error => {
         console.log(error);
@@ -151,7 +134,7 @@ export class SearchComponent implements OnInit {
 
   startSong(songUri) {
     this.playObject = {
-      "uris": [songUri]
+      'uris': [songUri]
     };
     this.spotifyService.startResumePlayer(this.playObject).subscribe(
       () => {

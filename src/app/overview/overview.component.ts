@@ -38,7 +38,7 @@ export class OverviewComponent implements OnInit {
       data => {
         console.log(data);
         this.topTracks = data.tracks;
-        _.each(this.topTracks, track => {
+        _.each(this.topTracks, (track: any) => {
           track.duration_ms = moment(track.duration_ms).format('m:ss');
         })
       },

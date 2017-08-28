@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {SpotifyService} from "../shared/spotify/angular2-spotify";
+import {Component, OnInit} from '@angular/core';
+import {ActiveSongService} from './active-song.service';
 
 @Component({
   selector: 'app-music-player',
@@ -7,23 +7,13 @@ import {SpotifyService} from "../shared/spotify/angular2-spotify";
   styleUrls: ['./music-player.component.scss']
 })
 export class MusicPlayerComponent implements OnInit {
-  public devices: any;
-  public track: any;
+  currentSong: any;
 
-  constructor(public spotifyService: SpotifyService) { }
+  constructor(private activeSongService: ActiveSongService) {
+  }
 
   ngOnInit() {
-    this.getUserDevices();
+    this.activeSongService.currentSong.subscribe(currentSong => this.currentSong = currentSong);
   }
-  getUserDevices() {
-    this.spotifyService.getUserDevices().subscribe(
-      data => {
-        this.devices = data.devices;
-      },
-      error => {
-        console.log(error)
-      }
-    )
-  };
 
 }
