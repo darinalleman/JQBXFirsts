@@ -547,7 +547,8 @@ export class SpotifyService {
     track = this.getIdFromUri(track);
     return this.api({
       method: 'get',
-      url: `/tracks/${track}`
+      url: `/tracks/${track}`,
+      headers: this.getHeaders()
     }).map(res => res.json());
   }
 

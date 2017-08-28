@@ -2,10 +2,15 @@
   <div class="container">
     <div class="content">
       <div class="columns">
-         <div class="column is-4">
-           <p class="is-size-4 text-white">{{currentSong.name}}</p>
-         </div>
-       </div>
+        <div class="column is-3">
+          <figure class="image is-64x64 is-pulled-right" *ngIf="currentSong">
+            <img src="{{currentSong.album.images[0].url}}">
+          </figure>
+        </div>
+        <div class="column is-4">
+          <p class="is-size-4 text-white song-name">{{currentSong.name}}</p>
+        </div>
+      </div>
     </div>
   </div>
 </footer>

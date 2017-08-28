@@ -45,7 +45,6 @@ export class PlaylistComponent implements OnInit {
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
-        console.log(data);
         this.playlist = data;
         this.playlistName = this.playlist.name;
         this.playlistDescription = this.playlist.description;
