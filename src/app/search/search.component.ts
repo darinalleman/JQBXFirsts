@@ -170,10 +170,7 @@ export class SearchComponent implements OnInit {
   }
 
   addToPlaylist(songURI, playlist) {
-    this.options = {
-      "uris": [songURI]
-    };
-    this.spotifyService.addPlaylistTracks(playlist.owner.id, playlist.id, this.options).subscribe(
+    this.spotifyService.addPlaylistTracks(playlist.owner.id, playlist.id, songURI).subscribe(
       data => {
         console.log(data);
       },

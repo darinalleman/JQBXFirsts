@@ -75,18 +75,6 @@ body{
   width: 100%;
 }
 
-.dropdown-list{
-   &:hover{
-     background-color: #efefef;
-   }
-}
-
-.dropdown-title{
-  cursor: none;
-}
-
-
-
 /*
  *  custom scrool bar
  */
@@ -117,6 +105,14 @@ tbody{
       font-size: 15px;
       .dropdown{
         visibility: hidden;
+      }
+      .dropdown-list{
+        &:hover{
+          background-color: #efefef;
+        }
+      }
+      .dropdown-title{
+        cursor: not-allowed;
       }
     }
   }
