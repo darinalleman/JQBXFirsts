@@ -82,10 +82,8 @@ body{
 }
 
 .dropdown-title{
-  cursor: none;
+  cursor: not-allowed;
 }
-
-
 
 /*
  *  custom scrool bar
@@ -115,9 +113,9 @@ tbody{
   tr{
     td{
       font-size: 15px;
-      .dropdown{
-        visibility: hidden;
-      }
+      //.dropdown{
+      //  visibility: hidden;
+      //}
     }
   }
 
@@ -130,19 +128,19 @@ tbody{
         cursor: hand;
       }
     }
-    .dropdown{
-      visibility: visible;
-      .dropdown-trigger{
-         span{
-           font-weight: 900;
-         }
-      }
-      .dropdown-content{
-        max-height: 300px;
-        overflow-y: scroll;
-        border: 1px solid black;
-      }
-    }
+    //.dropdown{
+    //  visibility: visible;
+    //  .dropdown-trigger{
+    //     span{
+    //       font-weight: 900;
+    //     }
+    //  }
+    //  .dropdown-content{
+    //    max-height: 300px;
+    //    overflow-y: scroll;
+    //    border: 1px solid black;
+    //  }
+    //}
   }
 }
 
