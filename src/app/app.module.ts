@@ -64,6 +64,7 @@ import {ActiveSongService} from './music-player/active-song.service';
     ArtistComponent,
     OverviewComponent,
     RelatedArtistsComponent,
+    MusicPlayerComponent
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, StickyModule, ToastrModule.forRoot()

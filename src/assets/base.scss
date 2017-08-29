@@ -75,19 +75,6 @@ body{
   width: 100%;
 }
 
-<<<<<<< HEAD
-.dropdown-list{
-   &:hover{
-     background-color: #efefef;
-   }
-}
-
-.dropdown-title{
-  cursor: not-allowed;
-}
-
-=======
->>>>>>> 55f2fac5ce9940b716198efbc8ae45d27a89a459
 /*
  *  custom scrool bar
  */
@@ -116,12 +103,6 @@ tbody{
   tr {
     td {
       font-size: 15px;
-<<<<<<< HEAD
-      //.dropdown{
-      //  visibility: hidden;
-      //}
-=======
->>>>>>> 55f2fac5ce9940b716198efbc8ae45d27a89a459
     }
   }
   tr:hover{
@@ -133,26 +114,10 @@ tbody{
         cursor: hand;
       }
     }
-<<<<<<< HEAD
-    //.dropdown{
-    //  visibility: visible;
-    //  .dropdown-trigger{
-    //     span{
-    //       font-weight: 900;
-    //     }
-    //  }
-    //  .dropdown-content{
-    //    max-height: 300px;
-    //    overflow-y: scroll;
-    //    border: 1px solid black;
-    //  }
-    //}
-=======
->>>>>>> 55f2fac5ce9940b716198efbc8ae45d27a89a459
   }
 }
 
 body{
-  margin-bottom:80px;
+  margin-bottom: 100px;
 }
 
