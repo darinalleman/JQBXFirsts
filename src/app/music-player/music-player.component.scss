@@ -5,7 +5,7 @@ footer {
   width:100%;
   height: 20px;
   padding: 0rem 1.5rem 6rem;
-  background-color: rgba(51, 51, 51, 0.9)!important;
+  background-color: #535b6e !important;
 }
 
 .song-name{
@@ -13,5 +13,25 @@ footer {
 }
 
 .image{
-  margin-top: 25px;
+  margin-top: 20px;
+}
+
+.media-content{
+  margin-top: 20px;
+}
+
+.player-content, .device-content {
+  margin-top: 35px;
+}
+
+.fa {
+  font-size: 2em;
+  margin-right: 30px;
+  &:hover{
+    color: lighten(#1DB954, 10);
+  }
+}
+
+.shuffle-highlight{
+  color: lighten(#1DB954, 10);
 }

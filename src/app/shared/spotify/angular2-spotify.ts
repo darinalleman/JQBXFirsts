@@ -406,7 +406,7 @@ export class SpotifyService {
     }).map(res => res.json());
   }
 
-  getPlaylist(userId: string, playlistId: string, options?: {fields: string}) {
+  getPlaylist(userId: string, playlistId: string, options?: { fields: string }) {
     return this.api({
       method: 'get',
       url: `/users/${userId}/playlists/${playlistId}`,
@@ -424,7 +424,7 @@ export class SpotifyService {
     }).map(res => res.json());
   }
 
-  createPlaylist(userId: string, options: {name: string, public?: boolean}) {
+  createPlaylist(userId: string, options: { name: string, public?: boolean }) {
     return this.api({
       method: 'post',
       url: `/users/${userId}/playlists`,
@@ -433,7 +433,7 @@ export class SpotifyService {
     }).map(res => res.json());
   }
 
-  addPlaylistTracks(userId: string, playlistId: string, tracks: string | Array<string>, options?: {position: number}) {
+  addPlaylistTracks(userId: string, playlistId: string, tracks: string | Array<string>, options?: { position: number }) {
     let trackList = Array.isArray(tracks) ? tracks : tracks.split(',');
     trackList.forEach((value, index) => {
       trackList[index] = value.indexOf('spotify:') === -1 ? 'spotify:track:' + value : value;
@@ -466,7 +466,7 @@ export class SpotifyService {
     }).map(res => res.json());
   }
 
-  reorderPlaylistTracks(userId: string, playlistId: string, options: {range_start: number, range_length?: number, insert_before: number, snapshot_id?: string}) {
+  reorderPlaylistTracks(userId: string, playlistId: string, options: { range_start: number, range_length?: number, insert_before: number, snapshot_id?: string }) {
     return this.api({
       method: 'put',
       url: `/users/${userId}/playlists/${playlistId}/tracks`,
@@ -579,6 +579,30 @@ export class SpotifyService {
       url: `/me/player/play/`,
       headers: this.getHeaders(),
       body: options
+    }).map(res => res.json());
+  }
+
+  getCurrentPlayingTrack() {
+    return this.api({
+      method: 'get',
+      url: `/me/player/currently-playing/`,
+      headers: this.getHeaders(),
+    }).map(res => res.json());
+  }
+
+  getInfoOfCurrentPlayback() {
+    return this.api({
+      method: 'get',
+      url: `/me/player/`,
+      headers: this.getHeaders(),
+    }).map(res => res.json());
+  }
+
+  pausePlayback() {
+    return this.api({
+      method: 'put',
+      url: `/me/player/pause/`,
+      headers: this.getHeaders(),
     }).map(res => res.json());
   }
 

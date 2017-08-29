@@ -78,7 +78,7 @@ import {ActiveSongService} from './music-player/active-song.service';
       useValue: {
         clientId: '9d7ee30778da43ce8b048be43fb84050',
         redirectUri: 'localhost:4200/callback',
-        scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-library-read user-library-modify user-read-private',
+        scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-library-read user-library-modify user-read-private user-modify-playback-state',
         authToken: localStorage.getItem('angular2-spotify-token')
       },
     },
