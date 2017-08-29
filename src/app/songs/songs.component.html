@@ -1,5 +1,5 @@
-<div class="columns">
-  <div class="column is-10 is-offset-1 push-left">
+<div class="columns push-left">
+  <div class="column is-12">
     <table class="table">
       <thead>
       <tr>
@@ -11,7 +11,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track.track.uri)" [class.is-selected]="i == selectedRow">
+      <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
         <td>{{i + 1}}</td>
         <td>{{track.track.name}}</td>
         <td><span class="td-hover" (click)="goToArtist(track.track.album.artists[0])">{{track.track.album.artists[0].name}}</span></td>

@@ -3,6 +3,7 @@ import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import * as moment from 'moment';
 import * as _ from "lodash";
 import {Router} from "@angular/router";
+import {ActiveSongService} from '../music-player/active-song.service';
 
 @Component({
   selector: 'app-songs',
@@ -18,7 +19,7 @@ export class SongsComponent implements OnInit {
   public playObject: any;
   public selectedRow: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(private spotifyService: SpotifyService, private router: Router, private activeSongService: ActiveSongService) {
   }
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class SongsComponent implements OnInit {
       data => {
         this.tracks = data.items;
         this.totalTracks = data.total;
-        _.each(this.tracks, track => {
+        _.each(this.tracks, (track: any) => {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss')
         })
       },
@@ -52,7 +53,7 @@ export class SongsComponent implements OnInit {
     };
     this.spotifyService.getSavedUserTracks(this.options).subscribe(
       data => {
-        _.each(data.items, track => {
+        _.each(data.items, (track: any) => {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);
@@ -98,8 +99,9 @@ export class SongsComponent implements OnInit {
     )
   };
 
-  setClickedRow(index, songUri) {
+  setClickedRow(index,track) {
     this.selectedRow = index;
-    this.startSong(songUri);
+    this.startSong(track.track.uri);
+    this.activeSongService.currentSong.next(track.track);
   };
 }

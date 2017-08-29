@@ -3,6 +3,7 @@ import {SpotifyService} from '../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import {Router} from "@angular/router";
+import {ActiveSongService} from "../music-player/active-song.service";
 
 @Component({
   selector: 'app-playlist',
@@ -22,13 +23,12 @@ export class PlaylistComponent implements OnInit {
   public playlistDetails: any;
   public newPlaylistName: string;
   public newPlaylistDescription: string;
-  public playlistSecurity: boolean;
   public album: any;
   public updated: boolean;
   private playObject: any;
   public selectedRow: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService) {
   }
 
   ngOnInit() {
@@ -45,7 +45,6 @@ export class PlaylistComponent implements OnInit {
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
-        console.log(data);
         this.playlist = data;
         this.playlistName = this.playlist.name;
         this.playlistDescription = this.playlist.description;
@@ -53,7 +52,7 @@ export class PlaylistComponent implements OnInit {
           data => {
             this.tracks = data.items;
             this.tracksTotal = data.total;
-            _.each(this.tracks, track => {
+            _.each(this.tracks, (track: any) => {
               track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
             });
           },
@@ -77,7 +76,7 @@ export class PlaylistComponent implements OnInit {
 
     this.spotifyService.getPlaylistTracks(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
-        _.each(data.items, track => {
+        _.each(data.items, (track: any) => {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);
@@ -203,9 +202,10 @@ export class PlaylistComponent implements OnInit {
     )
   };
 
-  setClickedRow(index, songUri) {
+  setClickedRow(index, track) {
     this.selectedRow = index;
-    this.startSong(songUri);
+    this.startSong(track.track.uri);
+    this.activeSongService.currentSong.next(track.track);
   };
 
 }

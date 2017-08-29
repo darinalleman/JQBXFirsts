@@ -75,6 +75,7 @@ body{
   width: 100%;
 }
 
+<<<<<<< HEAD
 .dropdown-list{
    &:hover{
      background-color: #efefef;
@@ -85,6 +86,8 @@ body{
   cursor: not-allowed;
 }
 
+=======
+>>>>>>> 55f2fac5ce9940b716198efbc8ae45d27a89a459
 /*
  *  custom scrool bar
  */
@@ -110,15 +113,17 @@ body{
 }
 
 tbody{
-  tr{
-    td{
+  tr {
+    td {
       font-size: 15px;
+<<<<<<< HEAD
       //.dropdown{
       //  visibility: hidden;
       //}
+=======
+>>>>>>> 55f2fac5ce9940b716198efbc8ae45d27a89a459
     }
   }
-
   tr:hover{
     color: white;
     background-color: #00d1b2 !important;
@@ -128,6 +133,7 @@ tbody{
         cursor: hand;
       }
     }
+<<<<<<< HEAD
     //.dropdown{
     //  visibility: visible;
     //  .dropdown-trigger{
@@ -141,10 +147,12 @@ tbody{
     //    border: 1px solid black;
     //  }
     //}
+=======
+>>>>>>> 55f2fac5ce9940b716198efbc8ae45d27a89a459
   }
 }
 
 body{
-  margin-bottom: 50px;
+  margin-bottom:80px;
 }
 

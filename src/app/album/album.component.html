@@ -27,7 +27,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let track of albumTracks; let i = index" class="clickable" (click)="setClickedRow(i, track.uri)" [class.is-selected]="i == selectedRow">
+      <tr *ngFor="let track of albumTracks; let i = index" class="clickable" (click)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
         <td>{{i + 1}}</td>
         <td>{{track.name}}</td>
         <td>{{track.duration_ms}}</td>
