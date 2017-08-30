@@ -66,7 +66,6 @@ export class SongsComponent implements OnInit {
   };
 
   goToArtist(artist) {
-    console.log(artist);
     localStorage.setItem('artist', JSON.stringify(artist));
     this.router.navigate(['main/artist'])
   };

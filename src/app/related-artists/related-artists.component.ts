@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import {Router} from "@angular/router";
+import {LoadArtistService} from "../artist/load-artist.service";
 
 @Component({
   selector: 'app-related-artists',
@@ -11,7 +12,7 @@ export class RelatedArtistsComponent implements OnInit {
   public artist: any;
   public relatedArtists: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(public spotifyService: SpotifyService, public router: Router ,private loadArtistService: LoadArtistService) {
   }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class RelatedArtistsComponent implements OnInit {
 
   goToArtist(artist) {
     localStorage.setItem('artist', JSON.stringify(artist));
-    console.log(artist);
+    this.loadArtistService.currentArtist.next(artist);
     this.router.navigate(['main/artist']);
   };
 

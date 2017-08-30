@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="container">
     <div class="columns has-text-centered" *ngIf="currentSong">
-      <div class="column is-3">
+      <div class="column is-4">
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -16,17 +16,17 @@
           </div>
         </article>
       </div>
-      <div class="column is-6">
+      <div class="column is-5">
         <div class="player-content">
-          <a><i class="fa fa-random text-white" [ngClass]="{'shuffle-highlight' : shuffleState}" aria-hidden="true"></i></a>
-          <a><i class="fa fa-step-backward text-white" aria-hidden="true"></i></a>
+          <a><i class="fa fa-random text-white" [ngClass]="{'shuffle-highlight' : shuffleState}" (click)="toggleShuffle(shuffleState)" aria-hidden="true"></i></a>
+          <a><i class="fa fa-step-backward text-white" (click)="playPrevious();" aria-hidden="true"></i></a>
           <a *ngIf="!isPlaying">
-            <i class="fa fa-play text-white" (click)="startResumePlayback()" aria-hidden="true"></i>
+            <i class="fa fa-play text-white" (click)="resumePlayback()" aria-hidden="true"></i>
           </a>
           <a *ngIf="isPlaying">
             <i class="fa fa-pause text-white" (click)="pausePlayback()" aria-hidden="true"></i>
           </a>
-          <a><i class="fa fa-step-forward text-white" aria-hidden="true"></i></a>
+          <a><i class="fa fa-step-forward text-white" (click)="playNext()" aria-hidden="true"></i></a>
           <a><i class="fa fa-repeat text-white" aria-hidden="true"></i></a>
         </div>
       </div>
@@ -35,7 +35,7 @@
           <p class="text-white">
             <i *ngIf="activeDevice?.type === 'Computer'" class="fa fa-laptop is-marginless" aria-hidden="true"></i>
             <i *ngIf="activeDevice?.type === 'Smartphone'" class="fa fa-mobile is-marginless" aria-hidden="true"></i>
-            <span class="push-left">{{activeDevice?.name}}</span>
+            <span class="push-left is-size-5">{{activeDevice?.name}}</span>
           </p>
 
         </div>

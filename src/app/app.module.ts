@@ -38,6 +38,7 @@ import {RelatedArtistsComponent} from './related-artists/related-artists.compone
 import {ToastrModule} from 'ngx-toastr';
 import {StickyModule} from 'ng2-sticky-kit/ng2-sticky-kit';
 import {ActiveSongService} from './music-player/active-song.service';
+import {LoadArtistService} from "./artist/load-artist.service";
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import {ActiveSongService} from './music-player/active-song.service';
     {provide: APP_BASE_HREF, useValue: '/'},
     ActiveSongService,
     SpotifyService,
+    LoadArtistService,
     {
       provide: 'SpotifyConfig',
       useValue: {

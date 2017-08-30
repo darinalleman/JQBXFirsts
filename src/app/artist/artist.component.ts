@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
+import {LoadArtistService} from "./load-artist.service";
 
 @Component({
   selector: 'app-artist',
@@ -8,21 +9,35 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent implements OnInit {
-  public artist:any;
-  public type:string;
-  public isFollowing:boolean;
-  public sub: any;
+  public artist: any;
+  public type: string;
+  public isFollowing: boolean;
+  private artistId: any;
 
-  constructor(public spotifyService:SpotifyService, private route: ActivatedRoute) {
+  constructor(public spotifyService: SpotifyService, private loadArtistService: LoadArtistService) {
   }
 
   ngOnInit() {
-    this.loadArtist();
-    this.checkIfUserFollowsArtist();
+    this.loadArtistService.currentArtist.subscribe(
+      currentArtist => {
+        console.log(currentArtist);
+        if (currentArtist.id) {
+          this.artistId = currentArtist.id;
+          this.loadArtist(this.artistId);
+          this.checkIfUserFollowsArtist(this.artistId);
+          console.log('from observ')
+        } else {
+          this.artistId = JSON.parse(localStorage.getItem('artist')).id;
+          this.loadArtist(this.artistId);
+          this.checkIfUserFollowsArtist(this.artistId);
+          console.log('from local')
+        }
+      });
+
   }
 
-  loadArtist() {
-    this.spotifyService.getArtist(JSON.parse(localStorage.getItem('artist')).id).subscribe(
+  loadArtist(id) {
+    this.spotifyService.getArtist(id).subscribe(
       data => {
         this.artist = data;
       },
@@ -32,9 +47,9 @@ export class ArtistComponent implements OnInit {
     )
   }
 
-  checkIfUserFollowsArtist() {
+  checkIfUserFollowsArtist(id) {
     this.type = 'artist';
-    this.spotifyService.userFollowingContains(this.type, JSON.parse(localStorage.getItem('artist')).id).subscribe(
+    this.spotifyService.userFollowingContains(this.type, id).subscribe(
       data => {
         this.isFollowing = data[0];
       },
@@ -46,9 +61,9 @@ export class ArtistComponent implements OnInit {
 
   followArtist() {
     this.type = 'artist';
-    this.spotifyService.follow(this.type,  JSON.parse(localStorage.getItem('artist')).id).subscribe(
+    this.spotifyService.follow(this.type, this.artistId.id).subscribe(
       () => {
-       this.checkIfUserFollowsArtist();
+        this.checkIfUserFollowsArtist(this.artist.id);
       },
       error => {
         console.log(error);
@@ -58,9 +73,9 @@ export class ArtistComponent implements OnInit {
 
   unfollowArtist() {
     this.type = 'artist';
-    this.spotifyService.unfollow(this.type,  JSON.parse(localStorage.getItem('artist')).id).subscribe(
+    this.spotifyService.unfollow(this.type, this.artist.id).subscribe(
       () => {
-       this.checkIfUserFollowsArtist();
+        this.checkIfUserFollowsArtist(this.artist.id);
       },
       error => {
         console.log(error);

@@ -26,8 +26,8 @@
               </button>
             </div>
             <div *ngIf="user.id === playlist.owner.id" class="push-down">
-              <button class="button is-medium" (click)="toggleEditModal()"><i class="fa fa-pencil"
-                                                                              aria-hidden="true"></i>
+              <button class="button is-medium edit-playlist" (click)="toggleEditModal()">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
               </button>
             </div>
           </div>

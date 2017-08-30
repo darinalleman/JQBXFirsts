@@ -606,6 +606,30 @@ export class SpotifyService {
     }).map(res => res.json());
   }
 
+  toggleShuffle(state: boolean) {
+    return this.api({
+      method: 'put',
+      url: `/me/player/shuffle?state=${state}`,
+      headers: this.getHeaders(),
+    }).map(res => res.json());
+  }
+
+  nextPlayback() {
+    return this.api({
+      method: 'post',
+      url: `/me/player/next/`,
+      headers: this.getHeaders(),
+    }).map(res => res.json());
+  }
+
+  previousPlayback() {
+    return this.api({
+      method: 'post',
+      url: `/me/player/previous/`,
+      headers: this.getHeaders(),
+    }).map(res => res.json());
+  }
+
 
   //# end region
 
