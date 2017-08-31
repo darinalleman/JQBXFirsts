@@ -17,6 +17,7 @@ export class MusicPlayerComponent implements OnInit {
   activeDevice: any;
   progressMs: any;
   playObject: any;
+  songLength: any;
 
   constructor(private activeSongService: ActiveSongService, private spotifyService: SpotifyService) {
   }
@@ -24,7 +25,8 @@ export class MusicPlayerComponent implements OnInit {
   ngOnInit() {
     this.activeSongService.currentSong.subscribe(currentSong => {
       this.getDevices();
-        if (!currentSong.name) {
+      if (!currentSong.name) {
+        this.getInfoOfCurrentPlayback();
         this.getCurrentPlayingTrack();
       } else {
         this.getTrack(currentSong);
@@ -36,7 +38,12 @@ export class MusicPlayerComponent implements OnInit {
     this.spotifyService.getCurrentPlayingTrack().subscribe(
       data => {
         this.currentSong = data.item;
-        this.getInfoOfCurrentPlayback();
+        this.songLength = data.item.duration_ms;
+        if (this.isPlaying === true) {
+          setInterval(() => {
+            this.getInfoOfCurrentPlayback();
+          }, 750);
+        }
       },
       error => {
         console.log(error);
@@ -48,7 +55,11 @@ export class MusicPlayerComponent implements OnInit {
     this.spotifyService.getTrack(currentSong.id).subscribe(
       data => {
         this.currentSong = data;
+        this.songLength = data.duration_ms;
         this.isPlaying = true;
+        setInterval(() => {
+          this.getInfoOfCurrentPlayback();
+        }, 750);
       },
       error => {
         console.log(error);
@@ -59,7 +70,6 @@ export class MusicPlayerComponent implements OnInit {
   getInfoOfCurrentPlayback() {
     this.spotifyService.getInfoOfCurrentPlayback().subscribe(
       data => {
-        console.log(data);
         this.isPlaying = data.is_playing;
         this.shuffleState = data.shuffle_state;
         this.progressMs = data.progress_ms;
@@ -122,8 +132,7 @@ export class MusicPlayerComponent implements OnInit {
 
   playNext() {
     this.spotifyService.nextPlayback().subscribe(
-      (data) => {
-          console.log(data);
+      () => {
       },
       error => {
         console.log(error);

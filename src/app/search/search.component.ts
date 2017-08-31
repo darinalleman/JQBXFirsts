@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import {Router} from "@angular/router";
 import {ActiveSongService} from "../music-player/active-song.service";
+import {LoadArtistService} from "../artist/load-artist.service";
 
 
 @Component({
@@ -30,7 +31,7 @@ export class SearchComponent implements OnInit {
   private selectedRow: any;
   public user: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService,  private loadArtistService: LoadArtistService) {
   }
 
   ngOnInit() {
@@ -97,7 +98,7 @@ export class SearchComponent implements OnInit {
   }
 
   goToArtist(artist) {
-    localStorage.setItem('artist', JSON.stringify(artist));
+    this.loadArtistService.currentArtist.next(artist);
     this.router.navigate(['main/artist'])
   };
 

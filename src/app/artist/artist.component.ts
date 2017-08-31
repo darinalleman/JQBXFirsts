@@ -20,17 +20,15 @@ export class ArtistComponent implements OnInit {
   ngOnInit() {
     this.loadArtistService.currentArtist.subscribe(
       currentArtist => {
-        console.log(currentArtist);
         if (currentArtist.id) {
           this.artistId = currentArtist.id;
           this.loadArtist(this.artistId);
           this.checkIfUserFollowsArtist(this.artistId);
-          console.log('from observ')
+          localStorage.setItem('artist', JSON.stringify(currentArtist));
         } else {
           this.artistId = JSON.parse(localStorage.getItem('artist')).id;
           this.loadArtist(this.artistId);
           this.checkIfUserFollowsArtist(this.artistId);
-          console.log('from local')
         }
       });
 

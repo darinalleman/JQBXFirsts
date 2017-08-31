@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="section">
+  <div class="section push-around">
     <div class="message is-danger" *ngIf="noResults">
       <div class="message-body">
         <p>No results found, try a different search.</p>
@@ -28,7 +28,7 @@
     </div>
     <h1 class="title is-2 push-down" *ngIf="hasQuery && !noResults">Showing results for <b>{{searchQuery}}</b></h1>
   </div>
-  <div class="section artists push-left" *ngIf="hasQuery && artists?.length > 0 && !noResults">
+  <div class="section push-around artists push-left" *ngIf="hasQuery && artists?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Artists</p>
     <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let artist of artists" (click)="goToArtist(artist)">
@@ -48,7 +48,7 @@
       </div>
     </div>
   </div>
-  <div class="section albums push-left" *ngIf="hasQuery && albums?.length > 0 && !noResults">
+  <div class="section push-around albums push-left" *ngIf="hasQuery && albums?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Albums</p>
     <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let album of albums" (click)="goToAlbum(album)">
@@ -68,7 +68,7 @@
       </div>
     </div>
   </div>
-  <div class="section playlists push-left" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
+  <div class="section push-around playlists push-left" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Playlists</p>
     <div class="columns is-multiline">
       <div class="column is-2 clickable" *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist)">
@@ -97,6 +97,7 @@
             <th>Title</th>
             <th>Artist</th>
             <th>Album</th>
+            <th></th>
             <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
           </tr>
@@ -106,6 +107,7 @@
             <td>{{track.name}}</td>
             <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
             <td><span class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</span></td>
+            <td class="icon-hover"><i class="fa fa-plus" aria-hidden="true"></i></td>
             <td>{{track.duration_ms}}</td>
             <td class="popularity">
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>

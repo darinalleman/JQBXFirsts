@@ -103,11 +103,22 @@ tbody{
   tr {
     td {
       font-size: 15px;
+      .fa-plus {
+        font-size: 1.5em;
+      }
     }
   }
   tr:hover{
     color: white;
     background-color: #00d1b2 !important;
+    .icon-hover {
+      &:hover {
+        i {
+          text-decoration: underline;
+          cursor: hand;
+        }
+      }
+    }
     .td-hover {
       &:hover{
         text-decoration: underline;
