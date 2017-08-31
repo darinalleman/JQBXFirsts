@@ -28,6 +28,7 @@ export class PlaylistComponent implements OnInit {
   public updated: boolean;
   private playObject: any;
   public selectedRow: any;
+  public isPlaying: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService,  private loadArtistService: LoadArtistService) {
   }
@@ -207,6 +208,31 @@ export class PlaylistComponent implements OnInit {
     this.selectedRow = index;
     this.startSong(track.track.uri);
     this.activeSongService.currentSong.next(track.track);
+  };
+
+  playPlaylist(playlist) {
+    console.log(playlist);
+    this.playObject = {
+      'context_uri': playlist.uri
+    };
+    this.spotifyService.startResumePlayer(this.playObject).subscribe(
+        () => {
+          setTimeout(() => {
+            this.spotifyService.getCurrentPlayingTrack().subscribe(
+                data => {
+                  this.isPlaying = data.is_playing;
+                  this.activeSongService.currentSong.next(data.item);
+                },
+                error => {
+                  console.log(error);
+                }
+            )
+          }, 1000);
+        },
+        error => {
+          console.log(error);
+        }
+    )
   };
 
 }

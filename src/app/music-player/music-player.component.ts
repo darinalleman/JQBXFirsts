@@ -26,7 +26,6 @@ export class MusicPlayerComponent implements OnInit {
     ngOnInit() {
         this.activeSongService.currentSong.subscribe(currentSong => {
             this.getDevices();
-            this.getInfoOfCurrentPlayback();
             if (!currentSong.name) {
                 this.getCurrentPlayingTrack();
             } else {
@@ -36,6 +35,7 @@ export class MusicPlayerComponent implements OnInit {
     }
 
     getCurrentPlayingTrack() {
+        this.getInfoOfCurrentPlayback();
         this.spotifyService.getCurrentPlayingTrack().subscribe(
             data => {
                 this.currentSong = data.item;
@@ -49,6 +49,7 @@ export class MusicPlayerComponent implements OnInit {
     getTrack(currentSong) {
         this.spotifyService.getTrack(currentSong.id).subscribe(
             data => {
+                this.isPlaying = true;
                 this.currentSong = data;
             },
             error => {
@@ -123,6 +124,9 @@ export class MusicPlayerComponent implements OnInit {
     playNext() {
         this.spotifyService.nextPlayback().subscribe(
             () => {
+                setTimeout(() => {
+                    this.getCurrentPlayingTrack();
+                }, 1000);
             },
             error => {
                 console.log(error);
@@ -133,6 +137,9 @@ export class MusicPlayerComponent implements OnInit {
     playPrevious() {
         this.spotifyService.previousPlayback().subscribe(
             () => {
+                setTimeout(() => {
+                    this.getCurrentPlayingTrack();
+                }, 1000);
             },
             error => {
                 console.log(error);
