@@ -1,5 +1,5 @@
 <footer class="footer">
-  <div class="container">
+  <div class="container-fluid">
     <div class="columns has-text-centered" *ngIf="currentSong">
       <div class="column is-4">
         <article class="media">
@@ -11,7 +11,7 @@
           <div class="media-content">
             <div class="content">
               <p class="is-size-5 text-white remove-margin-bottom-spacing">{{currentSong?.name}}</p>
-              <p class="is-size-7 text-white remove-margin-bottom-spacing">{{currentSong?.artists[0].name}}</p>
+              <p class="is-size-6 text-white remove-margin-bottom-spacing">{{currentSong?.artists[0].name}}</p>
             </div>
           </div>
         </article>
@@ -29,10 +29,9 @@
                 <i class="fa fa-pause text-white" (click)="pausePlayback()" aria-hidden="true"></i>
               </a>
               <a><i class="fa fa-step-forward text-white" (click)="playNext()" aria-hidden="true"></i></a>
-              <a><i class="fa fa-repeat text-white" aria-hidden="true"></i></a>
-            </div>
-            <div class="column is-12 push-up">
-              <progress class="progress is-primary is-small" value="{{progressMs}}" max="{{songLength}}">30%</progress>
+              <a *ngIf="repeatState === 'off'"><i class="fa fa-repeat text-white" aria-hidden="true"></i></a>
+              <a *ngIf="repeatState === 'track'"><i class="fa fa-repeat text-white" [ngClass]="{'repeat-highlight' : repeatState === 'track'}" aria-hidden="true"></i></a>
+              <a *ngIf="repeatState === 'context'"><i class="fa fa-list text-white" [ngClass]="{'repeat-highlight' : repeatState ==='context'}" aria-hidden="true"></i></a>
             </div>
           </div>
         </div>

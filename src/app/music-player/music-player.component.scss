@@ -21,9 +21,13 @@ footer {
   margin-top: 20px;
 }
 
-.player-content, .device-content {
-  margin-top: 15px;
+.player-content{
+  margin-top: 35px;
 }
+
+.device-content {
+  margin-top: 35px;
+};
 
 .fa {
   font-size: 2em;
@@ -33,6 +37,6 @@ footer {
   }
 }
 
-.shuffle-highlight{
+.shuffle-highlight, .repeat-highlight{
   color: lighten(#00d1b2, 10);
 }

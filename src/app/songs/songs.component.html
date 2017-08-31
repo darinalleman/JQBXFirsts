@@ -1,6 +1,6 @@
 <div class="columns push-around">
   <div class="column">
-    <table class="table">
+    <table class="table is-fullwidth">
       <thead>
       <tr>
         <th></th>
@@ -17,7 +17,7 @@
         <td>{{track.track.name}}</td>
         <td><span class="td-hover" (click)="goToArtist(track.track.album.artists[0])">{{track.track.album.artists[0].name}}</span></td>
         <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
-        <td><i class="fa fa-plus" aria-hidden="true"></i></td>
+        <td class="icon-hover"><i class="fa fa-plus" aria-hidden="true"></i></td>
         <td>{{track.track.duration_ms}}</td>
       </tr>
       </tbody>

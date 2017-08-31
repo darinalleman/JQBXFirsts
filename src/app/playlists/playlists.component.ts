@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import {Router} from "@angular/router";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-playlists',
@@ -60,7 +61,8 @@ export class PlaylistsComponent implements OnInit {
       'name': this.newPlaylistName
     };
     this.spotifyService.createPlaylist(this.user.id, this.playlistDetails).subscribe(
-      () => {
+      (data) => {
+        this.playlists = _.concat(this.playlists, data);
         this.closeCreateModal();
       },
       error => {
