@@ -39,6 +39,8 @@ import {ToastrModule} from 'ngx-toastr';
 import {StickyModule} from 'ng2-sticky-kit/ng2-sticky-kit';
 import {ActiveSongService} from './music-player/active-song.service';
 import {LoadArtistService} from "./artist/load-artist.service";
+import { UserComponent } from './user/user.component';
+import {UserService} from "./user/user.service";
 
 
 @NgModule({
@@ -65,7 +67,8 @@ import {LoadArtistService} from "./artist/load-artist.service";
     ArtistComponent,
     OverviewComponent,
     RelatedArtistsComponent,
-    MusicPlayerComponent
+    MusicPlayerComponent,
+    UserComponent
   ],
   imports: [
     AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, StickyModule, ToastrModule.forRoot()
@@ -75,6 +78,7 @@ import {LoadArtistService} from "./artist/load-artist.service";
     ActiveSongService,
     SpotifyService,
     LoadArtistService,
+    UserService,
     {
       provide: 'SpotifyConfig',
       useValue: {

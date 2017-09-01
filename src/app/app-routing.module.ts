@@ -21,6 +21,7 @@ import {CategoryComponent} from "./category/category.component";
 import {ArtistComponent} from "./artist/artist.component";
 import {OverviewComponent} from "./overview/overview.component";
 import {RelatedArtistsComponent} from "./related-artists/related-artists.component";
+import {UserComponent} from "./user/user.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -57,6 +58,11 @@ const routes: Routes = [
         component: CategoryComponent,
         canActivate: [AuthGuard]
 
+      },
+      {
+        path: 'user',
+        component: UserComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'artist',

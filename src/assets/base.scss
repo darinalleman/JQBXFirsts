@@ -132,3 +132,10 @@ body{
   margin-bottom: 100px;
 }
 
+.display-name, .playlist-name{
+  &:hover {
+    text-decoration: underline;
+    color: #00d1b2;
+  }
+}
+

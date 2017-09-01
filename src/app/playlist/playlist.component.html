@@ -13,9 +13,9 @@
             </figure>
           </div>
           <div class="card-content has-text-centered">
-            <p class="is-size-3 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
-            <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
-            <p class="is-size-5">{{playlist.tracks.total}} songs</p>
+            <p class="is-size-4 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
+            <p class="is-size-5" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
+            <p class="is-size-6 inline">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
             <div *ngIf="user.id != playlist.owner.id" class="push-down">
               <button class="button is-primary is-outlined is-medium" *ngIf="followed === false"
                       (click)="followPlaylist()">

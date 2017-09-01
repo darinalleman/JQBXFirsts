@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from "../shared/spotify/angular2-spotify";
 import {Router} from "@angular/router";
 import * as _ from 'lodash';
+import {UserService} from "../user/user.service";
 
 @Component({
   selector: 'app-playlists',
@@ -16,7 +17,7 @@ export class PlaylistsComponent implements OnInit {
   private newPlaylistDescription: any;
   private newPlaylistName: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -70,5 +71,10 @@ export class PlaylistsComponent implements OnInit {
       }
     )
   }
+
+  goToUser(id) {
+    this.userService.user.next(id);
+    this.router.navigate(['main/user']);
+  };
 
 }

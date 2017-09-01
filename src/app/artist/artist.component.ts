@@ -13,6 +13,7 @@ export class ArtistComponent implements OnInit {
   public type: string;
   public isFollowing: boolean;
   private artistId: any;
+  private artistIds: [any];
 
   constructor(public spotifyService: SpotifyService, private loadArtistService: LoadArtistService) {
   }
@@ -59,7 +60,8 @@ export class ArtistComponent implements OnInit {
 
   followArtist() {
     this.type = 'artist';
-    this.spotifyService.follow(this.type, this.artistId.id).subscribe(
+    this.artistIds = [this.artist.id];
+    this.spotifyService.follow(this.type, this.artistIds).subscribe(
       () => {
         this.checkIfUserFollowsArtist(this.artist.id);
       },
@@ -71,7 +73,8 @@ export class ArtistComponent implements OnInit {
 
   unfollowArtist() {
     this.type = 'artist';
-    this.spotifyService.unfollow(this.type, this.artist.id).subscribe(
+    this.artistIds = [this.artist.id];
+    this.spotifyService.unfollow(this.type, this.artistIds).subscribe(
       () => {
         this.checkIfUserFollowsArtist(this.artist.id);
       },
