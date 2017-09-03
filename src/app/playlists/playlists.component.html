@@ -22,6 +22,12 @@
   </div>
 </div>
 
+<div class ="columns">
+  <div class ="column is-12">
+    <button id="loadMorePlaylists" class = "button is-primary is-outlined is-fullwidth" (click)="loadMorePlaylists()" *ngIf="playlists?.length < totalPlaylists">Load more playlists</button>
+  </div>
+</div>
+
 <div class="modal" id="modal">
   <div class="modal-background"></div>
   <div class="modal-card">
