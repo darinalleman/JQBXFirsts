@@ -50,8 +50,6 @@ export class PlaylistsComponent implements OnInit {
     };
     this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
       data => {
-        console.log(data);
-        console.log(this.playlists.length, this.totalPlaylists);
         this.playlists = _.concat(this.playlists, data.items);
         document.getElementById('loadMorePlaylists').blur();
       },
