@@ -58,7 +58,7 @@ export class SongsComponent implements OnInit {
           track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
         });
         this.tracks = _.concat(this.tracks, data.items);
-        document.getElementById("loadMoreSongsButton").blur();
+        document.getElementById('loadMoreSongsButton').blur();
       },
       error => {
         console.log(error);

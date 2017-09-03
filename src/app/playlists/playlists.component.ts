@@ -28,11 +28,12 @@ export class PlaylistsComponent implements OnInit {
 
   getUserPlaylists() {
     this.options = {
-      limit: 40
+      limit: 50
     };
     this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
       data => {
         this.playlists = data.items;
+        console.log(data);
       },
       error => {
         console.log(error);
