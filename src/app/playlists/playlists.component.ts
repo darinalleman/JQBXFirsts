@@ -10,6 +10,8 @@ import {UserService} from "../user/user.service";
   styleUrls: ['./playlists.component.scss']
 })
 export class PlaylistsComponent implements OnInit {
+  offset: number;
+  totalPlaylists: any;
   public user: any;
   public playlists: any;
   public options: any;
@@ -23,21 +25,40 @@ export class PlaylistsComponent implements OnInit {
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.getUserPlaylists();
-
+    this.offset = 0;
   }
 
   getUserPlaylists() {
     this.options = {
-      limit: 40
+      limit: 50
     };
     this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
       data => {
         this.playlists = data.items;
+        this.totalPlaylists = data.total;
       },
       error => {
         console.log(error);
       }
     )
+  }
+
+  loadMorePlaylists() {
+    this.offset += 50;
+    this.options = {
+      limit: 50, offset: this.offset
+    };
+    this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
+      data => {
+        console.log(data);
+        console.log(this.playlists.length, this.totalPlaylists);
+        this.playlists = _.concat(this.playlists, data.items);
+        document.getElementById('loadMorePlaylists').blur();
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   goToPlaylist(playlist) {
