@@ -135,7 +135,6 @@ export class MusicPlayerComponent implements OnInit {
     }
 
     playPrevious() {
-      console.log('here');
         this.spotifyService.previousPlayback().subscribe(
             () => {
                 setTimeout(() => {
