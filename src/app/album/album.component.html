@@ -10,12 +10,13 @@
         <p class="is-size-3 truncate">{{album.album.name}}</p>
         <span class="subtitle is-5 push-up clickable album-artist" (click)="goToArtist(album.album.artists[0])">{{album.album.artists[0].name}}</span>
         <p class="push">{{album.album.release_date | date: 'yyyy'}} - {{album.album.tracks.total}} songs</p>
-        <br>
-        <button class="button is-primary is-outlined is-medium" *ngIf="!saved" (click)="saveAlbum(album.album)">Save</button>
-        <button class="button is-primary is-medium" *ngIf="saved" (click)="removeAlbum(album.album)">Remove</button>
-        <button class="button is-primary is-medium is-outlined" (click)="playAlbum(album.album)"><i class="fa fa-play"></i></button>
         <!--<button class="button is-primary is-medium" *ngIf="isPlaying" (click)="pauseAlbum()">Pause</button>-->
       </div>
+      <footer class="card-footer">
+        <a class="card-footer-item" *ngIf="!saved" (click)="saveAlbum(album.album)">Save</a>
+        <a class="card-footer-item" *ngIf="saved" (click)="removeAlbum(album.album)">Remove</a>
+        <a class="card-footer-item" (click)="playAlbum(album.album)">Play</a>
+      </footer>
     </div>
   </div>
   <div class="column is-9">
