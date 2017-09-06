@@ -13,7 +13,6 @@ import {LoadArtistService} from "../artist/load-artist.service";
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  public selectedDropdown: any;
   public searchQuery: string;
   public type: string;
   public returnedSearchData: any;
@@ -27,8 +26,8 @@ export class SearchComponent implements OnInit {
   public offset: any;
   public tracksTotal: any;
   public noResults: boolean;
-  private playObject: any;
-  private selectedRow: any;
+  public playObject: any;
+  public selectedRow: any;
   public user: any;
 
   constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService,  private loadArtistService: LoadArtistService) {
@@ -128,10 +127,10 @@ export class SearchComponent implements OnInit {
     this.albums = [];
     this.playlists = [];
     this.tracks = [];
-    localStorage.removeItem('searchQuery');
     this.hasQuery = false;
     this.searchQuery = '';
     this.noResults = false;
+    localStorage.removeItem('searchQuery');
   };
 
   startSong(songUri) {
@@ -157,8 +156,6 @@ export class SearchComponent implements OnInit {
   addToPlaylist(songURI, playlist) {
     this.spotifyService.addPlaylistTracks(playlist.owner.id, playlist.id, songURI).subscribe(
       () => {
-        const dropdown = document.getElementById('dropdown');
-        dropdown.classList.remove('is-active');
       },
       error => {
         console.log(error);

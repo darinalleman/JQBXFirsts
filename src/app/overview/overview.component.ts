@@ -55,6 +55,7 @@ export class OverviewComponent implements OnInit {
     };
     this.spotifyService.getArtistAlbums(this.artist.id, this.options).subscribe(
       data => {
+        console.log(data);
         this.artistAlbums = data.items;
       },
       error => {
