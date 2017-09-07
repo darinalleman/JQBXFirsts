@@ -1,0 +1,42 @@
+footer {
+  position:fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  height: 20px;
+  padding: 0 1.5rem 6rem;
+  background-color: #535b6e !important;
+  opacity: .9;
+}
+
+.song-name{
+  margin-top: 35px;
+}
+
+.image{
+  margin-top: 20px;
+}
+
+.media-content{
+  margin-top: 20px;
+}
+
+.player-content{
+  margin-top: 35px;
+}
+
+.device-content {
+  margin-top: 35px;
+};
+
+.fa {
+  font-size: 2em;
+  margin-right: 30px;
+  &:hover{
+    color: lighten(#00d1b2, 10);
+  }
+}
+
+.shuffle-highlight, .repeat-highlight{
+  color: lighten(#00d1b2, 10);
+}

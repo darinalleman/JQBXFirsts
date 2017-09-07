@@ -1,0 +1,108 @@
+<div class="columns push-around">
+  <div class="column is-12">
+    <div id="hidePlaylistUpdatedNotication" class="notification is-primary" *ngIf="updated">
+      <button class="delete" (click)="hideNotifcation()"></button>
+      <p>Playlist successfully updated</p>
+    </div>
+    <div class="columns" *ngIf="playlist?.tracks.items?.length > 0">
+      <div class="column is-3">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-square">
+              <img src="{{playlist?.images[0].url}}" alt="Image">
+            </figure>
+          </div>
+          <div class="card-content has-text-centered">
+            <p class="is-size-4 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
+            <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
+            <p class="is-size-5 push-down">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
+          </div>
+          <footer class="card-footer">
+            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal()">Edit</a>
+            <a class="card-footer-item" *ngIf="followed === false && user.id != playlist.owner.id"
+               (click)="followPlaylist()">Follow</a>
+            <a class="card-footer-item" *ngIf="followed === true && user.id != playlist.owner.id"
+               (click)="unfollowPlaylist()">Unfollow</a>
+            <a class="card-footer-item" (click)="playPlaylist(playlist)">Play</a>
+          </footer>
+        </div>
+      </div>
+      <div class="column is-9">
+        <table class="table table-striped is-fullwidth">
+          <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th><i class="fa fa-clock-o"></i></th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="clickable" *ngFor="let track of tracks; let i = index" (click)="setClickedRow(i, track)"
+              [class.is-selected]="i == selectedRow">
+            <td>{{i + 1}}</td>
+            <td>{{track.track.name}}</td>
+            <td><span class="td-hover"
+                      (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span></td>
+            <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
+            <td>{{track.track.duration_ms}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <button id="loadMorePlaylistTracks" class="button is-primary is-outlined is-fullwidth"
+                *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks
+        </button>
+      </div>
+    </div>
+    <div class="columns" *ngIf="playlist?.tracks.items?.length  === 0">
+      <div class="column">
+        <div class="notification is-danger">
+          <p>This playlist has no data. Go explore and add some songs to it!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title text-white">{{playlist.name}}</p>
+      <button class="delete" (click)="closeEditModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="container-fluid">
+        <div class="columns">
+          <div class="column">
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Playlist Name</label>
+                  <div class="control full-width">
+                    <input type="text" class="input" placeholder="Playlist Name" [(ngModel)]="newPlaylistName">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Playlist Description</label>
+                  <div class="control">
+                    <textarea class="textarea" type="text" placeholder="Playlist Description"
+                              [(ngModel)]="newPlaylistDescription"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button" (click)="closeEditModal()">Cancel</a>
+      <a class="button is-primary is-outlined is-pulled-right" (click)="saveChanges()">Save changes</a>
+    </footer>
+  </div>
+</div>
