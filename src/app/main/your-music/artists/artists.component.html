@@ -18,4 +18,10 @@
     </div>
   </div>
 </div>
+<div class="columns push-around">
+  <div class="column">
+    <button class="button is-primary is-outlined is-fullwidth" id="loadMoreArtists" (click)="loadMoreArtists()"
+            *ngIf="artists?.length < totalArtists">Load More Artists</button>
+  </div>
+</div>
 

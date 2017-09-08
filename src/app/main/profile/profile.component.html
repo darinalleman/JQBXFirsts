@@ -4,11 +4,11 @@
     <div class="container-fluid">
       <div class="columns user-profile">
         <div class="column is-2">
-          <div class="image is-128x128 avatar">
+          <div class="image is-128x128 avatar pull-right">
             <img src="{{user.images[0].url}}">
           </div>
         </div>
-        <div class="column is-9">
+        <div class="column is-10">
           <p><span class="title is-5">Display Name: </span> {{user.display_name}}</p>
           <p><span class="title is-5">User Id: </span> {{user.id}}</p>
           <p><span class="title is-5">Email: </span> {{user.email}}</p>
@@ -16,9 +16,7 @@
           </p>
           <p><span class="title is-5">Href: </span> <a href="{{user.href}}">{{user.external_urls.spotify}}</a></p>
           <p><span class="title is-5">Followers: </span> {{user.followers.total}}</p>
-        </div>
-        <div class="column is-1">
-          <button class="button is-primary is-outlined" (click)="logout()">Logout</button>
+          <p><button class="button is-primary is-outlined push-down" (click)="logout()">Logout</button></p>
         </div>
       </div>
     </div>
