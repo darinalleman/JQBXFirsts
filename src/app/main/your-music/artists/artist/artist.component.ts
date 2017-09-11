@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
 import {LoadArtistService} from './load-artist.service';
 import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
+import { ActiveSongService } from '../../../music-player/active-song.service';
 
 @Component({
   selector: 'app-artist',
@@ -9,13 +10,16 @@ import { UtilitiesService } from '../../../../shared/utilities/utilities.service
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent implements OnInit {
-  public artist: any;
-  public type: string;
-  public isFollowing: boolean;
-  private artistId: any;
-  private artistIds: [any];
+  isPlaying: boolean;
+  artist: any;
+  type: string;
+  isFollowing: boolean;
+  artistId: any;
+  artistIds: [any];
+  playObject: any;
 
-  constructor(public spotifyService: SpotifyService, private loadArtistService: LoadArtistService, private utilities: UtilitiesService) {
+  constructor( private spotifyService: SpotifyService, private loadArtistService: LoadArtistService,
+               private utilities: UtilitiesService, private activeSongService: ActiveSongService) {
   }
 
   ngOnInit() {
@@ -81,6 +85,30 @@ export class ArtistComponent implements OnInit {
       }
     )
   }
+
+  playArtist(artist) {
+    this.playObject = {
+      'context_uri': artist.uri
+    };
+    this.spotifyService.startResumePlayer(this.playObject).subscribe(
+        () => {
+          setTimeout(() => {
+            this.spotifyService.getCurrentPlayingTrack().subscribe(
+                data => {
+                  this.isPlaying = data.is_playing;
+                  this.activeSongService.currentSong.next(data.item);
+                },
+                error => {
+                  console.log(error);
+                }
+            )
+          }, 1000);
+        },
+        error => {
+          console.log(error);
+        }
+    )
+  };
 
 
 }

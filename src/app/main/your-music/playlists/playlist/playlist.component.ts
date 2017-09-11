@@ -211,7 +211,6 @@ export class PlaylistComponent implements OnInit {
   };
 
   playPlaylist(playlist) {
-    console.log(playlist);
     this.playObject = {
       'context_uri': playlist.uri
     };
