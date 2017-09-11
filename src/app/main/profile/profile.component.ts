@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {SpotifyService} from "../../shared/spotify/angular2-spotify";
-import {LoadArtistService} from "../your-music/artists/artist/load-artist.service";
+import {Router} from '@angular/router';
+import {SpotifyService} from '../../shared/spotify/angular2-spotify';
+import {LoadArtistService} from '../your-music/artists/artist/load-artist.service';
+import { UtilitiesService } from '../../shared/utilities/utilities.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +14,13 @@ export class ProfileComponent implements OnInit {
   public type: string;
   public options: any;
   public userMusicData: any;
-  constructor(public router: Router, public spotifyService: SpotifyService,  private loadArtistService: LoadArtistService) {
-    this.user = JSON.parse(localStorage.getItem('user'));
+  constructor(public router: Router, public spotifyService: SpotifyService,  private loadArtistService: LoadArtistService, private utilieites: UtilitiesService) {
   }
 
   ngOnInit() {
+    this.type = 'artists';
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.user.followers.total = this.utilieites.numberWithCommas(this.user.followers.total);
     this.loadUserPersonalizationData();
   }
 
@@ -27,8 +30,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadUserPersonalizationData() {
-    this.type = 'artists';
-    this.options ={
+    this.options = {
       limit: 50
     };
     this.spotifyService.getUserTopArtistsAndTracks(this.type, this.options).subscribe(

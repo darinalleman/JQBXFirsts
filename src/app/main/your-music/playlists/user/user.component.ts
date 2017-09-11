@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from './user.service';
 import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
 import {Router} from "@angular/router";
+import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
 
 @Component({
   selector: 'app-user',
@@ -14,7 +15,7 @@ export class UserComponent implements OnInit {
   userId: any;
   options: any;
 
-  constructor(private userService: UserService, private spotifyService: SpotifyService, private router: Router) {
+  constructor(private userService: UserService, private spotifyService: SpotifyService, private router: Router, private utilities: UtilitiesService) {
   }
 
   ngOnInit() {
@@ -49,6 +50,7 @@ export class UserComponent implements OnInit {
     this.spotifyService.getUser(this.userId).subscribe(
       data => {
          this.user = data;
+         this.user.followers.total = this.utilities.numberWithCommas(this.user.followers.total);
       },
       error => {
         console.log(error);

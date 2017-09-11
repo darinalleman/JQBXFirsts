@@ -2,9 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {Router} from "@angular/router";
-import {ActiveSongService} from "../../../music-player/active-song.service";
-import {LoadArtistService} from "../../artists/artist/load-artist.service";
+import {Router} from '@angular/router';
+import {ActiveSongService} from '../../../music-player/active-song.service';
+import {LoadArtistService} from '../../artists/artist/load-artist.service';
+import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
+import { utils } from 'protractor';
 
 @Component({
   selector: 'app-playlist',
@@ -30,7 +32,7 @@ export class PlaylistComponent implements OnInit {
   public selectedRow: any;
   public isPlaying: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService,  private loadArtistService: LoadArtistService) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService,  private loadArtistService: LoadArtistService, private utilities: UtilitiesService) {
   }
 
   ngOnInit() {
@@ -47,14 +49,14 @@ export class PlaylistComponent implements OnInit {
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
-        console.log(data);
         this.playlist = data;
         this.playlistName = this.playlist.name;
         this.playlistDescription = this.playlist.description;
+        this.playlist.followers.total = this.utilities.numberWithCommas(this.playlist.followers.total);
         this.spotifyService.getPlaylistTracks(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
-          data => {
-            this.tracks = data.items;
-            this.tracksTotal = data.total;
+          tracks => {
+            this.tracks = tracks.items;
+            this.tracksTotal = tracks.total;
             _.each(this.tracks, (track: any) => {
               track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
             });

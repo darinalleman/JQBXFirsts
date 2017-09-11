@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SpotifyService} from "../../../../shared/spotify/angular2-spotify";
-import {ActivatedRoute} from '@angular/router';
-import {LoadArtistService} from "./load-artist.service";
+import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
+import {LoadArtistService} from './load-artist.service';
+import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
 
 @Component({
   selector: 'app-artist',
@@ -15,10 +15,11 @@ export class ArtistComponent implements OnInit {
   private artistId: any;
   private artistIds: [any];
 
-  constructor(public spotifyService: SpotifyService, private loadArtistService: LoadArtistService) {
+  constructor(public spotifyService: SpotifyService, private loadArtistService: LoadArtistService, private utilities: UtilitiesService) {
   }
 
   ngOnInit() {
+    this.type = 'artist';
     this.loadArtistService.currentArtist.subscribe(
       currentArtist => {
         if (currentArtist.id) {
@@ -32,13 +33,13 @@ export class ArtistComponent implements OnInit {
           this.checkIfUserFollowsArtist(this.artistId);
         }
       });
-
   }
 
   loadArtist(id) {
     this.spotifyService.getArtist(id).subscribe(
       data => {
         this.artist = data;
+        this.artist.followers.total = this.utilities.numberWithCommas(this.artist.followers.total);
       },
       error => {
         console.log(error);
@@ -47,7 +48,6 @@ export class ArtistComponent implements OnInit {
   }
 
   checkIfUserFollowsArtist(id) {
-    this.type = 'artist';
     this.spotifyService.userFollowingContains(this.type, id).subscribe(
       data => {
         this.isFollowing = data[0];
@@ -59,7 +59,6 @@ export class ArtistComponent implements OnInit {
   };
 
   followArtist() {
-    this.type = 'artist';
     this.artistIds = [this.artist.id];
     this.spotifyService.follow(this.type, this.artistIds).subscribe(
       () => {
@@ -72,7 +71,6 @@ export class ArtistComponent implements OnInit {
   }
 
   unfollowArtist() {
-    this.type = 'artist';
     this.artistIds = [this.artist.id];
     this.spotifyService.unfollow(this.type, this.artistIds).subscribe(
       () => {
@@ -83,5 +81,6 @@ export class ArtistComponent implements OnInit {
       }
     )
   }
+
 
 }

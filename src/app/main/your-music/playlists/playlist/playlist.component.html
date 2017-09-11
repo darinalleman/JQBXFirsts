@@ -39,7 +39,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr class="clickable" *ngFor="let track of tracks; let i = index" (click)="setClickedRow(i, track)"
+          <tr class="clickable" *ngFor="let track of tracks; let i = index" (dblclick)="setClickedRow(i, track)"
               [class.is-selected]="i == selectedRow">
             <td>{{i + 1}}</td>
             <td>{{track.track.name}}</td>
