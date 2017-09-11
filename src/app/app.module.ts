@@ -35,14 +35,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MusicPlayerComponent } from './main/music-player/music-player.component';
 import { OverviewComponent } from './main/your-music/artists/artist/overview/overview.component';
 import { RelatedArtistsComponent } from './main/your-music/artists/artist/related-artists/related-artists.component';
-import { ToastrModule } from 'ngx-toastr';
-import { StickyModule } from 'ng2-sticky-kit/ng2-sticky-kit';
 import { ActiveSongService } from './main/music-player/active-song.service';
 import { LoadArtistService } from './main/your-music/artists/artist/load-artist.service';
 import { UserComponent } from './main/your-music/playlists/user/user.component';
 import { UserService } from './main/your-music/playlists/user/user.service';
 import { UtilitiesService } from './shared/utilities/utilities.service';
 import { NavigationService } from './shared/navigation/navigation.service';
+import { AddToPlaylistModalComponent } from './main/modals/add-to-playlist-modal/add-to-playlist-modal.component';
+import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/add-song-to-playlist.service';
 
 
 @NgModule({
@@ -70,10 +70,11 @@ import { NavigationService } from './shared/navigation/navigation.service';
         OverviewComponent,
         RelatedArtistsComponent,
         MusicPlayerComponent,
-        UserComponent
+        UserComponent,
+        AddToPlaylistModalComponent
     ],
     imports: [
-        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, StickyModule, ToastrModule.forRoot()
+        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},
@@ -83,6 +84,7 @@ import { NavigationService } from './shared/navigation/navigation.service';
         UtilitiesService,
         NavigationService,
         UserService,
+        AddSongToPlaylistService,
         {
             provide: 'SpotifyConfig',
             useValue: {

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
-import {ApiService} from "../shared/api/api.service";
-import {SpotifyService} from "../shared/spotify/angular2-spotify";
-import { ToastrService } from 'ngx-toastr';
+import {Router} from '@angular/router';
+import {SpotifyService} from '../shared/spotify/angular2-spotify';
 
 
 @Component({
@@ -11,12 +9,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public loading: boolean = false;
-  public errorMessage: string;
-  public user: any;
+  errorMessage: string;
+  user: any;
 
 
-  constructor(public router: Router, private apiService: ApiService, private spotifyService: SpotifyService, private toastrService: ToastrService) {
+  constructor(public router: Router, private spotifyService: SpotifyService) {
   }
 
   public login() {
@@ -36,9 +33,6 @@ export class HomeComponent implements OnInit {
       () => {
       }
     );
-  }
-  showSuccess() {
-    this.toastrService.success('Hello world!', 'Toastr fun!');
   }
 
   ngOnInit() {

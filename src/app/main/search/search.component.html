@@ -107,7 +107,7 @@
             <td>{{track.name}}</td>
             <td><span class="td-hover" (click)="goToArtist(track.artists[0])">{{track.artists[0].name}}</span></td>
             <td><span class="td-hover" (click)="goToAlbum(track.album)">{{track.album.name}}</span></td>
-            <td class="icon-hover"><i class="fa fa-plus" aria-hidden="true"></i></td>
+            <td class="icon-hover"><i class="fa fa-plus" aria-hidden="true" (click)="toggleAddToPlaylistModal(track)"></i></td>
             <td>{{track.duration_ms}}</td>
             <td class="popularity">
               <progress class="progress  is-info" value="{{track.popularity}}" max="100"></progress>

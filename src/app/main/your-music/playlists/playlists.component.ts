@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../../shared/spotify/angular2-spotify';
-import { Router } from '@angular/router';
 import * as _ from 'lodash';
-import { UserService } from './user/user.service';
 import { NavigationService } from '../../../shared/navigation/navigation.service';
 
 @Component({
@@ -16,9 +14,6 @@ export class PlaylistsComponent implements OnInit {
     user: any;
     playlists: any;
     options: any;
-    playlistDetails: any;
-    newPlaylistDescription: any;
-    newPlaylistName: any;
 
     constructor(private spotifyService: SpotifyService, private navigationService: NavigationService) {
     }
@@ -64,35 +59,8 @@ export class PlaylistsComponent implements OnInit {
         this.navigationService.goToPlaylist(playlist);
     }
 
-    closeCreateModal() {
-        const modal = document.getElementById('modal');
-        modal.classList.remove('is-active');
-    }
-
-    toggleCreateModal() {
-        const modal = document.getElementById('modal');
-        modal.classList.toggle('is-active');
-    };
-
-    createNewPlaylist() {
-        this.playlistDetails = {
-            'description': this.newPlaylistDescription,
-            'public': true,
-            'name': this.newPlaylistName
-        };
-        this.spotifyService.createPlaylist(this.user.id, this.playlistDetails).subscribe(
-            (data) => {
-                this.playlists = _.concat(this.playlists, data);
-                this.closeCreateModal();
-            },
-            error => {
-                console.log(error);
-            }
-        )
-    }
-
     goToUser(id) {
-       this.navigationService.goToUser(id);
+        this.navigationService.goToUser(id);
     };
 
 }
