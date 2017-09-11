@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {SpotifyService} from '../../shared/spotify/angular2-spotify';
-import {LoadArtistService} from '../your-music/artists/artist/load-artist.service';
 import { UtilitiesService } from '../../shared/utilities/utilities.service';
+import { NavigationService } from '../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +10,11 @@ import { UtilitiesService } from '../../shared/utilities/utilities.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  public user: any;
-  public type: string;
-  public options: any;
-  public userMusicData: any;
-  constructor(public router: Router, public spotifyService: SpotifyService,  private loadArtistService: LoadArtistService, private utilieites: UtilitiesService) {
+  user: any;
+  type: string;
+  options: any;
+  userMusicData: any;
+  constructor(public router: Router, public spotifyService: SpotifyService, private utilieites: UtilitiesService, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -44,7 +44,6 @@ export class ProfileComponent implements OnInit {
   };
 
   goToArtist(artist) {
-    this.loadArtistService.currentArtist.next(artist);
-    this.router.navigate(['main/artist'])
+    this.navigationService.goToArtist(artist);
   };
 }

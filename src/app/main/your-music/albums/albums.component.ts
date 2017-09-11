@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {SpotifyService} from "../../../shared/spotify/angular2-spotify";
-import {Router} from "@angular/router";
+import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
+import {Router} from '@angular/router';
 import * as _ from 'lodash';
-import * as moment from 'moment';
+import { NavigationService } from '../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-albums',
@@ -10,11 +10,11 @@ import * as moment from 'moment';
   styleUrls: ['./albums.component.scss']
 })
 export class AlbumsComponent implements OnInit {
-  public albums: any;
-  public options: any;
-  public offset: any;
-  public albumsTotal: any;
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  albums: any;
+  options: any;
+  offset: any;
+  albumsTotal: any;
+  constructor(public spotifyService: SpotifyService, public router: Router, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class AlbumsComponent implements OnInit {
     this.spotifyService.getSavedUserAlbums(this.options).subscribe(
       data => {
         this.albums = _.concat(this.albums, data.items);
-        document.getElementById("loadMoreAlbums").blur();
+        document.getElementById('loadMoreAlbums').blur();
       },
       error => {
         console.log(error);
@@ -55,8 +55,7 @@ export class AlbumsComponent implements OnInit {
   };
 
   goToAlbum(album) {
-    localStorage.setItem('album', JSON.stringify(album));
-    this.router.navigate(['main/album'])
+    this.navigationService.goToAlbum(album);
   }
 
 }

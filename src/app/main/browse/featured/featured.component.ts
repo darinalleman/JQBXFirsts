@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import { NavigationService } from '../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-featured',
@@ -10,7 +11,7 @@ import {Router} from "@angular/router";
 export class FeaturedComponent implements OnInit {
   public featuredPlaylists: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -29,7 +30,6 @@ export class FeaturedComponent implements OnInit {
   }
 
   goToPlaylist(playlist) {
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-    this.router.navigate(['main/playlist'])
+    this.navigationService.goToPlaylist(playlist);
   };
 }

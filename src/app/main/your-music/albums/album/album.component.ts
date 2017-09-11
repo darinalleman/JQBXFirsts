@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import * as _ from "lodash";
-import { SpotifyService } from "../../../../shared/spotify/angular2-spotify";
-import { Router } from "@angular/router";
-import { ActiveSongService } from "../../../music-player/active-song.service";
-import { LoadArtistService } from "../../artists/artist/load-artist.service";
+import * as _ from 'lodash';
+import { SpotifyService } from '../../../../shared/spotify/angular2-spotify';
+import { Router } from '@angular/router';
+import { ActiveSongService } from '../../../music-player/active-song.service';
+import { LoadArtistService } from '../../artists/artist/load-artist.service';
+import { NavigationService } from '../../../../shared/navigation/navigation.service';
 
 @Component({
     selector: 'app-album',
@@ -12,15 +13,16 @@ import { LoadArtistService } from "../../artists/artist/load-artist.service";
     styleUrls: ['./album.component.scss']
 })
 export class AlbumComponent implements OnInit {
-    public album: any;
-    private saved: boolean;
-    public options: any;
-    public albumTracks: any;
-    private playObject: any;
-    private selectedRow: any;
+    album: any;
+    saved: boolean;
+    options: any;
+    albumTracks: any;
+    playObject: any;
+    selectedRow: any;
     isPlaying: any;
 
-    constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService, private loadArtistService: LoadArtistService) {
+    constructor(public spotifyService: SpotifyService, public router: Router,
+                private activeSongService: ActiveSongService, private navigationService: NavigationService) {
     }
 
     ngOnInit() {
@@ -81,8 +83,7 @@ export class AlbumComponent implements OnInit {
     }
 
     goToArtist(artist) {
-        this.loadArtistService.currentArtist.next(artist);
-        this.router.navigate(['main/artist'])
+       this.navigationService.goToArtist(artist);
     };
 
     startSong(songUri) {

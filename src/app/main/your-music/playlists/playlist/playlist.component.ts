@@ -2,11 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import {Router} from '@angular/router';
 import {ActiveSongService} from '../../../music-player/active-song.service';
-import {LoadArtistService} from '../../artists/artist/load-artist.service';
 import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
-import { utils } from 'protractor';
+import { NavigationService } from '../../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-playlist',
@@ -14,25 +12,26 @@ import { utils } from 'protractor';
   styleUrls: ['./playlist.component.scss']
 })
 export class PlaylistComponent implements OnInit {
-  public playlist: any;
-  public playlistName: any;
-  public playlistDescription: any;
-  public user: any;
-  public followed: boolean;
-  public options: any;
-  public offset: any;
-  public tracks: any;
-  public tracksTotal: any;
-  public playlistDetails: any;
-  public newPlaylistName: string;
-  public newPlaylistDescription: string;
-  public album: any;
-  public updated: boolean;
-  private playObject: any;
-  public selectedRow: any;
-  public isPlaying: any;
+  playlist: any;
+  playlistName: any;
+  playlistDescription: any;
+  user: any;
+  followed: boolean;
+  options: any;
+  offset: any;
+  tracks: any;
+  tracksTotal: any;
+  playlistDetails: any;
+  newPlaylistName: string;
+  newPlaylistDescription: string;
+  album: any;
+  updated: boolean;
+  playObject: any;
+  selectedRow: any;
+  isPlaying: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService,  private loadArtistService: LoadArtistService, private utilities: UtilitiesService) {
+  constructor(private spotifyService: SpotifyService, private activeSongService: ActiveSongService,
+              private utilities: UtilitiesService, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -163,8 +162,7 @@ export class PlaylistComponent implements OnInit {
   };
 
   goToArtist(artist) {
-    this.loadArtistService.currentArtist.next(artist);
-    this.router.navigate(['main/artist'])
+    this.navigationService.goToArtist(artist);
   };
 
   goToAlbum(album) {
@@ -173,8 +171,7 @@ export class PlaylistComponent implements OnInit {
         this.album = {
           album: data
         };
-        localStorage.setItem('album', JSON.stringify(this.album));
-        this.router.navigate(['main/album'])
+        this.navigationService.goToAlbum(this.album);
       },
       error => {
         console.log(error);

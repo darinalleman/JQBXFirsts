@@ -42,6 +42,7 @@ import { LoadArtistService } from './main/your-music/artists/artist/load-artist.
 import { UserComponent } from './main/your-music/playlists/user/user.component';
 import { UserService } from './main/your-music/playlists/user/user.service';
 import { UtilitiesService } from './shared/utilities/utilities.service';
+import { NavigationService } from './shared/navigation/navigation.service';
 
 
 @NgModule({
@@ -80,6 +81,7 @@ import { UtilitiesService } from './shared/utilities/utilities.service';
         SpotifyService,
         LoadArtistService,
         UtilitiesService,
+        NavigationService,
         UserService,
         {
             provide: 'SpotifyConfig',

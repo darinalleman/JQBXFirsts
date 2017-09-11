@@ -3,6 +3,7 @@ import { SpotifyService } from '../../../shared/spotify/angular2-spotify';
 import { Router } from '@angular/router';
 import * as _ from 'lodash';
 import { UserService } from './user/user.service';
+import { NavigationService } from '../../../shared/navigation/navigation.service';
 
 @Component({
     selector: 'app-playlists',
@@ -19,7 +20,7 @@ export class PlaylistsComponent implements OnInit {
     newPlaylistDescription: any;
     newPlaylistName: any;
 
-    constructor(public spotifyService: SpotifyService, public router: Router, private userService: UserService) {
+    constructor(private spotifyService: SpotifyService, private navigationService: NavigationService) {
     }
 
     ngOnInit() {
@@ -60,8 +61,7 @@ export class PlaylistsComponent implements OnInit {
     }
 
     goToPlaylist(playlist) {
-        localStorage.setItem('playlist', JSON.stringify(playlist));
-        this.router.navigate(['main/playlist'])
+        this.navigationService.goToPlaylist(playlist);
     }
 
     closeCreateModal() {
@@ -92,8 +92,7 @@ export class PlaylistsComponent implements OnInit {
     }
 
     goToUser(id) {
-        this.userService.user.next(id);
-        this.router.navigate(['main/user']);
+       this.navigationService.goToUser(id);
     };
 
 }

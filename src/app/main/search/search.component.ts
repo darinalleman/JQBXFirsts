@@ -2,9 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import {Router} from '@angular/router';
 import {ActiveSongService} from '../music-player/active-song.service';
-import {LoadArtistService} from '../your-music/artists/artist/load-artist.service';
+import { NavigationService } from '../../shared/navigation/navigation.service';
 
 
 @Component({
@@ -13,24 +12,25 @@ import {LoadArtistService} from '../your-music/artists/artist/load-artist.servic
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-  public searchQuery: string;
-  public type: string;
-  public returnedSearchData: any;
-  public options: any;
-  public hasQuery: boolean;
-  public artists: any;
-  public albums: any;
-  public playlists: any;
-  public tracks: any;
-  public album: any;
-  public offset: any;
-  public tracksTotal: any;
-  public noResults: boolean;
-  public playObject: any;
-  public selectedRow: any;
-  public user: any;
+   searchQuery: string;
+   type: string;
+   returnedSearchData: any;
+   options: any;
+   hasQuery: boolean;
+   artists: any;
+   albums: any;
+   playlists: any;
+   tracks: any;
+   album: any;
+   offset: any;
+   tracksTotal: any;
+   noResults: boolean;
+   playObject: any;
+   selectedRow: any;
+   user: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router, private activeSongService: ActiveSongService,  private loadArtistService: LoadArtistService) {
+  constructor(private spotifyService: SpotifyService, private activeSongService: ActiveSongService,
+              private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -97,8 +97,7 @@ export class SearchComponent implements OnInit {
   }
 
   goToArtist(artist) {
-    this.loadArtistService.currentArtist.next(artist);
-    this.router.navigate(['main/artist'])
+    this.navigationService.goToArtist(artist);
   };
 
   goToAlbum(album) {
@@ -107,8 +106,7 @@ export class SearchComponent implements OnInit {
         this.album = {
           album: data
         };
-        localStorage.setItem('album', JSON.stringify(this.album));
-        this.router.navigate(['main/album'])
+        this.navigationService.goToAlbum(this.album);
       },
       error => {
         console.log(error);
@@ -117,8 +115,7 @@ export class SearchComponent implements OnInit {
   };
 
   goToPlaylist(playlist) {
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-    this.router.navigate(['main/playlist'])
+    this.navigationService.goToPlaylist(playlist);
   }
 
   clearFieldsAndData() {

@@ -1,71 +1,70 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from './user.service';
-import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './user.service';
+import { SpotifyService } from '../../../../shared/spotify/angular2-spotify';
 import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
+import { NavigationService } from '../../../../shared/navigation/navigation.service';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss']
+    selector: 'app-user',
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  user: any;
-  userPlaylists: any;
-  userId: any;
-  options: any;
+    user: any;
+    userPlaylists: any;
+    userId: any;
+    options: any;
 
-  constructor(private userService: UserService, private spotifyService: SpotifyService, private router: Router, private utilities: UtilitiesService) {
-  }
+    constructor(private userService: UserService, private spotifyService: SpotifyService, private utilities: UtilitiesService,
+                private navigationService: NavigationService) {
+    }
 
-  ngOnInit() {
-    this.userService.user.subscribe(
-      userId => {
-        if (userId) {
-          this.userId = userId;
-          localStorage.setItem('userId', JSON.stringify(this.userId));
-        } else {
-          this.userId = JSON.parse(localStorage.getItem('userId'));
-        }
-        this.getUserPlaylists();
-        this.getUserInfo();
-      });
-  }
+    ngOnInit() {
+        this.userService.user.subscribe(
+            userId => {
+                if (userId) {
+                    this.userId = userId;
+                    localStorage.setItem('userId', JSON.stringify(this.userId));
+                } else {
+                    this.userId = JSON.parse(localStorage.getItem('userId'));
+                }
+                this.getUserPlaylists();
+                this.getUserInfo();
+            });
+    }
 
-  getUserPlaylists() {
-    this.options = {
-      limit: 50
+    getUserPlaylists() {
+        this.options = {
+            limit: 50
+        };
+        this.spotifyService.getUserPlaylists(this.userId, this.options).subscribe(
+            data => {
+                this.userPlaylists = data.items;
+            },
+            error => {
+                console.log(error);
+            }
+        )
     };
-    this.spotifyService.getUserPlaylists(this.userId, this.options).subscribe(
-      data => {
-        this.userPlaylists = data.items;
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  };
 
-  getUserInfo() {
-    this.spotifyService.getUser(this.userId).subscribe(
-      data => {
-         this.user = data;
-         this.user.followers.total = this.utilities.numberWithCommas(this.user.followers.total);
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  };
+    getUserInfo() {
+        this.spotifyService.getUser(this.userId).subscribe(
+            data => {
+                this.user = data;
+                this.user.followers.total = this.utilities.numberWithCommas(this.user.followers.total);
+            },
+            error => {
+                console.log(error);
+            }
+        )
+    };
 
-  goToUser(id) {
-    this.userService.user.next(id);
-    this.router.navigate(['main/user']);
-  };
+    goToUser(id) {
+        this.navigationService.goToUser(id);
+    };
 
-  goToPlaylist(playlist) {
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-    this.router.navigate(['main/playlist'])
-  }
+    goToPlaylist(playlist) {
+        this.navigationService.goToPlaylist(playlist);
+    }
 
 }

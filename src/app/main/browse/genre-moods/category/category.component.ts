@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {SpotifyService} from "../../../../shared/spotify/angular2-spotify";
-import {Router} from "@angular/router";
+import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
+import {Router} from '@angular/router';
 import * as _ from 'lodash';
+import { NavigationService } from '../../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-category',
@@ -15,7 +16,7 @@ export class CategoryComponent implements OnInit {
   public offset: any;
   public totalCategories: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -30,7 +31,6 @@ export class CategoryComponent implements OnInit {
     this.category = JSON.parse(localStorage.getItem('category'));
     this.spotifyService.getCategoryPlaylists(this.category.id, this.options).subscribe(
       data => {
-        console.log(data);
         this.totalCategories = data.playlists.total;
         this.categoryPlaylists = data.playlists.items;
       },
@@ -48,7 +48,6 @@ export class CategoryComponent implements OnInit {
     };
     this.spotifyService.getCategoryPlaylists(this.category.id, this.options).subscribe(
       data => {
-        console.log(data);
         this.categoryPlaylists = _.concat(this.categoryPlaylists, data.playlists.items);
       },
       error => {
@@ -58,7 +57,6 @@ export class CategoryComponent implements OnInit {
   };
 
   goToPlaylist(playlist) {
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-    this.router.navigate(['main/playlist'])
+    this.navigationService.goToPlaylist(playlist);
   };
 }

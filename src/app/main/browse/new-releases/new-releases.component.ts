@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
 import {Router} from '@angular/router';
 import * as _ from 'lodash';
-import * as moment from 'moment';
+import { NavigationService } from '../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-new-releases',
@@ -15,7 +15,7 @@ export class NewReleasesComponent implements OnInit {
   public options: any;
   private album: any;
   public totalNewReleases: any;
-  constructor(public spotifyService: SpotifyService, public router: Router) { }
+  constructor(public spotifyService: SpotifyService, public router: Router, private navigationService: NavigationService) { }
 
   ngOnInit() {
     this.offset = 0;
@@ -60,8 +60,7 @@ export class NewReleasesComponent implements OnInit {
         this.album = {
           album: data
         };
-        localStorage.setItem('album', JSON.stringify(this.album));
-        this.router.navigate(['main/album'])
+        this.navigationService.goToAlbum(this.album);
       },
       error => {
         console.log(error);

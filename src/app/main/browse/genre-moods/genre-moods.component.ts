@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {SpotifyService} from "../../../shared/spotify/angular2-spotify";
-import {Router} from "@angular/router";
+import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
+import {Router} from '@angular/router';
+import { NavigationService } from '../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-genre-moods',
@@ -10,10 +11,10 @@ import {Router} from "@angular/router";
 
 
 export class GenreMoodsComponent implements OnInit {
-  public categories: any;
-  public options: any;
+   categories: any;
+   options: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router) {
+  constructor(public spotifyService: SpotifyService, public router: Router, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -35,8 +36,7 @@ export class GenreMoodsComponent implements OnInit {
   }
 
   goToCategory(category) {
-    localStorage.setItem('category', JSON.stringify(category));
-    this.router.navigate(['main/category'])
+    this.navigationService.goToCategory(category);
   }
 
 }

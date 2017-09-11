@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../../../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
-import * as _ from "lodash";
-import {Router} from "@angular/router";
+import * as _ from 'lodash';
+import {Router} from '@angular/router';
 import {ActiveSongService} from '../../../../music-player/active-song.service';
+import { NavigationService } from '../../../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-overview',
@@ -11,18 +12,19 @@ import {ActiveSongService} from '../../../../music-player/active-song.service';
   styleUrls: ['./overview.component.scss']
 })
 export class OverviewComponent implements OnInit {
-  public artist: any;
-  public user: any;
-  public topTracks: any;
-  public options: any;
-  public artistAlbums: any;
-  public singles: any;
-  public compilations: any;
-  public album: any;
-  private playObject: any;
-  private selectedRow: any;
+  artist: any;
+  user: any;
+  topTracks: any;
+  options: any;
+  artistAlbums: any;
+  singles: any;
+  compilations: any;
+  album: any;
+  playObject: any;
+  selectedRow: any;
 
-  constructor(public spotifyService: SpotifyService, public router: Router,  private activeSongService: ActiveSongService) {
+  constructor(public spotifyService: SpotifyService, public router: Router,
+              private activeSongService: ActiveSongService, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -55,7 +57,6 @@ export class OverviewComponent implements OnInit {
     };
     this.spotifyService.getArtistAlbums(this.artist.id, this.options).subscribe(
       data => {
-        console.log(data);
         this.artistAlbums = data.items;
       },
       error => {
@@ -100,8 +101,7 @@ export class OverviewComponent implements OnInit {
         this.album = {
           album: data
         };
-        localStorage.setItem('album', JSON.stringify(this.album));
-        this.router.navigate(['main/album']);
+       this.navigationService.goToAlbum(this.album);
       },
       error => {
         console.log(error);
