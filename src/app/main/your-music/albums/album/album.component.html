@@ -7,15 +7,15 @@
         </figure>
       </div>
       <div class="card-content has-text-centered">
-        <p class="is-size-3 truncate">{{album.album.name}}</p>
+        <p class="is-size-2 truncate">{{album.album.name}}</p>
         <span class="subtitle is-5 push-up clickable album-artist" (click)="goToArtist(album.album.artists[0])">{{album.album.artists[0].name}}</span>
         <p class="push">{{album.album.release_date | date: 'yyyy'}} - {{album.album.tracks.total}} songs</p>
         <!--<button class="button is-primary is-medium" *ngIf="isPlaying" (click)="pauseAlbum()">Pause</button>-->
       </div>
       <footer class="card-footer">
-        <a class="card-footer-item" *ngIf="!saved" (click)="saveAlbum(album.album)">Save</a>
-        <a class="card-footer-item" *ngIf="saved" (click)="removeAlbum(album.album)">Remove</a>
-        <a class="card-footer-item" (click)="playAlbum(album.album)">Play</a>
+        <a class="card-footer-item" *ngIf="!saved" (click)="saveAlbum(album.album)"><button class="button is-primary is-outlined save-button">Save</button></a>
+        <a class="card-footer-item" *ngIf="saved" (click)="removeAlbum(album.album)"><button class="button is-primary save-button">Remove</button></a>
+        <a class="card-footer-item" (click)="playAlbum(album.album)"><button class=" button is-success play-button">Play</button></a>
       </footer>
     </div>
   </div>

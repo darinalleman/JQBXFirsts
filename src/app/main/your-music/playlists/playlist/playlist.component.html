@@ -13,17 +13,17 @@
             </figure>
           </div>
           <div class="card-content has-text-centered">
-            <p class="is-size-4 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
-            <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl>{{playlistDescription}}</p>
+            <p class="is-size-2 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
+            <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl [innerHTML] = 'playlistDescription'></p>
             <p class="is-size-5 push-down">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
           </div>
           <footer class="card-footer">
-            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal()">Edit</a>
+            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal()"><button class="button is-primary edit-button">Edit</button></a>
             <a class="card-footer-item" *ngIf="followed === false && user.id != playlist.owner.id"
-               (click)="followPlaylist()">Follow</a>
+               (click)="followPlaylist()"><button class="button is-primary is-outlined follow-button">Follow</button></a>
             <a class="card-footer-item" *ngIf="followed === true && user.id != playlist.owner.id"
-               (click)="unfollowPlaylist()">Unfollow</a>
-            <a class="card-footer-item" (click)="playPlaylist(playlist)">Play</a>
+               (click)="unfollowPlaylist()"><button class=" button is-primary follow-button">Unfollow</button></a>
+            <a class="card-footer-item" (click)="playPlaylist(playlist)"><button class="button is-success play-button">Play</button></a>
           </footer>
         </div>
       </div>

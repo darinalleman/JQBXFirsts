@@ -212,7 +212,19 @@ table {
   }
 }
 
+/* ---------- */
+.play-button {
+  background-color: #1ed760 !important;
+  &:hover {
+      background-color: darken(#1ed760, 5) !important;
+      border-color: transparent !important;
+      color: #fff !important;
+  }
+}
 
+.follow-button, .play-button, .edit-button, .save-button{
+  border-radius: 15px;
+}
 
 
 
