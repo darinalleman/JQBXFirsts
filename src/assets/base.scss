@@ -1,5 +1,8 @@
+@import "variables";
+@import "bulma-variables";
+
 html {
-  background-color: #fafafa;
+  background-color: $app-background;
 }
 
 body {
@@ -8,7 +11,7 @@ body {
 
 .main {
   margin-bottom: 100px;
-  background-color: #fafafa;
+  background-color: $app-background;
 }
 
 .push-around {
@@ -67,7 +70,7 @@ body {
 }
 
 .text-white {
-  color: white;
+  color: $white;
 }
 
 .img-circle {
@@ -81,7 +84,7 @@ body {
 }
 
 .modal-card-head {
-  background-color: #00b89c;
+  background-color: $turquoise;
 }
 
 .card-footer-item {
@@ -91,6 +94,7 @@ body {
 .remove-margin-bottom-spacing {
   margin-bottom: 5px !important;
 }
+
 
 /*
  *  custom scroll bar
@@ -110,13 +114,13 @@ body {
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background-color: #00d1b2;
+  background-color: $turquoise;
 }
 
 /* ------------------------*/
 
 .table {
-  background-color: #fafafa!important;
+  background-color: $app-background!important;
 }
 
 table {
@@ -130,8 +134,8 @@ table {
       }
     }
     tr:hover {
-      color: white;
-      background-color: #00d1b2 !important;
+      color: $white;
+      background-color: $turquoise !important;
       .icon-hover {
         &:hover {
           i {
@@ -153,7 +157,7 @@ table {
 /* for all hero headers */
 
 .hero.is-primary.is-bold {
-  background-image: linear-gradient(141deg, #535b6e 0%, lighten(#535b6e, 15) 71%, lighten(#535b6e, 30) 100%);
+  background-image: linear-gradient(141deg, $accent-color 0%, lighten($accent-color, 15) 71%, lighten($accent-color, 30) 100%);
 }
 
 /* -------------------- 8*/
@@ -214,11 +218,11 @@ table {
 
 /* ---------- */
 .play-button {
-  background-color: #1ed760 !important;
+  background-color: $spotify-play-button-green !important;
   &:hover {
-      background-color: darken(#1ed760, 5) !important;
+      background-color: darken($spotify-play-button-green, 5) !important;
       border-color: transparent !important;
-      color: #fff !important;
+      color: $white !important;
   }
 }
 

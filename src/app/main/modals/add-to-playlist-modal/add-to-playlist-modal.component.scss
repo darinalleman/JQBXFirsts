@@ -1,8 +1,9 @@
+@import "../../../../assets/variables";
 .modal-card {
   width: 1400px;
   height: 1000px;
 }
 
 .modal-card-title {
-  color: white !important;
+  color: $white !important;
 }

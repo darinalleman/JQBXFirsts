@@ -1,5 +1,6 @@
+@import "../../../assets/variables";
 .section.artists{
-  background-color: #efefef;
+  background-color: $section-background;
   padding: 1rem 1.5rem;
 }
 .section.albums{
@@ -7,7 +8,7 @@
 }
 .section.playlists{
   padding: 1rem 1.5rem;
-  background-color: #efefef;
+  background-color: $section-background;
 }
 
 .popularity{

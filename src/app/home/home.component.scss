@@ -1,6 +1,8 @@
+@import "../../assets/variables";
+
 .fa-spotify{
   font-size: 10em;
-  color: #23d160;
+  color: $spotify-icon-green;
 }
 
 .login-button {
