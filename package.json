@@ -27,6 +27,7 @@
     "@types/lodash": "^4.14.68",
     "@types/moment": "^2.13.0",
     "bulma": "^0.5.1",
+    "bulma-switch": "0.0.2",
     "core-js": "^2.4.1",
     "express": "^4.15.4",
     "font-awesome": "^4.7.0",

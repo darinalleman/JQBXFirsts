@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { ActiveSongService } from '../music-player/active-song.service';
 import { NavigationService } from '../../shared/navigation/navigation.service';
 import { AddSongToPlaylistService } from '../modals/add-to-playlist-modal/add-song-to-playlist.service';
+import {EditPlayListService} from "../modals/edit-playlist-modal/edit-play-list-service";
 
 
 @Component({
@@ -31,7 +32,8 @@ export class SearchComponent implements OnInit {
     user: any;
 
     constructor(private spotifyService: SpotifyService, private activeSongService: ActiveSongService,
-                private navigationService: NavigationService, private addSongToPlaylistService: AddSongToPlaylistService) {
+                private navigationService: NavigationService, private addSongToPlaylistService: AddSongToPlaylistService,
+                private editPlaylistService: EditPlayListService) {
     }
 
     ngOnInit() {
@@ -120,6 +122,7 @@ export class SearchComponent implements OnInit {
 
     goToPlaylist(playlist) {
         this.navigationService.goToPlaylist(playlist);
+        this.editPlaylistService.updated.next(false);
     }
 
     clearFieldsAndData() {

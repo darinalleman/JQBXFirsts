@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SpotifyService } from '../../../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
 import { NavigationService } from '../../../shared/navigation/navigation.service';
+import {EditPlayListService} from "../../modals/edit-playlist-modal/edit-play-list-service";
 
 @Component({
     selector: 'app-playlists',
@@ -16,7 +17,8 @@ export class PlaylistsComponent implements OnInit {
     options: any;
      position = 'before';
 
-    constructor(private spotifyService: SpotifyService, private navigationService: NavigationService) {
+    constructor(private spotifyService: SpotifyService, private navigationService: NavigationService,
+                private editPlaylistService: EditPlayListService) {
     }
 
     ngOnInit() {
@@ -58,6 +60,8 @@ export class PlaylistsComponent implements OnInit {
 
     goToPlaylist(playlist) {
         this.navigationService.goToPlaylist(playlist);
+        this.editPlaylistService.updated.next(false);
+
     }
 
     goToUser(id) {

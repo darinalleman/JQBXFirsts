@@ -1,7 +1,7 @@
 <div class="columns push-around">
   <div class="column is-12">
-    <div id="hidePlaylistUpdatedNotication" class="notification is-primary" *ngIf="updated">
-      <button class="delete" (click)="hideNotifcation()"></button>
+    <div id="hidePlaylistUpdatedNotification" class="notification is-primary" *ngIf="updated">
+      <button class="delete" (click)="hideNotification()"></button>
       <p>Playlist successfully updated</p>
     </div>
     <div class="columns" *ngIf="playlist?.tracks.items?.length > 0">
@@ -13,12 +13,15 @@
             </figure>
           </div>
           <div class="card-content has-text-centered">
-            <p class="is-size-2 truncate tooltip" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
-            <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl [innerHTML] = 'playlistDescription'></p>
-            <p class="is-size-5 push-down">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
+            <p class="is-size-2 truncate" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
+            <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML] = 'playlist.description'></p>
+            <p class="is-size-5 push-down">
+              {{playlist.tracks.total}} songs |
+              {{playlist.followers.total}} followers
+            </p>
           </div>
           <footer class="card-footer">
-            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal()"><button class="button is-primary edit-button">Edit</button></a>
+            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)"><button class="button is-primary edit-button">Edit</button></a>
             <a class="card-footer-item" *ngIf="followed === false && user.id != playlist.owner.id"
                (click)="followPlaylist()"><button class="button is-primary is-outlined follow-button">Follow</button></a>
             <a class="card-footer-item" *ngIf="followed === true && user.id != playlist.owner.id"
@@ -62,47 +65,5 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="modal" id="modal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title text-white">{{playlist.name}}</p>
-      <button class="delete" (click)="closeEditModal()"></button>
-    </header>
-    <section class="modal-card-body">
-      <div class="container-fluid">
-        <div class="columns">
-          <div class="column">
-            <div class="columns">
-              <div class="column">
-                <div class="field">
-                  <label class="label">Playlist Name</label>
-                  <div class="control full-width">
-                    <input type="text" class="input" placeholder="Playlist Name" [(ngModel)]="newPlaylistName">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <div class="field">
-                  <label class="label">Playlist Description</label>
-                  <div class="control">
-                    <textarea class="textarea" type="text" placeholder="Playlist Description"
-                              [(ngModel)]="newPlaylistDescription"></textarea>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <footer class="modal-card-foot">
-      <a class="button" (click)="closeEditModal()">Cancel</a>
-      <a class="button is-primary is-outlined is-pulled-right" (click)="saveChanges()">Save changes</a>
-    </footer>
   </div>
 </div>

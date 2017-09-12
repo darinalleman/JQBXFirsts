@@ -3,6 +3,7 @@ import { UserService } from './user.service';
 import { SpotifyService } from '../../../../shared/spotify/angular2-spotify';
 import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
 import { NavigationService } from '../../../../shared/navigation/navigation.service';
+import {EditPlayListService} from "../../../modals/edit-playlist-modal/edit-play-list-service";
 
 @Component({
     selector: 'app-user',
@@ -16,7 +17,7 @@ export class UserComponent implements OnInit {
     options: any;
 
     constructor(private userService: UserService, private spotifyService: SpotifyService, private utilities: UtilitiesService,
-                private navigationService: NavigationService) {
+                private navigationService: NavigationService, private editPlaylistService: EditPlayListService) {
     }
 
     ngOnInit() {
@@ -65,6 +66,7 @@ export class UserComponent implements OnInit {
 
     goToPlaylist(playlist) {
         this.navigationService.goToPlaylist(playlist);
+        this.editPlaylistService.updated.next(true);
     }
 
 }

@@ -1,0 +1,49 @@
+<div class="modal" id="editPlaylistModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title text-white">{{playlist.name}}</p>
+      <button class="delete" (click)="closeEditModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="container-fluid">
+        <div class="columns is-multiline">
+          <div class="column is-12">
+            <div class="columns">
+              <div class="column is-8">
+                <div class="field">
+                  <label class="label">Playlist Name</label>
+                  <div class="control full-width">
+                    <input type="text" class="input" placeholder="Playlist Name" [(ngModel)]="newPlaylistName">
+                  </div>
+                </div>
+              </div>
+              <div class="column is-4">
+                <div class="field" style="margin-top: 38px;">
+                  <div class="control">
+                    <input id="publicSwitch" type="checkbox" name="publicSwitch" class="switch is-medium" checked="{{checked}}"
+                    (change)="toggleCheckbox()">
+                    <label for="publicSwitch">Public</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="column is-12">
+            <div class="field">
+              <label class="label">Playlist Description</label>
+              <div class="control">
+                    <textarea class="textarea" type="text" placeholder="Playlist Description"
+                              [(ngModel)]="newPlaylistDescription"></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button" (click)="closeEditModal()">Cancel</a>
+      <a class="button is-primary is-outlined is-pulled-right" (click)="saveChanges()">Save changes</a>
+    </footer>
+  </div>
+</div>

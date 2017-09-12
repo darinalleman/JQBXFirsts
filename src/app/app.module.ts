@@ -42,6 +42,8 @@ import { UtilitiesService } from './shared/utilities/utilities.service';
 import { NavigationService } from './shared/navigation/navigation.service';
 import { AddToPlaylistModalComponent } from './main/modals/add-to-playlist-modal/add-to-playlist-modal.component';
 import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/add-song-to-playlist.service';
+import { EditPlaylistModalComponent } from './main/modals/edit-playlist-modal/edit-playlist-modal.component';
+import {EditPlayListService} from "./main/modals/edit-playlist-modal/edit-play-list-service";
 
 
 @NgModule({
@@ -70,7 +72,8 @@ import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/ad
         RelatedArtistsComponent,
         MusicPlayerComponent,
         UserComponent,
-        AddToPlaylistModalComponent
+        AddToPlaylistModalComponent,
+        EditPlaylistModalComponent
     ],
     imports: [
         AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, ReactiveFormsModule
@@ -84,6 +87,7 @@ import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/ad
         NavigationService,
         UserService,
         AddSongToPlaylistService,
+        EditPlayListService,
         {
             provide: 'SpotifyConfig',
             useValue: {

@@ -3,8 +3,9 @@ import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import {ActiveSongService} from '../../../music-player/active-song.service';
-import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
-import { NavigationService } from '../../../../shared/navigation/navigation.service';
+import {UtilitiesService} from '../../../../shared/utilities/utilities.service';
+import {NavigationService} from '../../../../shared/navigation/navigation.service';
+import {EditPlayListService} from '../../../modals/edit-playlist-modal/edit-play-list-service';
 
 @Component({
   selector: 'app-playlist',
@@ -13,44 +14,50 @@ import { NavigationService } from '../../../../shared/navigation/navigation.serv
 })
 export class PlaylistComponent implements OnInit {
   playlist: any;
-  playlistName: any;
-  playlistDescription: any;
   user: any;
   followed: boolean;
   options: any;
   offset: any;
   tracks: any;
   tracksTotal: any;
-  playlistDetails: any;
-  newPlaylistName: string;
-  newPlaylistDescription: string;
   album: any;
-  updated: boolean;
   playObject: any;
   selectedRow: any;
   isPlaying: any;
+  updated: boolean;
 
   constructor(private spotifyService: SpotifyService, private activeSongService: ActiveSongService,
-              private utilities: UtilitiesService, private navigationService: NavigationService) {
+              private utilities: UtilitiesService, private navigationService: NavigationService,
+              private editPlaylistService: EditPlayListService) {
   }
 
   ngOnInit() {
     this.offset = 0;
     this.loadPlaylist();
     this.checkIfUserFollowsPlaylist();
-  }
+    this.editPlaylistService.updated.subscribe(
+      flag => {
+        this.updated = flag;
+      }
+    );
+    this.editPlaylistService.playlistChanges.subscribe(
+      changes => {
+        this.playlist.name = changes.name;
+        this.playlist.description = changes.description;
+        this.playlist.public = changes.public;
+      }
+    );
+  };
 
   loadPlaylist() {
     this.options = {
       limit: 100
     };
-    this.updated = false;
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
+        console.log(this.playlist);
         this.playlist = data;
-        this.playlistName = this.playlist.name;
-        this.playlistDescription = this.playlist.description;
         this.playlist.followers.total = this.utilities.numberWithCommas(this.playlist.followers.total);
         this.spotifyService.getPlaylistTracks(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
           tracks => {
@@ -126,41 +133,6 @@ export class PlaylistComponent implements OnInit {
     );
   };
 
-  closeEditModal() {
-    const modal = document.getElementById('modal');
-    modal.classList.remove('is-active');
-  }
-
-  toggleEditModal() {
-    const modal = document.getElementById('modal');
-    this.newPlaylistName = this.playlistName;
-    this.newPlaylistDescription = this.playlistDescription;
-    modal.classList.toggle('is-active');
-  };
-
-  saveChanges() {
-    this.playlistDetails = {
-      'description': this.newPlaylistDescription,
-      'public': true,
-      'name': this.newPlaylistName
-    };
-
-    this.spotifyService.updatePlaylistDetails(this.playlist.owner.id, this.playlist.id, this.playlistDetails).subscribe(
-      () => {
-        this.newPlaylistDescription = '';
-        this.newPlaylistName = '';
-        this.loadPlaylist();
-        this.closeEditModal();
-        this.showNotifcation();
-        this.updated = true;
-      },
-      error => {
-        this.updated = false;
-        console.log(error);
-      }
-    )
-  };
-
   goToArtist(artist) {
     this.navigationService.goToArtist(artist);
   };
@@ -177,18 +149,6 @@ export class PlaylistComponent implements OnInit {
         console.log(error);
       }
     );
-  };
-
-  hideNotifcation() {
-    const hideNotification = document.getElementById('hidePlaylistUpdatedNotication');
-    hideNotification.style.display = 'none';
-  };
-
-  showNotifcation() {
-    const hideNotification = document.getElementById('hidePlaylistUpdatedNotication');
-    if (hideNotification) {
-      hideNotification.style.display = 'block';
-    }
   };
 
   startSong(songUri) {
@@ -215,23 +175,41 @@ export class PlaylistComponent implements OnInit {
       'context_uri': playlist.uri
     };
     this.spotifyService.startResumePlayer(this.playObject).subscribe(
-        () => {
-          setTimeout(() => {
-            this.spotifyService.getCurrentPlayingTrack().subscribe(
-                data => {
-                  this.isPlaying = data.is_playing;
-                  this.activeSongService.currentSong.next(data.item);
-                },
-                error => {
-                  console.log(error);
-                }
-            )
-          }, 1000);
-        },
-        error => {
-          console.log(error);
-        }
+      () => {
+        setTimeout(() => {
+          this.spotifyService.getCurrentPlayingTrack().subscribe(
+            data => {
+              this.isPlaying = data.is_playing;
+              this.activeSongService.currentSong.next(data.item);
+            },
+            error => {
+              console.log(error);
+            }
+          )
+        }, 1000);
+      },
+      error => {
+        console.log(error);
+      }
     )
+  };
+
+  hideNotification() {
+    const hideNotification = document.getElementById('hidePlaylistUpdatedNotification');
+    hideNotification.style.display = 'none';
+  };
+
+  showNotification() {
+    const hideNotification = document.getElementById('hidePlaylistUpdatedNotification');
+    if (hideNotification) {
+      hideNotification.style.display = 'block';
+    }
+  };
+
+  toggleEditModal(playlist) {
+    this.editPlaylistService.playlistToBeEdited.next(playlist);
+    const modal = document.getElementById('editPlaylistModal');
+    modal.classList.toggle('is-active');
   };
 
 }
