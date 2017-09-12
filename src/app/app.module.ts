@@ -42,7 +42,6 @@ import { UtilitiesService } from './shared/utilities/utilities.service';
 import { NavigationService } from './shared/navigation/navigation.service';
 import { AddToPlaylistModalComponent } from './main/modals/add-to-playlist-modal/add-to-playlist-modal.component';
 import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/add-song-to-playlist.service';
-import { MdTooltipModule} from '@angular/material';
 
 
 @NgModule({
@@ -74,7 +73,7 @@ import { MdTooltipModule} from '@angular/material';
         AddToPlaylistModalComponent
     ],
     imports: [
-        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, ReactiveFormsModule, MdTooltipModule
+        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, ReactiveFormsModule
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},

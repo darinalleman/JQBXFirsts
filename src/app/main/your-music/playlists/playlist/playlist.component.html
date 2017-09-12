@@ -13,7 +13,7 @@
             </figure>
           </div>
           <div class="card-content has-text-centered">
-            <p class="is-size-2 truncate" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
+            <p class="is-size-2 truncate tooltip" [(ngModel)]="playlistName" ngDefaultControl>{{playlistName}}</p>
             <p class="is-size-6" [(ngModel)]="playlistDescription" ngDefaultControl [innerHTML] = 'playlistDescription'></p>
             <p class="is-size-5 push-down">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
           </div>
