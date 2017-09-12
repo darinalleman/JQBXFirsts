@@ -14,6 +14,7 @@ export class PlaylistsComponent implements OnInit {
     user: any;
     playlists: any;
     options: any;
+     position = 'before';
 
     constructor(private spotifyService: SpotifyService, private navigationService: NavigationService) {
     }

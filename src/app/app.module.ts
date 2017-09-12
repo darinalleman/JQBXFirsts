@@ -6,7 +6,6 @@ import { CallbackComponent } from './callback/callback.component';
 import { HomeComponent } from './home/home.component';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-
 import { AppConfig } from './shared/config/app.config';
 import { SpotifyService } from './shared/spotify/angular2-spotify';
 import { AuthService } from './shared/auth/auth.service';
@@ -16,7 +15,7 @@ import { ApiService } from './shared/api/api.service';
 import { SearchComponent } from './main/search/search.component';
 import { PlaylistsComponent } from './main/your-music/playlists/playlists.component';
 import { ProfileComponent } from './main/profile/profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SideNavComponent } from './main/side-nav/side-nav.component';
 import { MainComponent } from './main/main.component';
 import { YourMusicComponent } from './main/your-music/your-music.component';
@@ -43,6 +42,7 @@ import { UtilitiesService } from './shared/utilities/utilities.service';
 import { NavigationService } from './shared/navigation/navigation.service';
 import { AddToPlaylistModalComponent } from './main/modals/add-to-playlist-modal/add-to-playlist-modal.component';
 import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/add-song-to-playlist.service';
+import { MdTooltipModule} from '@angular/material';
 
 
 @NgModule({
@@ -74,7 +74,7 @@ import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/ad
         AddToPlaylistModalComponent
     ],
     imports: [
-        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule
+        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, ReactiveFormsModule, MdTooltipModule
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},
