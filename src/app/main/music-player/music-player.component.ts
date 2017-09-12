@@ -37,7 +37,11 @@ export class MusicPlayerComponent implements OnInit {
         this.getInfoOfCurrentPlayback();
         this.spotifyService.getCurrentPlayingTrack().subscribe(
             data => {
-                this.currentSong = data.item;
+                 if(data === null) {
+                   return false;
+                 } else {
+                   this.currentSong = data.item;
+                 }
             },
             error => {
                 console.log(error);
