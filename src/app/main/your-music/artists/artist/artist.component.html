@@ -14,8 +14,8 @@
                 <p class="title is-1 artist-title">{{artist?.name}}</p>
                 <p class="subtitle artist-followers">{{artist?.followers.total}} followers</p>
                 <button class="button is-primary is-medium is-outlined clickable follow-button" *ngIf="isFollowing === false" (click)="followArtist()">Follow</button>
-                <button class="button is-primary is-medium clickable follow-button" *ngIf="isFollowing === true" (click)="unfollowArtist()">Unfollow</button>
-                <button class="button is-success is-medium clickable play-button" (click)="playArtist(artist)">Play</button>
+                <button class="button is-primary is-medium clickable follow-button" *ngIf="isFollowing === true" (click)="unfollowArtist()" style="width: 10%">Unfollow</button>
+                <button class="button is-success is-medium clickable play-button" (click)="playArtist(artist)" style="width: 10%;">Play</button>
               </div>
             </div>
           </div>

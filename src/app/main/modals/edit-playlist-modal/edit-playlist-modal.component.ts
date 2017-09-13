@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
-import {EditPlayListService} from "./edit-play-list-service";
+import {EditPlayListService} from './edit-play-list-service';
 
 @Component({
   selector: 'app-edit-playlist-modal',
@@ -21,7 +21,6 @@ export class EditPlaylistModalComponent implements OnInit {
   ngOnInit() {
     this.editPlayListService.playlistToBeEdited.subscribe(
       playlist => {
-        console.log(playlist.public);
         this.playlist = playlist;
         this.newPlaylistDescription = playlist.description;
         this.newPlaylistName = playlist.name;
@@ -37,14 +36,12 @@ export class EditPlaylistModalComponent implements OnInit {
   }
 
   saveChanges() {
-    console.log(this.isChecked);
     this.playlistDetails = {
       'description': this.newPlaylistDescription,
       'public': this.isChecked,
       'name': this.newPlaylistName
     };
 
-    console.log(this.playlistDetails);
     this.spotifyService.updatePlaylistDetails(this.playlist.owner.id, this.playlist.id, this.playlistDetails).subscribe(
       () => {
         this.newPlaylistDescription = '';
@@ -61,7 +58,6 @@ export class EditPlaylistModalComponent implements OnInit {
 
   toggleCheckbox() {
     this.isChecked = !this.isChecked;
-    console.log(this.isChecked)
   };
 
   closeEditModal() {

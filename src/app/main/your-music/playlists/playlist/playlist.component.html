@@ -21,12 +21,12 @@
             </p>
           </div>
           <footer class="card-footer">
-            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)"><button class="button is-primary edit-button">Edit</button></a>
+            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)"><button class="button is-primary is-medium is-fullwidth edit-button">Edit</button></a>
             <a class="card-footer-item" *ngIf="followed === false && user.id != playlist.owner.id"
-               (click)="followPlaylist()"><button class="button is-primary is-outlined follow-button">Follow</button></a>
+               (click)="followPlaylist()"><button class="button is-primary is-outlined is-medium follow-button is-fullwidth">Follow</button></a>
             <a class="card-footer-item" *ngIf="followed === true && user.id != playlist.owner.id"
-               (click)="unfollowPlaylist()"><button class=" button is-primary follow-button">Unfollow</button></a>
-            <a class="card-footer-item" (click)="playPlaylist(playlist)"><button class="button is-success play-button">Play</button></a>
+               (click)="unfollowPlaylist()"><button class=" button is-primary is-medium follow-button is-fullwidth">Unfollow</button></a>
+            <a class="card-footer-item" (click)="playPlaylist(playlist)"><button class="button is-success is-medium is-fullwidth play-button">Play</button></a>
           </footer>
         </div>
       </div>

@@ -10,7 +10,7 @@
       <div class="card-content">
         <div class="content has-text-centered">
           <p class="title is-6 truncate remove-margin-bottom-spacing clickable playlist-name" (click)="goToPlaylist(playlist)">{{playlist.name}}</p>
-          <p class="owner is-size-6 truncate display-name clickable" *ngIf="playlist.owner.display_name" (click)="goToUser(playlist.owner.id)" mdTooltip="Tooltip!">By {{playlist.owner.display_name}}</p>
+          <p class="owner is-size-6 truncate display-name clickable" *ngIf="playlist.owner.display_name" (click)="goToUser(playlist.owner.id)">By {{playlist.owner.display_name}}</p>
         </div>
       </div>
     </div>
