@@ -11,10 +11,6 @@ footer {
   opacity: .9;
 }
 
-.song-name{
-  margin-top: 35px;
-}
-
 .image{
   margin-top: 20px;
 }
@@ -41,4 +37,11 @@ footer {
 
 .shuffle-highlight, .repeat-highlight{
   color: lighten($turquoise, 10);
+}
+
+.artist-name {
+  &:hover {
+    text-decoration: underline;
+    color: $turquoise;
+  }
 }

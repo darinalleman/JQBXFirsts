@@ -56,7 +56,6 @@ export class PlaylistComponent implements OnInit {
     this.playlist = JSON.parse(localStorage.getItem('playlist'));
     this.spotifyService.getPlaylist(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
       data => {
-        console.log(this.playlist);
         this.playlist = data;
         this.playlist.followers.total = this.utilities.numberWithCommas(this.playlist.followers.total);
         this.spotifyService.getPlaylistTracks(this.playlist.owner.id, this.playlist.id, this.options).subscribe(
@@ -153,7 +152,7 @@ export class PlaylistComponent implements OnInit {
 
   startSong(songUri) {
     this.playObject = {
-      "uris": [songUri]
+      'uris': [songUri]
     };
     this.spotifyService.startResumePlayer(this.playObject).subscribe(
       () => {

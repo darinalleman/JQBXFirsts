@@ -165,7 +165,7 @@ table {
 .display-name, .playlist-name {
   &:hover {
     text-decoration: underline;
-    color: #00d1b2;
+    color: $turquoise;
   }
 }
 
@@ -226,7 +226,7 @@ table {
   }
 }
 
-.follow-button, .play-button, .edit-button, .save-button{
+.follow-button, .play-button, .edit-button, .save-button, .login-button{
   border-radius: 30px;
 }
 

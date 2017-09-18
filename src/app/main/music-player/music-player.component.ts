@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActiveSongService } from './active-song.service';
 import { SpotifyService } from '../../shared/spotify/angular2-spotify';
 import * as _ from 'lodash';
+import { NavigationService } from '../../shared/navigation/navigation.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class MusicPlayerComponent implements OnInit {
     progressMs: any;
     playObject: any;
 
-    constructor(private activeSongService: ActiveSongService, private spotifyService: SpotifyService) {
+    constructor(private activeSongService: ActiveSongService, private spotifyService: SpotifyService, private navigationService: NavigationService) {
     }
 
     ngOnInit() {
@@ -37,11 +38,11 @@ export class MusicPlayerComponent implements OnInit {
         this.getInfoOfCurrentPlayback();
         this.spotifyService.getCurrentPlayingTrack().subscribe(
             data => {
-                 if(data === null) {
-                   return false;
-                 } else {
-                   this.currentSong = data.item;
-                 }
+                if (data === null) {
+                    return false;
+                } else {
+                    this.currentSong = data.item;
+                }
             },
             error => {
                 console.log(error);
@@ -74,6 +75,7 @@ export class MusicPlayerComponent implements OnInit {
             }
         )
     };
+
     getDevices() {
         this.spotifyService.getUserDevices().subscribe(
             data => {
@@ -148,6 +150,10 @@ export class MusicPlayerComponent implements OnInit {
                 console.log(error);
             }
         );
+    };
+
+    goToArtist(artist) {
+        this.navigationService.goToArtist(artist);
     }
 
 }
