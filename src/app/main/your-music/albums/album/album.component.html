@@ -1,0 +1,40 @@
+<div class="columns push-around">
+  <div class="column is-3">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="{{album.album.images[0].url}}" alt="Image">
+        </figure>
+      </div>
+      <div class="card-content has-text-centered">
+        <p class="is-size-2 truncate">{{album.album.name}}</p>
+        <span class="subtitle is-5 push-up clickable album-artist" (click)="goToArtist(album.album.artists[0])">{{album.album.artists[0].name}}</span>
+        <p class="push">{{album.album.release_date | date: 'yyyy'}} - {{album.album.tracks.total}} songs</p>
+        <!--<button class="button is-primary is-medium" *ngIf="isPlaying" (click)="pauseAlbum()">Pause</button>-->
+      </div>
+      <footer class="card-footer">
+        <a class="card-footer-item" *ngIf="!saved" (click)="saveAlbum(album.album)"><button class="button is-primary is-outlined is-medium is-fullwidth save-button">Save</button></a>
+        <a class="card-footer-item" *ngIf="saved" (click)="removeAlbum(album.album)"><button class="button is-primary is-medium is-fullwidth save-button">Remove</button></a>
+        <a class="card-footer-item" (click)="playAlbum(album.album)"><button class=" button is-success is-medium play-button is-fullwidth">Play</button></a>
+      </footer>
+    </div>
+  </div>
+  <div class="column is-9">
+    <table class="table table-striped is-fullwidth">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th><i class="fa fa-clock-o"></i></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let track of albumTracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
+        <td>{{i + 1}}</td>
+        <td>{{track.name}}</td>
+        <td>{{track.duration_ms}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

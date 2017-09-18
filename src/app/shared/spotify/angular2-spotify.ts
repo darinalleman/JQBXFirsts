@@ -647,7 +647,7 @@ export class SpotifyService {
 
   login() {
     let promise = new Promise((resolve, reject) => {
-      let w = 400,
+      let w = 800,
         h = 500,
         left = (screen.width / 2) - (w / 2),
         top = (screen.height / 2) - (h / 2);

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="columns related-artists push-around">
+    <div class="column">
+      <div class="columns is-multiline push-left">
+        <div class="column is-2 push-down" *ngFor="let artist of relatedArtists">
+          <div class="card card-hover">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img src="{{artist.images[0]?.url}}" alt="">
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="content has-text-centered clickable" (click)="goToArtist(artist)">
+                <p class="is-size-5 truncate">{{artist.name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="columns push-around">
+  <div class="column">
+    <div class="columns is-multiline push-left">
+      <div class="column is-2" *ngFor="let artist of artists">
+        <div class="card card-hover">
+          <div class="card-image">
+            <figure class="image is-square">
+              <img src="{{artist.images[0].url}}" alt="">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="content has-text-centered clickable" (click)="goToArtist(artist)">
+              <p class="is-size-6 truncate">{{artist.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="columns push-around">
+  <div class="column">
+    <button class="button is-primary is-outlined is-fullwidth" id="loadMoreArtists" (click)="loadMoreArtists()"
+            *ngIf="artists?.length < totalArtists">Load More Artists</button>
+  </div>
+</div>
+

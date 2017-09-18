@@ -1,0 +1,25 @@
+<div class="modal" id="addToPlaylistModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add Song To Playlist</p>
+      <button class="delete" aria-label="close" (click)="closeAddToPlayListModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="columns is-multiline push-around">
+        <div class="column is-2" *ngFor="let playlist of playlists">
+          <div class="card card-hover clickable" *ngIf="playlist?.tracks.total > 0" (click)="addToPlaylist(playlist)">
+            <div class="card-image">
+              <figure class="image is-square">
+                <img src="{{playlist?.images[0].url}}" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="card-content has-text-centered">
+              <p class="is-size-6 truncate">{{playlist.name}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

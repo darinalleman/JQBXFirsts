@@ -1,0 +1,47 @@
+@import "../../../assets/variables";
+@import "../../../assets/bulma-variables";
+footer {
+  position:fixed;
+  left:0;
+  bottom:0;
+  width:100%;
+  height: 20px;
+  padding: 0 1.5rem 6rem;
+  background-color: $accent-color !important;
+  opacity: .9;
+}
+
+.image{
+  margin-top: 20px;
+}
+
+.media-content{
+  margin-top: 20px;
+}
+
+.player-content{
+  margin-top: 35px;
+}
+
+.device-content {
+  margin-top: 35px;
+};
+
+.fa {
+  font-size: 2em;
+  margin-right: 30px;
+  &:hover{
+    color: lighten($turquoise, 10);
+  }
+}
+
+.shuffle-highlight, .repeat-highlight{
+  color: lighten($turquoise, 10);
+}
+
+.artist-name {
+  &:hover {
+    text-decoration: underline;
+    color: $turquoise;
+  }
+}

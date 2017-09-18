@@ -1,0 +1,8 @@
+@import "../../../../../assets/bulma-variables";
+
+.album-artist{
+  &:hover{
+    text-decoration: underline;
+    color: $turquoise;
+  }
+}

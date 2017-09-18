@@ -1,6 +1,9 @@
+@import "../../assets/variables";
+@import "../../assets/bulma-variables";
+
 .fa-spotify{
   font-size: 10em;
-  color: #23d160;
+  color: $spotify-icon-green;
 }
 
 .login-button {
@@ -9,4 +12,12 @@
 
 .contents {
   margin-top: -80px;
+}
+
+.is-dark {
+  background-image: url("../../assets/images/Homepage_Background.jpg");
+}
+
+body {
+  overflow: hidden;
 }

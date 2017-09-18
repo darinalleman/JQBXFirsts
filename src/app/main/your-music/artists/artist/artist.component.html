@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <section class="hero is-primary is-bold">
+    <div class="hero-body">
+      <div class="container-fluid">
+        <div class="columns">
+          <div class="column is-12">
+            <div class="columns">
+              <div class="column is-2">
+                <figure class="image is-128x128 is-pulled-right">
+                  <img class="img-circle artist-image" src="{{artist?.images[0].url}}">
+                </figure>
+              </div>
+              <div class="column is-10 is-pulled-left">
+                <p class="title is-1 artist-title">{{artist?.name}}</p>
+                <p class="subtitle artist-followers">{{artist?.followers.total}} followers</p>
+                <button class="button is-primary is-medium is-outlined clickable follow-button" *ngIf="isFollowing === false" (click)="followArtist()">Follow</button>
+                <button class="button is-primary is-medium clickable follow-button" *ngIf="isFollowing === true" (click)="unfollowArtist()" style="width: 10%">Unfollow</button>
+                <button class="button is-success is-medium clickable play-button" (click)="playArtist(artist)" style="width: 10%;">Play</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="columns">
+    <div class="column is-12">
+      <div class="tabs push-left">
+        <ul>
+          <li routerLinkActive="is-active"><a routerLink="/main/artist/overview">Owerview</a></li>
+          <li routerLinkActive="is-active"><a routerLink="/main/artist/related-artists">Related Artist</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="columns tab-data">
+    <div class="column is-12">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
