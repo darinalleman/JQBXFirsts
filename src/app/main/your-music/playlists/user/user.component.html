@@ -32,7 +32,7 @@
           <div class="card-content">
             <div class="content has-text-centered">
               <p class="title is-6 truncate remove-margin-bottom-spacing clickable playlist-name" (click)="goToPlaylist(playlist)">{{playlist.name}}</p>
-              <p class="owner is-size-6 truncate display-name clickable" (click)="goToUser(playlist.owner.id)">By {{playlist.owner.display_name}}</p>
+              <p class="owner is-size-6 truncate display-name clickable" (click)="goToUser(playlist.owner.id)">{{playlist.owner.display_name ? playlist.owner.display_name : 'N/A'}}</p>
             </div>
           </div>
         </div>
