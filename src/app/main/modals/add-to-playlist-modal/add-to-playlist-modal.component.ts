@@ -46,6 +46,7 @@ export class AddToPlaylistModalComponent implements OnInit {
         }
       )
     } else {
+      this.toastr.error('Invalid playlist');
       return false;
     }
   };
