@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
 import {AddSongToPlaylistService} from './add-song-to-playlist.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-to-playlist-modal',
@@ -14,7 +15,8 @@ export class AddToPlaylistModalComponent implements OnInit {
   playlists: any;
   options: any;
 
-  constructor(private spotifyService: SpotifyService, private addSongToPlaylistService: AddSongToPlaylistService) {
+  constructor(private spotifyService: SpotifyService, private addSongToPlaylistService: AddSongToPlaylistService,
+              private toastr: ToastrService) {
   }
 
   ngOnInit() {
@@ -36,6 +38,7 @@ export class AddToPlaylistModalComponent implements OnInit {
     if (playlist.owner.id === this.user.id) {
       this.spotifyService.addPlaylistTracks(playlist.owner.id, playlist.id, this.trackToAdd.uri).subscribe(
         () => {
+          this.showSuccess(playlist, this.trackToAdd.name);
           this.closeAddToPlayListModal();
         },
         error => {
@@ -60,6 +63,10 @@ export class AddToPlaylistModalComponent implements OnInit {
         console.log(error);
       }
     )
+  };
+
+  showSuccess(playlist, track) {
+    this.toastr.success(`${track} successfully added to playlist <span class="bold underline">${playlist.name} </span>`);
   };
 
 }

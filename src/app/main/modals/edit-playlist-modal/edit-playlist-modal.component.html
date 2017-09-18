@@ -23,7 +23,7 @@
                   <div class="control">
                     <input id="publicSwitch" type="checkbox" name="publicSwitch" class="switch is-outlined is-medium" checked="{{checked}}"
                     (change)="toggleCheckbox()">
-                    <label for="publicSwitch">Public</label>
+                    <label for="publicSwitch">{{publicPrivate}}</label>
                   </div>
                 </div>
               </div>
@@ -43,7 +43,7 @@
     </section>
     <footer class="modal-card-foot">
       <a class="button" (click)="closeEditModal()">Cancel</a>
-      <a class="button is-primary is-outlined is-pulled-right" (click)="saveChanges()">Save changes</a>
+      <a class="button is-primary is-outlined modal-pull-button-right" (click)="saveChanges()">Save changes</a>
     </footer>
   </div>
 </div>

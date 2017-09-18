@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../../shared/spotify/angular2-spotify';
-import {Router} from '@angular/router';
 import * as _ from 'lodash';
 import { NavigationService } from '../../../../shared/navigation/navigation.service';
-import {EditPlayListService} from "../../../modals/edit-playlist-modal/edit-play-list-service";
 
 @Component({
   selector: 'app-category',
@@ -17,8 +15,7 @@ export class CategoryComponent implements OnInit {
   offset: any;
   totalCategories: any;
 
-  constructor(private spotifyService: SpotifyService, private router: Router, private navigationService: NavigationService,
-              private editPlaylistService: EditPlayListService) {
+  constructor(private spotifyService: SpotifyService, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -60,6 +57,5 @@ export class CategoryComponent implements OnInit {
 
   goToPlaylist(playlist) {
     this.navigationService.goToPlaylist(playlist);
-    this.editPlaylistService.updated.next(false);
   };
 }

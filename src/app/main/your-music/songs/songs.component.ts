@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import {ActiveSongService} from '../../music-player/active-song.service';
 import {NavigationService} from '../../../shared/navigation/navigation.service';
 import {AddSongToPlaylistService} from '../../modals/add-to-playlist-modal/add-song-to-playlist.service';
+import { UtilitiesService } from '../../../shared/utilities/utilities.service';
 
 @Component({
   selector: 'app-songs',
@@ -24,7 +25,8 @@ export class SongsComponent implements OnInit {
   constructor(private spotifyService: SpotifyService,
               private activeSongService: ActiveSongService,
               private navigationService: NavigationService,
-              private addSongToPlaylistService: AddSongToPlaylistService) {
+              private addSongToPlaylistService: AddSongToPlaylistService,
+              private utilities: UtilitiesService) {
   }
 
   ngOnInit() {

@@ -1,9 +1,5 @@
 <div class="columns push-around">
   <div class="column is-12">
-    <div id="hidePlaylistUpdatedNotification" class="notification is-primary" *ngIf="updated">
-      <button class="delete" (click)="hideNotification()"></button>
-      <p>Playlist successfully updated</p>
-    </div>
     <div class="columns" *ngIf="playlist?.tracks.items?.length > 0">
       <div class="column is-3">
         <div class="card">

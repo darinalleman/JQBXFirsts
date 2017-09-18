@@ -33,6 +33,5 @@ export class FeaturedComponent implements OnInit {
 
   goToPlaylist(playlist) {
     this.navigationService.goToPlaylist(playlist);
-    this.editPlaylistService.updated.next(false);
   };
 }

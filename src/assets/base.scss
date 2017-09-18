@@ -38,13 +38,16 @@ body {
   padding: 10px;
 }
 
-
 .inline {
   display: inline-block;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .clickable {
@@ -83,18 +86,21 @@ body {
   }
 }
 
-.modal-card-head {
-  background-color: $turquoise;
-}
-
 .card-footer-item {
   font-size: 1.3rem;
 }
 
+.modal-card-head {
+  background-color: $turquoise;
+}
+
+.modal-pull-button-right {
+  margin-left: auto;
+};
+
 .remove-margin-bottom-spacing {
   margin-bottom: 5px !important;
 }
-
 
 /*
  *  custom scroll bar
@@ -231,11 +237,15 @@ table {
 }
 
 
+/* toastr css */
 
-
-
-
-
+#toast-container.toast-top-center .toast,
+#toast-container.toast-bottom-center .toast {
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: $turquoise;
+}
 
 
 

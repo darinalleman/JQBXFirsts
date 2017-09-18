@@ -1,4 +1,5 @@
 @import "../../assets/variables";
+@import "../../assets/bulma-variables";
 
 .fa-spotify{
   font-size: 10em;
@@ -11,4 +12,12 @@
 
 .contents {
   margin-top: -80px;
+}
+
+.is-dark {
+  background-image: url("../../assets/images/Homepage_Background.jpg");
+}
+
+body {
+  overflow: hidden;
 }

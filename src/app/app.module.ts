@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CallbackComponent } from './callback/callback.component';
@@ -43,7 +43,8 @@ import { NavigationService } from './shared/navigation/navigation.service';
 import { AddToPlaylistModalComponent } from './main/modals/add-to-playlist-modal/add-to-playlist-modal.component';
 import { AddSongToPlaylistService } from './main/modals/add-to-playlist-modal/add-song-to-playlist.service';
 import { EditPlaylistModalComponent } from './main/modals/edit-playlist-modal/edit-playlist-modal.component';
-import {EditPlayListService} from "./main/modals/edit-playlist-modal/edit-play-list-service";
+import { EditPlayListService} from './main/modals/edit-playlist-modal/edit-play-list-service';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -73,10 +74,20 @@ import {EditPlayListService} from "./main/modals/edit-playlist-modal/edit-play-l
         MusicPlayerComponent,
         UserComponent,
         AddToPlaylistModalComponent,
-        EditPlaylistModalComponent
+        EditPlaylistModalComponent,
     ],
     imports: [
-        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule, CommonModule, ReactiveFormsModule
+        AppRoutingModule, BrowserModule, HttpModule, FormsModule, BrowserAnimationsModule,
+        CommonModule, ReactiveFormsModule,
+        ToastrModule.forRoot({
+            timeOut: 5000,
+            positionClass: 'toast-top-center',
+            enableHtml: true,
+            closeButton: true,
+            progressBar: true,
+            newestOnTop: true,
+            preventDuplicates: true
+        })
     ],
     providers: [
         {provide: APP_BASE_HREF, useValue: '/'},
@@ -93,7 +104,9 @@ import {EditPlayListService} from "./main/modals/edit-playlist-modal/edit-play-l
             useValue: {
                 clientId: '9d7ee30778da43ce8b048be43fb84050',
                 redirectUri: 'localhost:4200/callback',
-                scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-library-read user-library-modify user-read-private user-modify-playback-state',
+                scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative ' +
+                'playlist-modify-public playlist-modify-private ' +
+                'user-library-read user-library-modify user-read-private user-modify-playback-state',
                 authToken: localStorage.getItem('angular2-spotify-token')
             },
         },

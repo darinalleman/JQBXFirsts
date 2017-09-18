@@ -37,6 +37,7 @@
     "moment": "^2.18.1",
     "ng2-sticky-kit": "^4.1.0",
     "ng2-toastr": "^4.1.2",
+    "ngx-order-pipe": "^1.0.2",
     "ngx-toastr": "^5.3.1",
     "npm": "^5.4.1",
     "rxjs": "^5.1.0",

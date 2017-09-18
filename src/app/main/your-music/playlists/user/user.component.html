@@ -11,7 +11,7 @@
               </div>
               <div class="column is-10 is-pulled-left">
                 <p class="title is-1 user-title">{{user?.display_name}} Playlists</p>
-                <p class="subtitle user-followers push-down">{{user?.followers.total}} followers</p>
+                <p class="\ user-followers">{{user?.followers.total}} followers</p>
               </div>
             </div>
           </div>
@@ -36,6 +36,12 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class ="columns push-around">
+      <div class ="column is-12">
+        <button id="loadMoreUserPlaylists" class = "button is-primary is-outlined is-fullwidth" (click)="loadMorePlaylists()"
+                *ngIf="userPlaylists?.length < totalUserPlaylists">Load more Playlists</button>
       </div>
     </div>
   </section>

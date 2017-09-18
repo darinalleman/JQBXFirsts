@@ -14,7 +14,8 @@ export class ProfileComponent implements OnInit {
   type: string;
   options: any;
   userMusicData: any;
-  constructor(public router: Router, public spotifyService: SpotifyService, private utilieites: UtilitiesService, private navigationService: NavigationService) {
+  constructor(public router: Router, public spotifyService: SpotifyService,
+              private utilieites: UtilitiesService, private navigationService: NavigationService) {
   }
 
   ngOnInit() {
@@ -25,8 +26,7 @@ export class ProfileComponent implements OnInit {
   }
 
   logout() {
-    localStorage.clear();
-    this.router.navigate(['home']);
+   this.navigationService.logout();
   }
 
   loadUserPersonalizationData() {
