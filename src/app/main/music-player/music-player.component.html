@@ -1,7 +1,7 @@
 <footer class="footer" *ngIf="currentSong?.name">
   <div class="container-fluid">
     <div class="columns has-text-centered" *ngIf="currentSong">
-      <div class="column is-4">
+      <div class="column is-4-desktop">
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -16,7 +16,7 @@
           </div>
         </article>
       </div>
-      <div class="column is-5">
+      <div class="column is-5-desktop">
         <div class="player-content">
           <div class="columns is-multiline">
             <div class="column is-12">
@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="column is-3">
+      <div class="column is-3-desktop">
         <div class="device-content">
           <p class="text-white">
             <i *ngIf="activeDevice?.type === 'Computer'" class="fa fa-laptop is-marginless" aria-hidden="true"></i>
@@ -44,7 +44,6 @@
             <i *ngIf="activeDevice?.type === 'Tablet'" class="fa fa-tablet is-marginless" aria-hidden="true"></i>
             <span class="push-left is-size-5">{{activeDevice?.name}}</span>
           </p>
-
         </div>
       </div>
     </div>
