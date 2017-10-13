@@ -168,11 +168,20 @@ table {
 
 /* -------------------- 8*/
 
-.display-name, .playlist-name {
-  &:hover {
-    text-decoration: underline;
-    color: $turquoise;
-  }
+
+/* ---- CSS overide from version 0.6 */
+.tabs li.is-active a{
+  border-bottom-color: $primary !important;
+  color: $primary !important;
+}
+
+.menu-list a.is-active {
+  background-color: $primary;
+  color: $white;
+}
+
+.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+  border-color: $primary !important;
 }
 
 .tab-data {
@@ -183,42 +192,42 @@ table {
 /* extra bulma size */
 
 .is-size-7 {
-  font-size: .75em;
+  font-size: .90rem !important;
 }
 
 @media screen and (max-width: 768px) {
   .is-size-7-mobile {
-    font-size: .75em
+    font-size: .90rem !important;
   }
 }
 
 @media screen and (min-width: 769px), print {
   .is-size-7-tablet {
-    font-size: .75em
+    font-size: .90rem !important;
   }
 }
 
 @media screen and (max-width: 1007px) {
   .is-size-7-touch {
-    font-size: .75em
+    font-size: .90rem !important;
   }
 }
 
 @media screen and (min-width: 1008px) {
   .is-size-7-desktop {
-    font-size: .75em
+    font-size: .90rem !important;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .is-size-7-widescreen {
-    font-size: .75em
+    font-size: .90rem !important;
   }
 }
 
 @media screen and (min-width: 1392px) {
   .is-size-7-fullhd {
-    font-size: .75em
+    font-size: .90rem !important;
   }
 }
 

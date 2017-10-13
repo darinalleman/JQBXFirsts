@@ -187,6 +187,10 @@ export class PlaylistComponent implements OnInit {
         )
     };
 
+  goToUser(id) {
+    this.navigationService.goToUser(id);
+  };
+
     toggleEditModal(playlist) {
         this.editPlaylistService.playlistToBeEdited.next(playlist);
         const modal = document.getElementById('editPlaylistModal');

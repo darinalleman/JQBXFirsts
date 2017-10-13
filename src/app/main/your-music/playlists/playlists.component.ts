@@ -60,8 +60,4 @@ export class PlaylistsComponent implements OnInit {
         this.navigationService.goToPlaylist(playlist);
     }
 
-    goToUser(id) {
-        this.navigationService.goToUser(id);
-    };
-
 }
