@@ -11,10 +11,11 @@
           <div class="card-content has-text-centered">
             <p class="is-size-2 truncate" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
             <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML] = 'playlist.description'></p>
-            <p class="is-size-5 push-down">
+            <p class="is-size-7 push-down">
               {{playlist.tracks.total}} songs |
               {{playlist.followers.total}} followers
             </p>
+            <button class="button is-link is-outlined push-down" (click)="goToUser(playlist.owner.id)">View more!</button>
           </div>
           <footer class="card-footer">
             <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)"><button class="button is-primary is-medium is-fullwidth edit-button">Edit</button></a>

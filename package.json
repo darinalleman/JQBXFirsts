@@ -26,7 +26,7 @@
     "@angular/router": "^4.0.0",
     "@types/lodash": "^4.14.68",
     "@types/moment": "^2.13.0",
-    "bulma": "^0.5.1",
+    "bulma": "^0.6.0",
     "bulma-switch": "0.0.2",
     "bulma-tooltip": "0.0.4",
     "core-js": "^2.4.1",
