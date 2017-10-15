@@ -8,7 +8,7 @@
         </figure>
       </div>
       <div class="card-content">
-        <div class="content has-text-centered">
+        <div class="content">
           <p class="title is-6 remove-margin-bottom-spacing clickable playlist-name truncate" (click)="goToPlaylist(playlist)">{{playlist.name}}</p>
           <p class="owner is-size-6 display-name clickable truncate" (click)="goToUser(playlist.owner.id)">
             {{playlist.owner.display_name ? playlist.owner.display_name : 'N/A'}}

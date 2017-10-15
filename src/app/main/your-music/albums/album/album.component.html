@@ -1,5 +1,5 @@
 <div class="columns push-around">
-  <div class="column is-3">
+  <div class="column is-3-widescreen">
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
@@ -15,11 +15,11 @@
       <footer class="card-footer">
         <a class="card-footer-item" *ngIf="!saved" (click)="saveAlbum(album.album)"><button class="button is-primary is-outlined is-medium is-fullwidth save-button">Save</button></a>
         <a class="card-footer-item" *ngIf="saved" (click)="removeAlbum(album.album)"><button class="button is-primary is-medium is-fullwidth save-button">Remove</button></a>
-        <a class="card-footer-item" (click)="playAlbum(album.album)"><button class=" button is-success is-medium play-button is-fullwidth">Play</button></a>
+        <a class="card-footer-item" (click)="playAlbum(album.album)"><button class=" button is-success is-medium is-fullwidth play-button">Play</button></a>
       </footer>
     </div>
   </div>
-  <div class="column is-9">
+  <div class="column is-9-widescreen">
     <table class="table table-striped is-fullwidth">
       <thead>
       <tr>

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="is-fullwidth">
   <div class="section columns top-tracks push-around">
     <div class="column">
       <p class="title section-title is-1 has-text-centered">Popular</p>
@@ -14,10 +14,10 @@
     </div>
   </div>
   <div class="section columns albums" *ngIf="artistAlbums?.length > 0">
-    <div class="column push-left">
+    <div class="column">
       <p class="title section-title is-1 has-text-centered">Albums</p>
-      <div class="columns is-multiline push-left">
-        <div class="column is-2" *ngFor="let album of artistAlbums">
+      <div class="columns is-multiline">
+        <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let album of artistAlbums">
           <div class="card card-hover">
             <div class="card-image">
               <figure class="image is-square">
@@ -35,10 +35,10 @@
     </div>
   </div>
   <div class="section columns singles" *ngIf="singles?.length > 0">
-    <div class="column push-left">
+    <div class="column">
       <p class="title section-title is-1 has-text-centered">Singles</p>
-      <div class="columns is-multiline push-left">
-        <div class="column is-2" *ngFor="let single of singles">
+      <div class="columns is-multiline">
+        <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let single of singles">
           <div class="card card-hover">
             <div class="card-image">
               <figure class="image is-square">
@@ -56,10 +56,10 @@
     </div>
   </div>
   <div class="section columns compilations" *ngIf="compilations?.length > 0">
-    <div class="column push-left">
+    <div class="column">
       <p class="title section-title is-1 has-text-centered">Compilations</p>
-      <div class="columns is-multiline push-left">
-        <div class="column is-2" *ngFor="let compilation of compilations">
+      <div class="columns is-multiline">
+        <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let compilation of compilations">
           <div class="card card-hover">
             <div class="card-image">
               <figure class="image is-square">

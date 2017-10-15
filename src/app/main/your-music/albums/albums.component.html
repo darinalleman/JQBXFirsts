@@ -1,7 +1,7 @@
 <div class="columns push-around">
   <div class="column is-12">
     <div class="columns is-multiline">
-      <div class="column is-2" *ngFor="let album of albums">
+      <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let album of albums">
         <div class="card card-hover">
           <div class="card-image">
             <figure class="image is-square">
@@ -9,7 +9,7 @@
             </figure>
           </div>
           <div class="card-content">
-            <div class="content has-text-centered clickable" (click)="goToAlbum(album)">
+            <div class="content clickable" (click)="goToAlbum(album)">
               <p class="title is-6 truncate remove-margin-bottom-spacing">{{album.album.name}}</p>
               <p class=" is-size-6 truncate">{{album.album.artists[0].name}}</p>
             </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="columns">
-      <div class="column is-12">
+      <div class="column">
         <button id="loadMoreAlbums" class="button is-primary is-outlined  is-fullwidth" *ngIf="albums?.length < albumsTotal" (click)="loadMoreAlbums()">Load More Albums</button>
       </div>
     </div>
