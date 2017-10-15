@@ -6,7 +6,7 @@
       </div>
     </div>
     <div class="columns">
-      <div class="column is-12">
+      <div class="column">
         <div class="field is-grouped">
           <p class="control has-icons-left has-icons-right is-expanded">
             <input class=" input" type="text" placeholder="Search Spotify" [(ngModel)]="searchQuery"
@@ -26,22 +26,22 @@
         </div>
       </div>
     </div>
-    <h1 class="title is-2 push-down" *ngIf="hasQuery && !noResults">Showing results for <b>{{searchQuery}}</b></h1>
+    <h1 class="title is-2" *ngIf="hasQuery && !noResults">Showing results for <b>{{searchQuery}}</b></h1>
   </div>
   <div class="section push-around artists push-left" *ngIf="hasQuery && artists?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Artists</p>
     <div class="columns is-multiline">
-      <div class="column is-2 clickable" *ngFor="let artist of artists" (click)="goToArtist(artist)">
+      <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet-widescreen is-one-quarter-desktop is-one-third-tablet clickable" *ngFor="let artist of artists" (click)="goToArtist(artist)">
         <div class="card card-hover">
           <div class="card-image">
             <figure class="image is-square">
               <img *ngIf="artist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-              <img *ngIf="artist.images.length > 0" class="image is-128x128" src="{{artist.images[0].url}}">
+              <img *ngIf="artist.images.length > 0" class="image8x128" src="{{artist.images[0].url}}">
             </figure>
           </div>
           <div class="card-content">
-            <div class="content has-text-centered">
-              <p class="is-size-6 truncate push-down">{{artist.name}}</p>
+            <div class="content">
+              <p class="is-size-6">{{artist.name}}</p>
             </div>
           </div>
         </div>
@@ -51,17 +51,17 @@
   <div class="section push-around albums push-left" *ngIf="hasQuery && albums?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Albums</p>
     <div class="columns is-multiline">
-      <div class="column is-2 clickable" *ngFor="let album of albums" (click)="goToAlbum(album)">
+      <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet clickable" *ngFor="let album of albums" (click)="goToAlbum(album)">
         <div class="card card-hover">
           <div class="card-image">
             <figure class="image is-square">
               <img *ngIf="album.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-              <img *ngIf="album.images.length > 0" class="image is-128x128" src="{{album.images[0].url}}">
+              <img *ngIf="album.images.length > 0" class="image8x128" src="{{album.images[0].url}}">
             </figure>
           </div>
           <div class="card-content">
-            <div class="content has-text-centered">
-              <p class="is-size-6 truncate push-down">{{album.name}}</p>
+            <div class="content">
+              <p class="is-size-6">{{album.name}}</p>
             </div>
           </div>
         </div>
@@ -71,17 +71,17 @@
   <div class="section push-around playlists push-left" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Playlists</p>
     <div class="columns is-multiline">
-      <div class="column is-2 clickable" *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist)">
+      <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet clickable" *ngFor="let playlist of playlists" (click)="goToPlaylist(playlist)">
         <div class="card card-hover">
           <div class="card-image">
             <figure class="image is-square">
               <img *ngIf="playlist.images.length === 0" src="http://via.placeholder.com/126x126" alt="no image found">
-              <img *ngIf="playlist.images.length > 0" class="image is-128x128" src="{{playlist.images[0].url}}">
+              <img *ngIf="playlist.images.length > 0" class="image8x128" src="{{playlist.images[0].url}}">
             </figure>
           </div>
           <div class="card-content">
-            <div class="content has-text-centered">
-              <p class="is-size-6 truncate push-down">{{playlist.name}}</p>
+            <div class="content">
+              <p class="is-size-6">{{playlist.name}}</p>
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@
   </div>
   <div class="section tracks push-left" *ngIf="hasQuery && tracks?.length > 0 && !noResults">
     <div class="columns">
-      <div class="column is-12">
+      <div class="column">
         <table class="table search-table is-fullwidth">
           <thead>
           <tr>
