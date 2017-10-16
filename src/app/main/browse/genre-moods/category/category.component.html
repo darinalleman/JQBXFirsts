@@ -1,6 +1,6 @@
 <p class="title has-text-centered is-2">{{category.name}}</p>
 <div class="columns push-around">
-  <div class="column is-12">
+  <div class="column">
     <div class="columns is-multiline">
       <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let playlist of categoryPlaylists">
         <div class="card card-hover">
@@ -10,8 +10,8 @@
             </figure>
           </div>
           <div class="card-content" (click)="goToPlaylist(playlist)">
-            <div class="content has-text-centered clickable">
-              <p class="is-size-6 truncate">{{playlist.name}}</p>
+            <div class="content clickable">
+              <p class="is-size-6">{{playlist.name}}</p>
             </div>
           </div>
         </div>
