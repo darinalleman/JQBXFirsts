@@ -9,7 +9,7 @@
             </figure>
           </div>
           <div class="card-content">
-            <p class="is-size-2" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
+            <p class="is-size-4" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
             <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML] = 'playlist.description'></p>
             <p class="is-size-7 push-down">
               {{playlist.tracks.total}} songs |
