@@ -2,16 +2,16 @@
     <div class="hero-body">
       <div class="container-fluid">
         <div class="columns">
-          <div class="column is-12">
+          <div class="column">
             <div class="columns">
-              <div class="column is-2">
+              <div class="column is-2-widescreen is-one-quarter-desktop is-one-quarter-tablet">
                 <figure class="image is-128x128 is-pulled-right">
                   <img class="img-circle user-image" src="{{user?.images[0].url}}">
                 </figure>
               </div>
-              <div class="column is-10 is-pulled-left">
+              <div class="column is-10-widescreen is-three-quarters-desktop is-three-quarters-tablet">
                 <p class="title is-1 user-title">{{user?.display_name}} Playlists</p>
-                <p class="\ user-followers">{{user?.followers.total}} followers</p>
+                <p class="user-followers">{{user?.followers.total}} followers</p>
               </div>
             </div>
           </div>
@@ -22,7 +22,7 @@
   <section class="section">
     <div class="columns is-multiline push-around">
       <div class="column is-2" *ngFor="let playlist of userPlaylists">
-        <div class="card card-hover">
+        <div class="card">
           <div class="card-image">
             <figure class="image is-square">
               <img src="{{playlist.images[0].url}}" alt="" *ngIf="playlist.images.length > 0">
@@ -30,16 +30,15 @@
             </figure>
           </div>
           <div class="card-content">
-            <div class="content has-text-centered">
-              <p class="title is-6 truncate remove-margin-bottom-spacing clickable playlist-name" (click)="goToPlaylist(playlist)">{{playlist.name}}</p>
-              <p class="owner is-size-6 truncate display-name clickable" (click)="goToUser(playlist.owner.id)">{{playlist.owner.display_name ? playlist.owner.display_name : 'N/A'}}</p>
+            <div class="content">
+              <p class="is-size-6 remove-margin-bottom-spacing clickable link-hover" (click)="goToPlaylist(playlist)">{{playlist.name}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div class ="columns push-around">
-      <div class ="column is-12">
+      <div class ="column">
         <button id="loadMoreUserPlaylists" class = "button is-primary is-outlined is-fullwidth" (click)="loadMorePlaylists()"
                 *ngIf="userPlaylists?.length < totalUserPlaylists">Load more Playlists</button>
       </div>

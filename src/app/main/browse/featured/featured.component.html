@@ -1,15 +1,15 @@
 <p class="title is-2 has-text-centered">{{featuredPlaylists?.message}}</p>
 <div class="columns is-multiline push-around">
   <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let featured of featuredPlaylists?.playlists.items">
-    <div class="card card-hover">
+    <div class="card">
       <div class="card-image">
         <figure class="image is-square">
           <img src="{{featured.images[0].url}}" alt="">
         </figure>
       </div>
-      <div class="card-content" (click)="goToPlaylist(featured)">
-        <div class="content clickable">
-          <p class="is-size-6">{{featured?.name}}</p>
+      <div class="card-content">
+        <div class="content">
+          <p class="is-size-6 clickable link-hover"  (click)="goToPlaylist(featured)">{{featured?.name}}</p>
         </div>
       </div>
     </div>

@@ -95,6 +95,13 @@ body {
   }
 }
 
+.link-hover {
+  &:hover {
+    color: $primary;
+    text-decoration: underline;
+  }
+}
+
 .card-footer-item {
   font-size: 1.3rem;
 }
@@ -151,14 +158,6 @@ table {
     tr:hover {
       color: $white;
       background-color: $turquoise !important;
-      .icon-hover {
-        &:hover {
-          i {
-            text-decoration: underline;
-            cursor: hand;
-          }
-        }
-      }
       .td-hover {
         &:hover {
           text-decoration: underline;

@@ -17,7 +17,7 @@
         <td>{{track.track.name}}</td>
         <td><span class="td-hover" (click)="goToArtist(track.track.album.artists[0])">{{track.track.album.artists[0].name}}</span></td>
         <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
-        <td class="icon-hover"><i class="fa fa-plus" aria-hidden="true" (click)="toggleAddToPlaylistModal(track.track)"></i></td>
+        <td><i class="fa fa-plus" aria-hidden="true" (click)="toggleAddToPlaylistModal(track.track)"></i></td>
         <td>{{track.track.duration_ms}}</td>
       </tr>
       </tbody>

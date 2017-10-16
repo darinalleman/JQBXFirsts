@@ -2,15 +2,15 @@
   <div class="column">
     <div class="columns is-multiline">
       <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let album of albums">
-        <div class="card card-hover">
+        <div class="card">
           <div class="card-image">
             <figure class="image is-square">
               <img src="{{album.album.images[0].url}}" alt="">
             </figure>
           </div>
           <div class="card-content">
-            <div class="content clickable" (click)="goToAlbum(album)">
-              <p class="title is-6  remove-margin-bottom-spacing">{{album.album.name}}</p>
+            <div class="content">
+              <p class="title is-6  clickable link-hover remove-margin-bottom-spacing" (click)="goToAlbum(album)">{{album.album.name}}</p>
               <p class=" is-size-6 ">{{album.album.artists[0].name}}</p>
             </div>
           </div>
