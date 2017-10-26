@@ -38,8 +38,6 @@ View albums, artist,and playlist.
 Control your playabck on a device with Spotify open.
 
 Future Features:   
-Change devices,  
-, continuous app resign
-, and refresh token.
+Change devices, continuous app resign, and refresh token.
 
 
