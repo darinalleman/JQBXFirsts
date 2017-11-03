@@ -7,8 +7,8 @@
         </figure>
       </div>
       <div class="card-content">
-        <p class="is-size-4">{{album.album.name}}</p>
-        <span class="subtitle is-5 push-up clickable album-artist" (click)="goToArtist(album.album.artists[0])">{{album.album.artists[0].name}}</span>
+        <p class="is-size-5">{{album.album.name}}</p>
+        <span class="is-size-6 clickable album-artist" (click)="goToArtist(album.album.artists[0])">{{album.album.artists[0].name}}</span>
         <p class="push">{{album.album.release_date | date: 'yyyy'}} - {{album.album.tracks.total}} songs</p>
         <!--<button class="button is-primary is-medium" *ngIf="isPlaying" (click)="pauseAlbum()">Pause</button>-->
       </div>
