@@ -1,9 +1,9 @@
-<div class="columns push-around">
-  <div class="column is-3-widescreen">
+<div class="columns is-multiline push-around">
+  <div class="column is-3-widescreen is-3-desktop is-full-tablet">
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="{{album.album.images[0].url}}" alt="Image">
+          <img src="{{album.album.images[0].url}}" width="{{album.album.images[0].width}}" height="{{album.album.images[0].height}}" alt="Image">
         </figure>
       </div>
       <div class="card-content">
@@ -19,7 +19,7 @@
       </footer>
     </div>
   </div>
-  <div class="column is-9-widescreen">
+  <div class="column is-9-widescreen is-9-desktop is-full-tablet">
     <table class="table table-striped is-fullwidth">
       <thead>
       <tr>
