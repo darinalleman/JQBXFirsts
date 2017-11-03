@@ -1,11 +1,11 @@
-<div class="columns push-around">
+<div class="columns is-multiline push-around">
   <div class="column">
     <div class="columns" *ngIf="playlist?.tracks.items?.length > 0">
-      <div class="column is-3-widescreen">
+      <div class="column is-3-widescreen is-3-desktop is-full-tablet">
         <div class="card">
           <div class="card-image">
             <figure class="image is-square">
-              <img src="{{playlist?.images[0].url}}" alt="Image">
+              <img src="{{playlist?.images[0].url}}"  width="{{playlist.images[0].width}}" height="{{playlist.images[0].height}}" alt="Image">
             </figure>
           </div>
           <div class="card-content">
@@ -27,7 +27,7 @@
           </footer>
         </div>
       </div>
-      <div class="column is-9-widescreen">
+      <div class="column is-9-widescreen is-9-desktop is-full-tablet">
         <table class="table table-striped is-fullwidth">
           <thead>
           <tr>

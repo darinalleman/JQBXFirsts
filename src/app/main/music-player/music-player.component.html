@@ -1,7 +1,7 @@
 <footer class="footer" *ngIf="currentSong?.name">
   <div class="container-fluid">
     <div class="columns has-text-centered" *ngIf="currentSong">
-      <div class="column is-4-desktop">
+      <div class="column is-4">
         <article class="media">
           <figure class="media-left">
             <p class="image is-64x64">
@@ -10,13 +10,13 @@
           </figure>
           <div class="media-content">
             <div class="content">
-              <p class="is-size-5 text-white remove-margin-bottom-spacing">{{currentSong?.name}}</p>
-              <p class="is-size-6 text-white remove-margin-bottom-spacing clickable artist-name" (click)="goToArtist(currentSong.artists[0])">{{currentSong?.artists[0].name}}</p>
+              <p class="is-size-5 text-white remove-margin-bottom-spacing truncate">{{currentSong?.name}}</p>
+              <p class="is-size-6 text-white remove-margin-bottom-spacing clickable artist-name truncate" (click)="goToArtist(currentSong.artists[0])">{{currentSong?.artists[0].name}}</p>
             </div>
           </div>
         </article>
       </div>
-      <div class="column is-5-desktop">
+      <div class="column is-5">
         <div class="player-content">
           <div class="columns is-multiline">
             <div class="column is-12">
@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="column is-3-desktop">
+      <div class="column is-3">
         <div class="device-content">
           <p class="text-white">
             <i *ngIf="activeDevice?.type === 'Computer'" class="fa fa-laptop is-marginless" aria-hidden="true"></i>

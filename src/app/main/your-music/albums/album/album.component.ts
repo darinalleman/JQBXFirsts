@@ -4,7 +4,6 @@ import * as _ from 'lodash';
 import { SpotifyService } from '../../../../shared/spotify/angular2-spotify';
 import { Router } from '@angular/router';
 import { ActiveSongService } from '../../../music-player/active-song.service';
-import { LoadArtistService } from '../../artists/artist/load-artist.service';
 import { NavigationService } from '../../../../shared/navigation/navigation.service';
 
 @Component({
@@ -35,6 +34,7 @@ export class AlbumComponent implements OnInit {
             limit: 50
         };
         this.album = JSON.parse(localStorage.getItem('album'));
+        console.log(this.album);
         this.spotifyService.getAlbumTracks(this.album.album.id, this.options).subscribe(
             data => {
                 this.albumTracks = data.items;
