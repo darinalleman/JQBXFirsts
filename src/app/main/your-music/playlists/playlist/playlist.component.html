@@ -1,5 +1,5 @@
 <div class="columns is-multiline push-around">
-  <div class="column is-3-widescreen is-3-desktop is-full-tablet"  *ngIf="playlist?.tracks.items?.length > 0">
+  <div class="column is-3-widescreen is-3-desktop is-full-tablet" *ngIf="playlist?.tracks.items?.length > 0">
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">
@@ -8,8 +8,8 @@
         </figure>
       </div>
       <div class="card-content">
-        <p class="is-size-4" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
-        <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
+        <p class="is-size-5" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
+        <p class="is-size-7" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
         <p class="is-size-7 push-down">
           {{playlist.tracks.total}} songs |
           {{playlist.followers.total}} followers

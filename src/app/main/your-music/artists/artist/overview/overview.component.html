@@ -18,7 +18,7 @@
       <p class="title section-title is-1 has-text-centered">Albums</p>
       <div class="columns is-multiline">
         <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let album of artistAlbums">
-          <div class="card card-hover">
+          <div class="card">
             <div class="card-image">
               <figure class="image is-square">
                 <img *ngIf="album?.images.length > 0" src="{{album?.images[0].url}}" alt="">
@@ -39,7 +39,7 @@
       <p class="title section-title is-1 has-text-centered">Singles</p>
       <div class="columns is-multiline">
         <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let single of singles">
-          <div class="card card-hover">
+          <div class="card">
             <div class="card-image">
               <figure class="image is-square">
                 <img *ngIf="single?.images.length > 0" src="{{single?.images[0].url}}" alt="">
@@ -60,7 +60,7 @@
       <p class="title section-title is-1 has-text-centered">Compilations</p>
       <div class="columns is-multiline">
         <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let compilation of compilations">
-          <div class="card card-hover">
+          <div class="card">
             <div class="card-image">
               <figure class="image is-square">
                 <img *ngIf="compilation?.images.length > 0" src="{{compilation?.images[0].url}}" alt="">

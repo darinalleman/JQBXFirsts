@@ -1,11 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, HostListener} from '@angular/core';
 import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import {ActiveSongService} from '../../music-player/active-song.service';
 import {NavigationService} from '../../../shared/navigation/navigation.service';
 import {AddSongToPlaylistService} from '../../modals/add-to-playlist-modal/add-song-to-playlist.service';
-import { UtilitiesService } from '../../../shared/utilities/utilities.service';
 
 @Component({
   selector: 'app-songs',
@@ -25,8 +24,7 @@ export class SongsComponent implements OnInit {
   constructor(private spotifyService: SpotifyService,
               private activeSongService: ActiveSongService,
               private navigationService: NavigationService,
-              private addSongToPlaylistService: AddSongToPlaylistService,
-              private utilities: UtilitiesService) {
+              private addSongToPlaylistService: AddSongToPlaylistService) {
   }
 
   ngOnInit() {
@@ -119,4 +117,5 @@ export class SongsComponent implements OnInit {
     this.startSong(track.track.uri);
     this.activeSongService.currentSong.next(track.track);
   };
+
 }

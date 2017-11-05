@@ -7,3 +7,11 @@
 @import "../node_modules/ngx-toastr/toastr.css";
 @import "assets/base";
 
+/* for all hero headers */
+
+.hero.is-primary.is-bold {
+  background: #3B4346 url("assets/images/bg01.jpg");
+  border-bottom: solid 1px #272d30;
+  box-shadow: inset 0px -1px 0px 0px #51575a;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.75);
+}

@@ -2,18 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
 import {Router} from '@angular/router';
 import * as _ from 'lodash';
-import { NavigationService } from '../../../shared/navigation/navigation.service';
+import {NavigationService} from '../../../shared/navigation/navigation.service';
 
 @Component({
   selector: 'app-albums',
   templateUrl: './albums.component.html',
   styleUrls: ['./albums.component.scss']
 })
+
 export class AlbumsComponent implements OnInit {
   albums: any;
   options: any;
   offset: any;
   albumsTotal: any;
+
   constructor(public spotifyService: SpotifyService, public router: Router, private navigationService: NavigationService) {
   }
 
@@ -27,12 +29,12 @@ export class AlbumsComponent implements OnInit {
       limit: 50
     };
     this.spotifyService.getSavedUserAlbums(this.options).subscribe(
-        data => {
-          this.albumsTotal = data.total;
-          this.albums = data.items
-        },
+      data => {
+        this.albumsTotal = data.total;
+        this.albums = data.items
+      },
       error => {
-          console.log(error);
+        console.log(error);
       }
     )
   };
