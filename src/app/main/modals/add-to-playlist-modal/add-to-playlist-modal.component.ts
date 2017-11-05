@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
 import {AddSongToPlaylistService} from './add-song-to-playlist.service';
-import { ToastrService } from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-add-to-playlist-modal',
@@ -12,7 +13,7 @@ export class AddToPlaylistModalComponent implements OnInit {
   trackToAdd: any;
   user: any;
   totalPlaylists: any;
-  playlists: any;
+  playlists: Array<any>;
   options: any;
 
   constructor(private spotifyService: SpotifyService, private addSongToPlaylistService: AddSongToPlaylistService,
@@ -57,7 +58,14 @@ export class AddToPlaylistModalComponent implements OnInit {
     };
     this.spotifyService.getUserPlaylists(this.user.id, this.options).subscribe(
       data => {
-        this.playlists = data.items;
+        const playlists = [];
+        _.each(data.items, p => {
+          if (p.owner.id === this.user.id) {
+            playlists.push(p);
+          }
+        });
+
+        this.playlists = playlists;
         this.totalPlaylists = data.total;
       },
       error => {

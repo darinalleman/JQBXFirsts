@@ -7,8 +7,8 @@
     </header>
     <section class="modal-card-body">
       <div class="columns is-multiline push-around">
-        <div class="column is-3" *ngFor="let playlist of playlists">
-          <div class="card clickable" *ngIf="playlist?.tracks.total > 0" (click)="addToPlaylist(playlist)">
+        <div class="column is-3-widescreen is-3-desktop is-4-tablet" *ngFor="let playlist of playlists">
+          <div class="card clickable" (click)="addToPlaylist(playlist)">
             <div class="card-image">
               <figure class="image is-square">
                 <img src="{{playlist?.images[0].url}}" alt="Placeholder image">
