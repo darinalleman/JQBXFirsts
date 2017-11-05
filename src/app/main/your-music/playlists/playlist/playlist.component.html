@@ -1,66 +1,71 @@
 <div class="columns is-multiline push-around">
-  <div class="column">
-    <div class="columns" *ngIf="playlist?.tracks.items?.length > 0">
-      <div class="column is-3-widescreen is-3-desktop is-full-tablet">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-square">
-              <img src="{{playlist?.images[0].url}}"  width="{{playlist.images[0].width}}" height="{{playlist.images[0].height}}" alt="Image">
-            </figure>
-          </div>
-          <div class="card-content">
-            <p class="is-size-4" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
-            <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML] = 'playlist.description'></p>
-            <p class="is-size-7 push-down">
-              {{playlist.tracks.total}} songs |
-              {{playlist.followers.total}} followers
-            </p>
-            <button class="button is-link is-outlined push-down" (click)="goToUser(playlist.owner.id)">View more!</button>
-          </div>
-          <footer class="card-footer">
-            <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)"><button class="button is-primary is-medium is-fullwidth edit-button">Edit</button></a>
-            <a class="card-footer-item" *ngIf="followed === false && user.id != playlist.owner.id"
-               (click)="followPlaylist()"><button class="button is-primary is-outlined is-medium follow-button is-fullwidth">Follow</button></a>
-            <a class="card-footer-item" *ngIf="followed === true && user.id != playlist.owner.id"
-               (click)="unfollowPlaylist()"><button class=" button is-primary is-medium follow-button is-fullwidth">Unfollow</button></a>
-            <a class="card-footer-item" (click)="playPlaylist(playlist)"><button class="button is-success is-medium is-fullwidth play-button">Play</button></a>
-          </footer>
-        </div>
+  <div class="column is-3-widescreen is-3-desktop is-full-tablet"  *ngIf="playlist?.tracks.items?.length > 0">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-square">
+          <img src="{{playlist?.images[0].url}}" width="{{playlist.images[0].width}}"
+               height="{{playlist.images[0].height}}" alt="Image">
+        </figure>
       </div>
-      <div class="column is-9-widescreen is-9-desktop is-full-tablet">
-        <table class="table table-striped is-fullwidth">
-          <thead>
-          <tr>
-            <th></th>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Album</th>
-            <th><i class="fa fa-clock-o"></i></th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr class="clickable" *ngFor="let track of tracks; let i = index" (dblclick)="setClickedRow(i, track)"
-              [class.is-selected]="i == selectedRow">
-            <td>{{i + 1}}</td>
-            <td>{{track.track.name}}</td>
-            <td><span class="td-hover"
-                      (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span></td>
-            <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
-            <td>{{track.track.duration_ms}}</td>
-          </tr>
-          </tbody>
-        </table>
-        <button id="loadMorePlaylistTracks" class="button is-primary is-outlined is-fullwidth"
-                *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks
-        </button>
+      <div class="card-content">
+        <p class="is-size-4" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
+        <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
+        <p class="is-size-7 push-down">
+          {{playlist.tracks.total}} songs |
+          {{playlist.followers.total}} followers
+        </p>
+        <button class="button is-link is-outlined push-down" (click)="goToUser(playlist.owner.id)">View more!</button>
       </div>
+      <footer class="card-footer">
+        <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)">
+          <button class="button is-primary is-medium is-fullwidth edit-button">Edit</button>
+        </a>
+        <a class="card-footer-item" *ngIf="followed === false && user.id != playlist.owner.id"
+           (click)="followPlaylist()">
+          <button class="button is-primary is-outlined is-medium follow-button is-fullwidth">Follow</button>
+        </a>
+        <a class="card-footer-item" *ngIf="followed === true && user.id != playlist.owner.id"
+           (click)="unfollowPlaylist()">
+          <button class=" button is-primary is-medium follow-button is-fullwidth">Unfollow</button>
+        </a>
+        <a class="card-footer-item" (click)="playPlaylist(playlist)">
+          <button class="button is-success is-medium is-fullwidth play-button">Play</button>
+        </a>
+      </footer>
     </div>
-    <div class="columns" *ngIf="playlist?.tracks.items?.length  === 0">
-      <div class="column">
-        <div class="notification is-danger">
-          <p>This playlist has no data. Go explore and add some songs to it!</p>
-        </div>
-      </div>
+  </div>
+  <div class="column is-9-widescreen is-9-desktop is-full-tablet">
+    <table class="table table-striped is-fullwidth">
+      <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th>Album</th>
+        <th><i class="fa fa-clock-o"></i></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="clickable" *ngFor="let track of tracks; let i = index" (dblclick)="setClickedRow(i, track)"
+          [class.is-selected]="i == selectedRow">
+        <td>{{i + 1}}</td>
+        <td>{{track.track.name}}</td>
+        <td><span class="td-hover"
+                  (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span></td>
+        <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
+        <td>{{track.track.duration_ms}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <button id="loadMorePlaylistTracks" class="button is-primary is-outlined is-fullwidth"
+            *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks
+    </button>
+  </div>
+</div>
+<div class="columns" *ngIf="playlist?.tracks.items?.length  === 0">
+  <div class="column">
+    <div class="notification is-danger">
+      <p>This playlist has no data. Go explore and add some songs to it!</p>
     </div>
   </div>
 </div>
