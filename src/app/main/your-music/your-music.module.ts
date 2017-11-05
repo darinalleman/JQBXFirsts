@@ -11,6 +11,8 @@ import {UserComponent} from "./playlists/user/user.component";
 import {SongsComponent} from "./songs/songs.component";
 import {AppRoutingModule} from "../../app-routing.module";
 import {FormsModule} from '@angular/forms';
+import {RelatedArtistsComponent} from "./artists/artist/related-artists/related-artists.component";
+import {OverviewComponent} from "./artists/artist/overview/overview.component";
 
 @NgModule({
   imports: [
@@ -25,6 +27,8 @@ import {FormsModule} from '@angular/forms';
     AlbumComponent,
     ArtistsComponent,
     ArtistComponent,
+    RelatedArtistsComponent,
+    OverviewComponent,
     PlaylistsComponent,
     PlaylistComponent,
     UserComponent,

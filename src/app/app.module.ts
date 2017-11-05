@@ -15,8 +15,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SideNavComponent} from "./main/side-nav/side-nav.component";
 import {MainComponent} from "./main/main.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {OverviewComponent} from "./main/your-music/artists/artist/overview/overview.component";
-import {RelatedArtistsComponent} from "./main/your-music/artists/artist/related-artists/related-artists.component";
 import {ActiveSongService} from "./main/music-player/active-song.service";
 import {LoadArtistService} from "./main/your-music/artists/artist/load-artist.service";
 import {UserService} from "./main/your-music/playlists/user/user.service";
@@ -39,8 +37,6 @@ import {MainModule} from "./main/main.module";
     CallbackComponent,
     SideNavComponent,
     MainComponent,
-    OverviewComponent,
-    RelatedArtistsComponent,
     AddToPlaylistModalComponent,
     EditPlaylistModalComponent,
     MusicPlayerComponent
