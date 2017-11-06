@@ -22,6 +22,7 @@ import {ArtistComponent} from './main/your-music/artists/artist/artist.component
 import {OverviewComponent} from './main/your-music/artists/artist/overview/overview.component';
 import {RelatedArtistsComponent} from './main/your-music/artists/artist/related-artists/related-artists.component';
 import {UserComponent} from './main/your-music/playlists/user/user.component';
+import {MostPlayedComponent} from "./main/your-music/most-played/most-played.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -78,7 +79,7 @@ const routes: Routes = [
           {
             path: 'related-artists',
             component: RelatedArtistsComponent
-          },
+          }
         ],
         canActivate: [AuthGuard]
       },
@@ -103,6 +104,9 @@ const routes: Routes = [
           {
             path: 'artists',
             component: ArtistsComponent
+          },
+          {  path: 'most-played',
+            component: MostPlayedComponent
           }
         ],
         canActivate: [AuthGuard]

@@ -1,48 +1,7 @@
-
-<section class="hero is-primary is-bold">
-  <div class="hero-body">
-    <div class="container-fluid">
-      <div class="columns user-profile">
-        <div class="column is-2-widescreen is-one-quarter-desktop is-one-quarter-tablet">
-          <div class="image is-128x128 avatar pull-right">
-            <img src="{{user.images[0].url}}">
-          </div>
-        </div>
-        <div class="column is-10-widescreen is-three-quarters-desktop is-three-quarters-tablet">
-          <p><span class="title is-5">Display Name: </span> {{user.display_name}}</p>
-          <p><span class="title is-5">User Id: </span> {{user.id}}</p>
-          <p><span class="title is-5">Email: </span> {{user.email}}</p>
-          <p><span class="title is-5">Spotify URI: </span> <a href="{{user.external_urls.spotify}}">{{user.external_urls.spotify}}</a>
-          </p>
-          <p><span class="title is-5">Href: </span> <a href="{{user.href}}">{{user.external_urls.spotify}}</a></p>
-          <p><span class="title is-5">Followers: </span> {{user.followers.total}}</p>
-          <p><button class="button is-primary is-outlined push-down" (click)="logout()">Logout</button></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section music-data push-around">
-  <p class="title is-1 has-text-centered">Most Played Artists</p>
-  <div class="columns">
-    <div class="column push-left">
-      <div class="columns is-multiline push-left">
-        <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let data of userMusicData">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-square">
-                <img src="{{data.images[0].url}}" alt="">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="content">
-                <p class="is-size-6 clickable link-hover" (click)="goToArtist(data)">{{data.name}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="columns is-multiline push-around">
+  <div class="column is-full has-text-centered ">
+    <img class="is-square img-circle user-image" src="{{user?.images[0].url}}">
+    <p class="title is-1 user-name">{{user?.display_name}}</p>
+    <button class="button is-primary is-outlined is-large" (click)="logout()">Logout</button>
   </div>
 </div>

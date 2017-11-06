@@ -64,10 +64,6 @@ export class UserComponent implements OnInit {
         )
     };
 
-    goToUser(id) {
-        this.navigationService.goToUser(id);
-    };
-
     goToPlaylist(playlist) {
         this.navigationService.goToPlaylist(playlist);
     }
