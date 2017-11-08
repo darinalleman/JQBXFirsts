@@ -4,12 +4,12 @@
     <div class="card">
       <div class="card-image">
         <figure class="image is-square">
-          <img src="{{new?.images[0].url}}" alt="no image">
+          <img src="{{new?.images[0]?.url}}" alt="no image">
         </figure>
       </div>
       <div class="card-content">
         <div class="content">
-          <p class="is-size-6 clickable link-hover" (click)="goToAlbum(new)">{{new.name}}</p>
+          <p class="is-size-6 clickable link-hover" (click)="goToAlbum(new)">{{new?.name}}</p>
         </div>
       </div>
     </div>

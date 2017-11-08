@@ -1,4 +1,4 @@
-<p class="title has-text-centered is-2">{{category.name}}</p>
+<p class="title has-text-centered is-2">{{category?.name}}</p>
 <div class="columns push-around">
   <div class="column">
     <div class="columns is-multiline">
@@ -6,12 +6,12 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-4by3">
-              <img src="{{playlist.images[0].url}}" alt="">
+              <img src="{{playlist?.images[0]?.url}}" alt="">
             </figure>
           </div>
           <div class="card-content">
             <div class="content">
-              <p class="is-size-6 clickable link-hover" (click)="goToPlaylist(playlist)">{{playlist.name}}</p>
+              <p class="is-size-6 clickable link-hover" (click)="goToPlaylist(playlist)">{{playlist?.name}}</p>
             </div>
           </div>
         </div>

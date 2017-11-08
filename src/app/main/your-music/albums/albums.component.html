@@ -5,13 +5,13 @@
         <div class="card">
           <div class="card-image">
             <figure class="image is-square">
-              <img src="{{album.album.images[0].url}}" alt="">
+              <img src="{{album?.album.images[0]?.url}}" alt="">
             </figure>
           </div>
           <div class="card-content">
             <div class="content">
-              <p class="title is-6  clickable link-hover remove-margin-bottom-spacing" (click)="goToAlbum(album)">{{album.album.name}}</p>
-              <p class=" is-size-6 ">{{album.album.artists[0].name}}</p>
+              <p class="title is-6  clickable link-hover remove-margin-bottom-spacing" (click)="goToAlbum(album)">{{album?.album.name}}</p>
+              <p class=" is-size-6 ">{{album?.album.artists[0].name}}</p>
             </div>
           </div>
         </div>
