@@ -6,8 +6,8 @@
         <tbody>
         <tr *ngFor="let track of topTracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
           <td>{{i + 1}}</td>
-          <td>{{track.name}}</td>
-          <td>{{track.duration_ms}}</td>
+          <td>{{track?.name}}</td>
+          <td>{{track?.duration_ms}}</td>
         </tr>
         </tbody>
       </table>
@@ -26,7 +26,7 @@
             </div>
             <div class="card-content">
               <div class="content">
-                <p class="is-size-6 clickable link-hover" (click)="goToAlbum(album)">{{album.name}}</p>
+                <p class="is-size-6 clickable link-hover" (click)="goToAlbum(album)">{{album?.name}}</p>
               </div>
             </div>
           </div>
@@ -42,12 +42,12 @@
           <div class="card">
             <div class="card-image">
               <figure class="image is-square">
-                <img *ngIf="single?.images.length > 0" src="{{single?.images[0].url}}" alt="">
+                <img *ngIf="single?.images.length > 0" src="{{single?.images[0]?.url}}" alt="">
               </figure>
             </div>
             <div class="card-content">
               <div class="content">
-                <p class="is-size-6 clickable link-hover" (click)="goToAlbum(single)">{{single.name}}</p>
+                <p class="is-size-6 clickable link-hover" (click)="goToAlbum(single)">{{single?.name}}</p>
               </div>
             </div>
           </div>

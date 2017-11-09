@@ -3,13 +3,13 @@
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="{{album.album.images[0].url}}" width="{{album.album.images[0].width}}" height="{{album.album.images[0].height}}" alt="Image">
+          <img src="{{album?.album.images[0]?.url}}" width="{{album?.album.images[0]?.width}}" height="{{album?.album.images[0]?.height}}" alt="Image">
         </figure>
       </div>
       <div class="card-content">
-        <p class="is-size-5">{{album.album.name}}</p>
-        <span class="is-size-6 clickable album-artist" (click)="goToArtist(album.album.artists[0])">{{album.album.artists[0].name}}</span>
-        <p class="push">{{album.album.release_date | date: 'yyyy'}} - {{album.album.tracks.total}} songs</p>
+        <p class="is-size-5">{{album?.album.name}}</p>
+        <span class="is-size-6 clickable album-artist" (click)="goToArtist(album?.album.artists[0])">{{album?.album.artists[0].name}}</span>
+        <p class="push">{{album?.album.release_date | date: 'yyyy'}} - {{album?.album.tracks.total}} songs</p>
         <!--<button class="button is-primary is-medium" *ngIf="isPlaying" (click)="pauseAlbum()">Pause</button>-->
       </div>
       <footer class="card-footer">
@@ -31,8 +31,8 @@
       <tbody>
       <tr *ngFor="let track of albumTracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
         <td>{{i + 1}}</td>
-        <td>{{track.name}}</td>
-        <td>{{track.duration_ms}}</td>
+        <td>{{track?.name}}</td>
+        <td>{{track?.duration_ms}}</td>
       </tr>
       </tbody>
     </table>
