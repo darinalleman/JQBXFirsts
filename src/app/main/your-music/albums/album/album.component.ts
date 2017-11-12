@@ -99,29 +99,6 @@ export class AlbumComponent implements OnInit {
         )
     };
 
-    playAlbum(album) {
-        this.playObject = {
-            'context_uri': album.uri
-        };
-        this.spotifyService.startResumePlayer(this.playObject).subscribe(
-            () => {
-                setTimeout(() => {
-                    this.spotifyService.getCurrentPlayingTrack().subscribe(
-                        data => {
-                            this.isPlaying = data.is_playing;
-                            this.activeSongService.currentSong.next(data.item);
-                        },
-                        error => {
-                            console.log(error);
-                        }
-                    )
-                }, 1000);
-            },
-            error => {
-                console.log(error);
-            }
-        )
-    };
     setClickedRow(index, track) {
         this.selectedRow = index;
         this.startSong(track.uri);

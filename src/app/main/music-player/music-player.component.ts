@@ -25,9 +25,10 @@ export class MusicPlayerComponent implements OnInit {
 
     ngOnInit() {
         this.activeSongService.currentSong.subscribe(currentSong => {
+            console.log(currentSong);
             this.getDevices();
-            if (!currentSong.name) {
-                this.getCurrentPlayingTrack();
+            if (!currentSong.id) {
+              return
             } else {
                 this.getTrack(currentSong);
             }

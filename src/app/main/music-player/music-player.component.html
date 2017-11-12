@@ -1,7 +1,7 @@
 <footer *ngIf="currentSong?.name">
   <div class="container-fluid">
-    <div class="columns has-text-centered" *ngIf="currentSong">
-      <div class="column is-4">
+    <div class="columns has-text-centered push-around" *ngIf="currentSong">
+      <div class="column is-one-third">
         <div class="song-content">
           <article class="media">
             <figure class="media-left">
@@ -17,36 +17,28 @@
           </article>
         </div>
       </div>
-      <div class="column is-5">
-        <div class="player-content">
-          <a><i class="fa fa-random text-white" [ngClass]="{'shuffle-highlight' : shuffleState}"
-                (click)="toggleShuffle(shuffleState)" aria-hidden="true"></i></a>
-          <a><i class="fa fa-step-backward text-white" (click)="playPrevious();" aria-hidden="true"></i></a>
-          <a *ngIf="!isPlaying">
-            <i class="fa fa-play text-white" (click)="resumePlayback()" aria-hidden="true"></i>
-          </a>
-          <a *ngIf="isPlaying">
-            <i class="fa fa-pause text-white" (click)="pausePlayback()" aria-hidden="true"></i>
-          </a>
-          <a><i class="fa fa-step-forward text-white" (click)="playNext()" aria-hidden="true"></i></a>
-          <a *ngIf="repeatState === 'off'"><i class="fa fa-repeat text-white" aria-hidden="true"></i></a>
-          <a *ngIf="repeatState === 'track'"><i class="fa fa-repeat text-white"
-                                                [ngClass]="{'repeat-highlight' : repeatState === 'track'}"
-                                                aria-hidden="true"></i></a>
-          <a *ngIf="repeatState === 'context'"><i class="fa fa-list text-white"
-                                                  [ngClass]="{'repeat-highlight' : repeatState ==='context'}"
-                                                  aria-hidden="true"></i></a>
+      <div class="column is-two-thirds">
+        <div class="columns">
+          <div class="column is-two-thirds">
+            <audio class="audio-player" controls autoplay src="{{currentSong?.preview_url}}"
+                   *ngIf="currentSong.preview_url">Your browser does not support the audio tag.
+            </audio>
+            <article class="message is-danger" *ngIf="!currentSong?.preview_url">
+              <div class="message-body">
+                This track doesn't have a preview available. You can listen to the track <a
+                href="{{currentSong?.external_urls.spotify}}" class="is-link">here!</a>
+              </div>
+            </article>
+          </div>
+          <div class="column is-one-third">
+            <article class="message is-info">
+              <div class="message-body">
+                Full song <a href="{{currentSong?.external_urls.spotify}}" class="is-link">here!</a>
+              </div>
+            </article>
+          </div>
         </div>
-      </div>
-      <div class="column is-3">
-        <div class="device-content">
-          <p class="text-white">
-            <i *ngIf="activeDevice?.type === 'Computer'" class="fa fa-laptop is-marginless" aria-hidden="true"></i>
-            <i *ngIf="activeDevice?.type === 'Smartphone'" class="fa fa-mobile is-marginless" aria-hidden="true"></i>
-            <i *ngIf="activeDevice?.type === 'Tablet'" class="fa fa-tablet is-marginless" aria-hidden="true"></i>
-            <span class="push-left is-size-5">{{activeDevice?.name}}</span>
-          </p>
-        </div>
+
       </div>
     </div>
   </div>

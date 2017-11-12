@@ -163,30 +163,6 @@ export class PlaylistComponent implements OnInit {
         this.activeSongService.currentSong.next(track.track);
     };
 
-    playPlaylist(playlist) {
-        this.playObject = {
-            'context_uri': playlist.uri
-        };
-        this.spotifyService.startResumePlayer(this.playObject).subscribe(
-            () => {
-                setTimeout(() => {
-                    this.spotifyService.getCurrentPlayingTrack().subscribe(
-                        data => {
-                            this.isPlaying = data.is_playing;
-                            this.activeSongService.currentSong.next(data.item);
-                        },
-                        error => {
-                            console.log(error);
-                        }
-                    )
-                }, 1000);
-            },
-            error => {
-                console.log(error);
-            }
-        )
-    };
-
   goToUser(id) {
     this.navigationService.goToUser(id);
   };

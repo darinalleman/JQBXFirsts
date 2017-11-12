@@ -9,8 +9,9 @@ footer {
   opacity: .9;
 }
 
-.player-content{
-  margin-top: 30px;
+.audio-player {
+  margin-top: 22px;
+  width: 100%;
 }
 
 .device-content {
@@ -20,18 +21,6 @@ footer {
 .song-content{
     margin: 10px;
 };
-
-.fa {
-  font-size: 2em;
-  margin-right: 30px;
-  &:hover{
-    color: lighten($turquoise, 10);
-  }
-}
-
-.shuffle-highlight, .repeat-highlight{
-  color: lighten($turquoise, 10);
-}
 
 .artist-name {
   &:hover {

@@ -15,7 +15,6 @@
       <footer class="card-footer">
         <a class="card-footer-item" *ngIf="!saved" (click)="saveAlbum(album.album)"><button class="button is-primary is-outlined is-medium is-fullwidth save-button">Save</button></a>
         <a class="card-footer-item" *ngIf="saved" (click)="removeAlbum(album.album)"><button class="button is-primary is-medium is-fullwidth save-button">Remove</button></a>
-        <a class="card-footer-item" (click)="playAlbum(album.album)"><button class=" button is-success is-medium is-fullwidth play-button">Play</button></a>
       </footer>
     </div>
   </div>
