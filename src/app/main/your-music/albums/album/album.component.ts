@@ -101,7 +101,6 @@ export class AlbumComponent implements OnInit {
 
     setClickedRow(index, track) {
         this.selectedRow = index;
-        this.startSong(track.uri);
         this.activeSongService.currentSong.next(track);
     };
 

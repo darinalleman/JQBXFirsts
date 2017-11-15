@@ -29,6 +29,7 @@ import {HomeModule} from "./home/home.module";
 import {BrowseModule} from "./main/browse/browse.module";
 import {MusicPlayerComponent} from "./main/music-player/music-player.component";
 import {MainModule} from "./main/main.module";
+import {ControlPanelComponent} from "./main/control-panel/control-panel.component";
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MainModule} from "./main/main.module";
     MainComponent,
     AddToPlaylistModalComponent,
     EditPlaylistModalComponent,
-    MusicPlayerComponent
+    MusicPlayerComponent,
+    ControlPanelComponent
   ],
   imports: [
     AppRoutingModule,
