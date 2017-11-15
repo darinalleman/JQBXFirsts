@@ -31,7 +31,7 @@
             </article>
           </div>
           <div class="column is-one-third">
-            <article class="message is-info">
+            <article class="message is-info" *ngIf="currentSong.preview_url">
               <div class="message-body">
                 Full song <a href="{{currentSong?.external_urls.spotify}}" class="is-link">here!</a>
               </div>
