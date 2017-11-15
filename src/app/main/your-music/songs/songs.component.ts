@@ -114,7 +114,6 @@ export class SongsComponent implements OnInit {
 
   setClickedRow(index, track) {
     this.selectedRow = index;
-    this.startSong(track.track.uri);
     this.activeSongService.currentSong.next(track.track);
   };
 
