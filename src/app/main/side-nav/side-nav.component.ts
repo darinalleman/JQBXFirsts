@@ -7,7 +7,7 @@ import {Component, ElementRef, OnInit, Renderer} from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor(elementRef: ElementRef, renderer: Renderer) { }
+  constructor() { }
 
   ngOnInit() {
   }
