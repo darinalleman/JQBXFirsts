@@ -1,11 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
-@import "../node_modules/bulma/css/bulma.css";
-@import "../node_modules/font-awesome/css/font-awesome.css";
+@import "~bulma/css/bulma.css";
+@import "~font-awesome/css/font-awesome.css";
 @import "assets/bulma-variables";
 @import "assets/variables";
-@import "../node_modules/bulma-switch/switch";
-@import "../node_modules/ngx-toastr/toastr.css";
-@import "../node_modules/bulma-quickview/quickview";
+@import "~bulma-switch/switch";
+@import "~ngx-toastr/toastr.css";
+@import "~bulma-quickview/quickview";
 @import "assets/base";
 
 /* for all hero headers */

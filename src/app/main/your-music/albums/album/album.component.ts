@@ -16,12 +16,12 @@ export class AlbumComponent implements OnInit {
     saved: boolean;
     options: any;
     albumTracks: any;
-    playObject: any;
     selectedRow: any;
-    isPlaying: any;
 
-    constructor(public spotifyService: SpotifyService, public router: Router,
-                private activeSongService: ActiveSongService, private navigationService: NavigationService) {
+    constructor(public spotifyService: SpotifyService,
+                public router: Router,
+                private activeSongService: ActiveSongService,
+                private navigationService: NavigationService) {
     }
 
     ngOnInit() {
@@ -84,19 +84,6 @@ export class AlbumComponent implements OnInit {
 
     goToArtist(artist) {
        this.navigationService.goToArtist(artist);
-    };
-
-    startSong(songUri) {
-        this.playObject = {
-            'uris': [songUri]
-        };
-        this.spotifyService.startResumePlayer(this.playObject).subscribe(
-            () => {
-            },
-            error => {
-                console.log(error);
-            }
-        )
     };
 
     setClickedRow(index, track) {
