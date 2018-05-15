@@ -47,9 +47,12 @@
           [class.is-selected]="i == selectedRow">
         <td>{{i + 1}}</td>
         <td>{{track.track.name}}</td>
-        <td><span class="td-hover"
-                  (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span></td>
-        <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span></td>
+        <td>
+          <span class="td-hover" (click)="goToArtist(track.track.artists[0])">{{track.track.artists[0].name}}</span>
+        </td>
+        <td class="table-truncate">
+          <span class="td-hover table-truncate__body" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span>
+        </td>
         <td>{{track.track.duration_ms}}</td>
       </tr>
       </tbody>

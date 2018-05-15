@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ControlPanelServiceService} from "./control-panel-service.service";
 
 @Component({
   selector: 'app-control-panel',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./control-panel.component.scss']
 })
 export class ControlPanelComponent implements OnInit {
+  toggle: boolean;
 
-  constructor() { }
+  constructor(private controlPanelService: ControlPanelServiceService) {
+    this.controlPanelService.toggleControlPanel.subscribe(
+      toggle => {
+        this.toggle = toggle;
+      }
+    );
+  }
 
   ngOnInit() {
+  }
+
+  close() {
+    this.controlPanelService.toggleControlPanel.next(false);
   }
 
 }

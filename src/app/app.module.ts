@@ -30,6 +30,7 @@ import {BrowseModule} from "./main/browse/browse.module";
 import {MusicPlayerComponent} from "./main/music-player/music-player.component";
 import {MainModule} from "./main/main.module";
 import {ControlPanelComponent} from "./main/control-panel/control-panel.component";
+import {ControlPanelServiceService} from "./main/control-panel/control-panel-service.service";
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import {ControlPanelComponent} from "./main/control-panel/control-panel.componen
     NavigationService,
     UserService,
     AddSongToPlaylistService,
+    ControlPanelServiceService,
     EditPlayListService,
     {
       provide: 'SpotifyConfig',
