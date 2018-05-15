@@ -15,6 +15,7 @@ export class AddToPlaylistModalComponent implements OnInit {
   totalPlaylists: any;
   playlists: Array<any>;
   options: any;
+  toggle: boolean;
 
   constructor(private spotifyService: SpotifyService, private addSongToPlaylistService: AddSongToPlaylistService,
               private toastr: ToastrService) {
@@ -27,12 +28,16 @@ export class AddToPlaylistModalComponent implements OnInit {
       songBeingAdded => {
         this.trackToAdd = songBeingAdded;
       }
-    )
+    );
+    this.addSongToPlaylistService.toggleAddSongToPlaylist.subscribe(
+      toggle => {
+        this.toggle = toggle;
+      }
+    );
   }
 
   closeAddToPlayListModal() {
-    const modal = document.getElementById('addToPlaylistModal');
-    modal.classList.remove('is-active');
+    this.addSongToPlaylistService.toggleAddSongToPlaylist.next(false);
   };
 
   addToPlaylist(playlist) {

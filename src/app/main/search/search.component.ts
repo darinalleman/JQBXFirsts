@@ -134,19 +134,6 @@ export class SearchComponent implements OnInit {
         localStorage.removeItem('searchQuery');
     };
 
-    startSong(songUri) {
-        this.playObject = {
-            'uris': [songUri]
-        };
-        this.spotifyService.startResumePlayer(this.playObject).subscribe(
-            () => {
-            },
-            error => {
-                console.log(error);
-            }
-        )
-    };
-
     setClickedRow(index, track) {
         this.selectedRow = index;
         this.activeSongService.currentSong.next(track);
@@ -154,8 +141,7 @@ export class SearchComponent implements OnInit {
 
     toggleAddToPlaylistModal(track) {
         this.addSongToPlaylistService.songToAddToPlaylist.next(track);
-        const modal = document.getElementById('addToPlaylistModal');
-        modal.classList.toggle('is-active');
+        this.addSongToPlaylistService.toggleAddSongToPlaylist.next(true);
     };
 
 }

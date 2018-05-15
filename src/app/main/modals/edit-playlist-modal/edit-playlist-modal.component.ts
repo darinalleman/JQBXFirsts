@@ -16,6 +16,7 @@ export class EditPlaylistModalComponent implements OnInit {
     checked: string;
     isChecked: boolean;
     publicPrivate: string;
+    toggle: boolean;
 
     constructor(private spotifyService: SpotifyService, private editPlayListService: EditPlayListService,
                 private toastr: ToastrService) {
@@ -37,7 +38,14 @@ export class EditPlaylistModalComponent implements OnInit {
                     this.isChecked = false;
                 }
             }
-        )
+        );
+
+        this.editPlayListService.toggleEditPlaylist.subscribe(
+          toggle => {
+            this.toggle = toggle;
+          }
+
+        );
     }
 
     saveChanges() {
@@ -71,8 +79,7 @@ export class EditPlaylistModalComponent implements OnInit {
     };
 
     closeEditModal() {
-        const modal = document.getElementById('editPlaylistModal');
-        modal.classList.remove('is-active');
+       this.editPlayListService.toggleEditPlaylist.next(false);
     }
 
 }

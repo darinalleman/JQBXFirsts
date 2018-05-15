@@ -18,7 +18,6 @@ export class SongsComponent implements OnInit {
   offset: any;
   totalTracks: any;
   album: any;
-  playObject: any;
   selectedRow: any;
 
   constructor(private spotifyService: SpotifyService,
@@ -93,23 +92,9 @@ export class SongsComponent implements OnInit {
     );
   };
 
-  startSong(songUri) {
-    this.playObject = {
-      'uris': [songUri]
-    };
-    this.spotifyService.startResumePlayer(this.playObject).subscribe(
-      () => {
-      },
-      error => {
-        console.log(error);
-      }
-    )
-  };
-
   toggleAddToPlaylistModal(track) {
     this.addSongToPlaylistService.songToAddToPlaylist.next(track);
-    const modal = document.getElementById('addToPlaylistModal');
-    modal.classList.toggle('is-active');
+    this.addSongToPlaylistService.toggleAddSongToPlaylist.next(true);
   };
 
   setClickedRow(index, track) {

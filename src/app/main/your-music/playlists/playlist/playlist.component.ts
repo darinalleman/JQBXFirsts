@@ -21,9 +21,7 @@ export class PlaylistComponent implements OnInit {
     tracks: any;
     tracksTotal: any;
     album: any;
-    playObject: any;
     selectedRow: any;
-    isPlaying: any;
 
     constructor(private spotifyService: SpotifyService, private activeSongService: ActiveSongService,
                 private utilities: UtilitiesService, private navigationService: NavigationService,
@@ -144,18 +142,6 @@ export class PlaylistComponent implements OnInit {
         );
     };
 
-    startSong(songUri) {
-        this.playObject = {
-            'uris': [songUri]
-        };
-        this.spotifyService.startResumePlayer(this.playObject).subscribe(
-            () => {
-            },
-            error => {
-                console.log(error);
-            }
-        )
-    };
 
     setClickedRow(index, track) {
         this.selectedRow = index;
@@ -168,8 +154,7 @@ export class PlaylistComponent implements OnInit {
 
     toggleEditModal(playlist) {
         this.editPlaylistService.playlistToBeEdited.next(playlist);
-        const modal = document.getElementById('editPlaylistModal');
-        modal.classList.toggle('is-active');
+       this.editPlaylistService.toggleEditPlaylist.next(true);
     };
 
 }
