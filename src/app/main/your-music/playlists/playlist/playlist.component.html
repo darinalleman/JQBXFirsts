@@ -1,37 +1,33 @@
 <div class="columns is-multiline push-around">
-  <div class="column is-3-widescreen is-3-desktop is-full-tablet" *ngIf="playlist?.tracks.items?.length > 0">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-square">
-          <img src="{{playlist?.images[0]?.url}}" width="{{playlist.images[0]?.width}}"
-               height="{{playlist.images[0]?.height}}" alt="Image">
-        </figure>
+
+  <div class="column is-full" *ngIf="playlist?.tracks.items?.length > 0">
+    <div class="row">
+      <div class="columns">
+        <div class="column is-one-quarter">
+          <figure class="image is-square">
+            <img src="{{playlist?.images[0]?.url}}" width="{{playlist.images[0]?.width}}"
+                 height="{{playlist.images[0]?.height}}" alt="Image">
+          </figure>
+          <p>
+            <button class="button is-primary is-outlined is-rounded is-fullwidth push-down" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)">Edit Playlist</button>
+          </p>
+        </div>
+        <div class="column is-three-quarters">
+          <p class="title" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
+          <p class="push-down"><a class="is-link is-outlined" (click)="goToUser(playlist.owner.id)">{{user.id}}</a></p>
+          <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
+          <p class="is-size-6">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
+          <p class="push-down">
+            <button class="button is-primary is-outlined is-rounded"
+                    *ngIf="followed === false && user.id != playlist.owner.id" (click)="followPlaylist()">Follow</button>
+            <button class="button is-primary is-rounded"
+                    *ngIf="followed === true && user.id != playlist.owner.id" (click)="unfollowPlaylist()">Unfollow</button>
+          </p>
+        </div>
       </div>
-      <div class="card-content">
-        <p class="is-size-5" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
-        <p class="is-size-7" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
-        <p class="is-size-7 push-down">
-          {{playlist.tracks.total}} songs |
-          {{playlist.followers.total}} followers
-        </p>
-        <button class="button is-link is-outlined push-down" (click)="goToUser(playlist.owner.id)">View more!</button>
-      </div>
-      <footer class="card-footer">
-        <a class="card-footer-item" *ngIf="user.id === playlist.owner.id" (click)="toggleEditModal(playlist)">
-          <button class="button is-primary is-medium is-fullwidth edit-button">Edit</button>
-        </a>
-        <a class="card-footer-item" *ngIf="followed === false && user.id != playlist.owner.id"
-           (click)="followPlaylist()">
-          <button class="button is-primary is-outlined is-medium follow-button is-fullwidth">Follow</button>
-        </a>
-        <a class="card-footer-item" *ngIf="followed === true && user.id != playlist.owner.id"
-           (click)="unfollowPlaylist()">
-          <button class=" button is-primary is-medium follow-button is-fullwidth">Unfollow</button>
-        </a>
-      </footer>
     </div>
   </div>
-  <div class="column is-9-widescreen is-9-desktop is-full-tablet">
+  <div class="column is-full">
     <table class="table table-striped is-fullwidth">
       <thead>
       <tr>
@@ -47,7 +43,7 @@
           [class.is-selected]="i == selectedRow">
         <td>{{i + 1}}</td>
         <td class="table-truncate">
-          <p class="table-truncate__body tooltip" data-tooltip="ass ass ass">
+          <p class="table-truncate__body">
             {{track.track.name}}
           </p>
         </td>
@@ -65,9 +61,7 @@
             *ngIf="tracks?.length < tracksTotal" (click)="loadMoreTracks()">Load More Tracks
     </button>
   </div>
-</div>
-<div class="columns" *ngIf="playlist?.tracks.items?.length  === 0">
-  <div class="column">
+  <div class="column is-full" *ngIf="playlist?.tracks.items?.length  === 0">
     <div class="notification is-danger">
       <p>This playlist has no data. Go explore and add some songs to it!</p>
     </div>
