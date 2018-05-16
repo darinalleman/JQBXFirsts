@@ -104,7 +104,9 @@
           <tbody>
           <tr *ngFor="let track of tracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)"
               [class.is-selected]="i === selectedRow">
-            <td>{{track.name}}</td>
+            <td class="table-truncate">
+              <span class="table-truncate__body">{{track.name}}</span>
+            </td>
             <td><span class="td-hover" (click)="goToArtist(track?.artists[0])">{{track?.artists[0].name}}</span></td>
             <td class="table-truncate">
               <span class="td-hover table-truncate__body" (click)="goToAlbum(track?.album)">{{track?.album.name}}</span>
