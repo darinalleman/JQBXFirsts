@@ -216,21 +216,6 @@ table {
 }
 
 
-/* ---------- */
-.play-button {
-  background-color: $spotify-play-button-green !important;
-  &:hover {
-    background-color: darken($spotify-play-button-green, 5) !important;
-    border-color: transparent !important;
-    color: $white !important;
-  }
-}
-
-.follow-button, .play-button, .edit-button, .save-button, .login-button{
-  border-radius: 30px;
-}
-
-
 /* toastr css */
 
 #toast-container.toast-top-center .toast,

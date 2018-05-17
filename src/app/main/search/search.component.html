@@ -1,15 +1,11 @@
 <div class="container-fluid">
-  <div class="section push-around">
-    <div class="message is-danger" *ngIf="noResults">
-      <div class="message-body">
-        <p>No results found, try a different search.</p>
-      </div>
-    </div>
-    <div class="columns">
-      <div class="column">
+  <div class="section">
+    <div class="columns is-multiline">
+      <div class="column is-full">
         <div class="field is-grouped">
           <p class="control has-icons-left has-icons-right is-expanded">
-            <input class=" input" type="text" placeholder="Search Spotify" [(ngModel)]="searchQuery"
+            <input class=" input" type="text" placeholder="Search for a Artist, Song, Album or Playlist"
+                   [(ngModel)]="searchQuery"
                    (keyup.enter)="search()">
             <span class="icon is-small is-left">
                  <i class="fa fa-search"></i>
@@ -25,10 +21,16 @@
           </p>
         </div>
       </div>
+      <div class="column is-full">
+        <div class="message is-danger" *ngIf="noResults">
+          <div class="message-body">
+            <p>No results found, try a different search.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <h1 class="title is-2" *ngIf="hasQuery && !noResults">Showing results for <b>{{searchQuery}}</b></h1>
   </div>
-  <div class="section push-around artists push-left" *ngIf="hasQuery && artists?.length > 0 && !noResults">
+  <div class="section artists" *ngIf="hasQuery && artists?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Artists</p>
     <div class="columns is-multiline">
       <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let artist of artists">
@@ -41,14 +43,14 @@
           </div>
           <div class="card-content">
             <div class="content">
-              <p class="is-size-6 clickable link-hover" (click)="goToArtist(artist)">{{artist?.name}}</p>
+              <p class="clickable link-hover mo-info-name" (click)="goToArtist(artist)">{{artist?.name}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="section push-around albums push-left" *ngIf="hasQuery && albums?.length > 0 && !noResults">
+  <div class="section albums" *ngIf="hasQuery && albums?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Albums</p>
     <div class="columns is-multiline">
       <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let album of albums">
@@ -61,14 +63,14 @@
           </div>
           <div class="card-content">
             <div class="content">
-              <p class="is-size-6 clickable link-hover" (click)="goToAlbum(album)">{{album?.name}}</p>
+              <p class="clickable link-hover mo-info-name" (click)="goToAlbum(album)">{{album?.name}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="section push-around playlists push-left" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
+  <div class="section playlists" *ngIf="hasQuery && playlists?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Playlists</p>
     <div class="columns is-multiline">
       <div class="column is-2-widescreen is-one-quarter-desktop is-one-third-tablet" *ngFor="let playlist of playlists">
@@ -81,14 +83,14 @@
           </div>
           <div class="card-content">
             <div class="content">
-              <p class="is-size-6 clickable link-hover" (click)="goToPlaylist(playlist)">{{playlist?.name}}</p>
+              <p class="clickable link-hover mo-info-name" (click)="goToPlaylist(playlist)">{{playlist?.name}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="section tracks push-left" *ngIf="hasQuery && tracks?.length > 0 && !noResults">
+  <div class="section tracks" *ngIf="hasQuery && tracks?.length > 0 && !noResults">
     <div class="columns">
       <div class="column">
         <table class="table search-table is-fullwidth">
