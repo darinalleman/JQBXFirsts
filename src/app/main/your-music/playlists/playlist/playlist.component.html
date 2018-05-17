@@ -15,8 +15,8 @@
         <div class="column is-three-quarters">
           <p class="title" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
           <p class="push-down"><a class="is-link is-outlined" (click)="goToUser(playlist.owner.id)">{{user.id}}</a></p>
-          <p class="is-size-6" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
-          <p class="is-size-6">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
+          <p class="is-size-5" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
+          <p class="is-size-5">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
           <p class="push-down">
             <button class="button is-primary is-outlined is-rounded"
                     *ngIf="followed === false && user.id != playlist.owner.id" (click)="followPlaylist()">Follow</button>
