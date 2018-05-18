@@ -20,10 +20,10 @@ import {LoadArtistService} from "./main/your-music/artists/artist/load-artist.se
 import {UserService} from "./main/your-music/playlists/user/user.service";
 import {UtilitiesService} from "./shared/utilities/utilities.service";
 import {NavigationService} from "./shared/navigation/navigation.service";
-import {AddToPlaylistModalComponent} from "./main/modals/add-to-playlist-modal/add-to-playlist-modal.component";
-import {AddSongToPlaylistService} from "./main/modals/add-to-playlist-modal/add-song-to-playlist.service";
-import {EditPlaylistModalComponent} from "./main/modals/edit-playlist-modal/edit-playlist-modal.component";
-import {EditPlayListService} from "./main/modals/edit-playlist-modal/edit-play-list-service";
+import {AddToPlaylistModalComponent} from "./shared/modals/add-to-playlist-modal/add-to-playlist-modal.component";
+import {AddSongToPlaylistService} from "./shared/modals/add-to-playlist-modal/add-song-to-playlist.service";
+import {EditPlaylistModalComponent} from "./shared/modals/edit-playlist-modal/edit-playlist-modal.component";
+import {EditPlayListService} from "./shared/modals/edit-playlist-modal/edit-play-list-service";
 import {ToastrModule} from "ngx-toastr";
 import {HomeModule} from "./home/home.module";
 import {BrowseModule} from "./main/browse/browse.module";

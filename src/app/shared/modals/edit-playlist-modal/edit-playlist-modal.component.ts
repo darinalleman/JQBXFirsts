@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpotifyService } from '../../../shared/spotify/angular2-spotify';
+import { SpotifyService } from '../../spotify/angular2-spotify';
 import { EditPlayListService } from './edit-play-list-service';
 import { ToastrService } from 'ngx-toastr';
 

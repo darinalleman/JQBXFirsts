@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import { ActiveSongService } from '../../../music-player/active-song.service';
 import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
 import { NavigationService } from '../../../../shared/navigation/navigation.service';
-import { EditPlayListService } from '../../../modals/edit-playlist-modal/edit-play-list-service';
+import { EditPlayListService } from '../../../../shared/modals/edit-playlist-modal/edit-play-list-service';
 
 @Component({
     selector: 'app-playlist',

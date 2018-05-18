@@ -11,12 +11,13 @@ import { NavigationService } from '../../../shared/navigation/navigation.service
 })
 export class ArtistsComponent implements OnInit {
     cursors: any;
-    artists: any;
+    artists: Array<object>;
     options: any;
     type: string;
     totalArtists: number;
 
-    constructor(public spotifyService: SpotifyService, public router: Router,
+    constructor(public spotifyService: SpotifyService,
+                public router: Router,
                 private navigationService: NavigationService) {
     }
 

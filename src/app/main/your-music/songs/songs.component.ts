@@ -4,7 +4,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import {ActiveSongService} from '../../music-player/active-song.service';
 import {NavigationService} from '../../../shared/navigation/navigation.service';
-import {AddSongToPlaylistService} from '../../modals/add-to-playlist-modal/add-song-to-playlist.service';
+import {AddSongToPlaylistService} from '../../../shared/modals/add-to-playlist-modal/add-song-to-playlist.service';
 
 @Component({
   selector: 'app-songs',

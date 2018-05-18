@@ -14,13 +14,13 @@
         </div>
         <div class="column is-three-quarters">
           <p class="title" [(ngModel)]="playlist.name" ngDefaultControl>{{playlist.name}}</p>
-          <p class="push-down"><a class="is-link is-outlined" (click)="goToUser(playlist.owner.id)">{{user.id}}</a></p>
-          <p class="is-size-5" [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
-          <p class="is-size-5">{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
+          <p class="push-down">Playlist By: <a class="is-link is-outlined" (click)="goToUser(playlist.owner.id)">{{user.id}}</a></p>
+          <p [(ngModel)]="playlist.description" ngDefaultControl [innerHTML]='playlist.description'></p>
+          <p>{{playlist.tracks.total}} songs | {{playlist.followers.total}} followers</p>
           <p class="push-down">
-            <button class="button is-primary is-outlined is-rounded"
+            <button class="button is-primary is-outlined is-rounded is-large"
                     *ngIf="followed === false && user.id != playlist.owner.id" (click)="followPlaylist()">Follow</button>
-            <button class="button is-primary is-rounded"
+            <button class="button is-primary is-rounded is-large"
                     *ngIf="followed === true && user.id != playlist.owner.id" (click)="unfollowPlaylist()">Unfollow</button>
           </p>
         </div>
