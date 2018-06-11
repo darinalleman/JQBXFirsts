@@ -11,7 +11,6 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  errorMessage: string;
   user: any;
 
 
@@ -21,7 +20,7 @@ export class HomeComponent implements OnInit {
               private toasr: ToastrService) {
     this.auth.loggedOut.subscribe((success) => {
       if(success) {}
-       this.toasr.success('Success fully logged out.')
+       this.toasr.success('Successfully logged out.')
     })
   }
 
@@ -36,8 +35,7 @@ export class HomeComponent implements OnInit {
             err => console.error(err));
       },
       err => {
-        this.errorMessage = err;
-        console.error(this.errorMessage);
+        console.error(err);
       },
       () => {
       }
