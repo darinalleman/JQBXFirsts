@@ -6,8 +6,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class NavigationService {
-    loggedOut: BehaviorSubject<any> = new BehaviorSubject('');
-    loggedIn: BehaviorSubject<any> = new BehaviorSubject('');
     constructor(private router: Router, private loadArtistService: LoadArtistService, private userService: UserService) {
     }
 
