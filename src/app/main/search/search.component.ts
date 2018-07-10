@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import {ActiveSongService} from '../music-player/active-song.service';
 import {NavigationService} from '../../shared/navigation/navigation.service';
 import {AddSongToPlaylistService} from '../../shared/modals/add-to-playlist-modal/add-song-to-playlist.service';
+import {Subject} from "rxjs/Subject";
 
 
 @Component({
@@ -55,7 +56,6 @@ export class SearchComponent implements OnInit {
       };
       this.spotifyService.search(this.searchQuery, this.type, this.options).subscribe(
         data => {
-          console.log(data)
           if (data.artists.items.length === 0 &&
             data.albums.items.length === 0 &&
             data.playlists.items.length === 0 &&

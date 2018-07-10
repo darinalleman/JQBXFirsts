@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {CallbackComponent} from './callback/callback.component';
 import {HomeComponent} from './home/home.component';
 import {SearchComponent} from './main/search/search.component';
@@ -16,7 +16,7 @@ import {BrowseComponent} from './main/browse/browse.component';
 import {FeaturedComponent} from './main/browse/featured/featured.component';
 import {GenreMoodsComponent} from './main/browse/genre-moods/genre-moods.component';
 import {NewReleasesComponent} from './main/browse/new-releases/new-releases.component';
-import {AuthGuard} from './shared/auth/auth.guard';
+import {AuthGuard} from './shared/auth';
 import {CategoryComponent} from './main/browse/genre-moods/category/category.component';
 import {ArtistComponent} from './main/your-music/artists/artist/artist.component';
 import {OverviewComponent} from './main/your-music/artists/artist/overview/overview.component';

@@ -1,5 +1,5 @@
-import {Component, OnInit, HostListener} from '@angular/core';
-import {SpotifyService} from '../../../shared/spotify/angular2-spotify';
+import {Component, OnInit} from '@angular/core';
+import {SpotifyService} from '../../../shared/spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import {ActiveSongService} from '../../music-player/active-song.service';

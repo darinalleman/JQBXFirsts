@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {SpotifyService} from '../shared/spotify/angular2-spotify';
+import {SpotifyService} from '../shared/spotify';
 import {AuthService} from "../shared/auth";
 import {ToastrService} from "ngx-toastr";
 

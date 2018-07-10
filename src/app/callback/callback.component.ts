@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {SpotifyService} from "../shared/spotify/angular2-spotify";
 
 @Component({
   selector: 'app-callback',
@@ -9,10 +8,7 @@ import {SpotifyService} from "../shared/spotify/angular2-spotify";
 })
 export class CallbackComponent {
 
-  public loading: boolean = false;
-  public errorMessage: string;
-
-  constructor(public router: Router, private spotifyService: SpotifyService) {
+  constructor(public router: Router) {
     let hash = window.location.hash;
     if (hash) {
       if (window.location.search.substring(1).indexOf('error') !== -1) {

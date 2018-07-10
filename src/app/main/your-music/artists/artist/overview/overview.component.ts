@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SpotifyService } from '../../../../../shared/spotify/angular2-spotify';
+import { SpotifyService } from '../../../../../shared/spotify';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
@@ -21,7 +21,6 @@ export class OverviewComponent implements OnInit {
     singles: any;
     compilations: any;
     album: any;
-    playObject: any;
     selectedRow: any;
     artistId: any;
 
@@ -118,19 +117,6 @@ export class OverviewComponent implements OnInit {
                 console.log(error);
             }
         );
-    };
-
-    startSong(songUri) {
-        this.playObject = {
-            'uris': [songUri]
-        };
-        this.spotifyService.startResumePlayer(this.playObject).subscribe(
-            () => {
-            },
-            error => {
-                console.log(error);
-            }
-        )
     };
 
     setClickedRow(index, track) {

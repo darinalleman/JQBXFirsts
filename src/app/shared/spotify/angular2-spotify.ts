@@ -527,6 +527,8 @@ export class SpotifyService {
    * q = search query
    * type = artist, album or track
    */
+
+
   search(q: string, type: string, options?: SpotifyOptions) {
     options = options || {};
     options.q = q;

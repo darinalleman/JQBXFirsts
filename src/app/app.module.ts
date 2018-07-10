@@ -10,7 +10,6 @@ import {SpotifyService} from "./shared/spotify/angular2-spotify";
 import {AuthService} from "./shared/auth/auth.service";
 import {AuthHttp} from "./shared/auth/auth.http";
 import {AuthGuard} from "./shared/auth/auth.guard";
-import {ApiService} from "./shared/api/api.service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SideNavComponent} from "./main/side-nav/side-nav.component";
 import {MainComponent} from "./main/main.component";
@@ -87,7 +86,7 @@ import {ControlPanelServiceService} from "./main/control-panel/control-panel-ser
         authToken: localStorage.getItem('angular2-spotify-token')
       },
     },
-    ApiService, AuthGuard, AuthHttp, AuthService, AppConfig
+     AuthGuard, AuthHttp, AuthService, AppConfig
   ],
   bootstrap: [AppComponent]
 })
