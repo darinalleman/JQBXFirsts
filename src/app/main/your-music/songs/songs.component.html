@@ -12,10 +12,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let track of tracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
+      <tr *ngFor="let track of tracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)"
+          [class.is-selected]="i == selectedRow">
         <td>{{i + 1}}</td>
-        <td>{{track?.track.name}}</td>
-        <td><span class="td-hover" (click)="goToArtist(track.track.album.artists[0])">{{track?.track.album.artists[0].name}}</span></td>
+        <td class="table-truncate"><span class="table-truncate__body">{{track?.track.name}}</span></td>
+        <td><span class="td-hover" (click)="goToArtist(track.track.album.artists[0])">{{track?.track.album.artists[0].name}}</span>
+        </td>
         <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track?.track.album.name}}</span></td>
         <td><i class="fa fa-plus" aria-hidden="true" (click)="toggleAddToPlaylistModal(track.track)"></i></td>
         <td>{{track?.track.duration_ms}}</td>
@@ -23,7 +25,8 @@
       </tbody>
     </table>
     <button id="loadMoreSongsButton" class="button is-primary is-outlined is-fullwidth"
-    (click)="loadMoreTracks()" *ngIf="tracks?.length < totalTracks">Load More Tracks</button>
+            (click)="loadMoreTracks()" *ngIf="tracks?.length < totalTracks">Load More Tracks
+    </button>
   </div>
 </div>
 

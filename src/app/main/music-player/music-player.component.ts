@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActiveSongService } from './active-song.service';
-import { SpotifyService } from '../../shared/spotify/angular2-spotify';
-import * as _ from 'lodash';
+import { SpotifyService } from '../../shared/spotify';
 import { NavigationService } from '../../shared/navigation/navigation.service';
 
 

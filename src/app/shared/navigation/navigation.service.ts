@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadArtistService } from '../../main/your-music/artists/artist/load-artist.service';
 import { UserService } from '../../main/your-music/playlists/user/user.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class NavigationService {
