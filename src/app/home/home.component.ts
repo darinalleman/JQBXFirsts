@@ -19,8 +19,9 @@ export class HomeComponent implements OnInit {
               private auth: AuthService,
               private toasr: ToastrService) {
     this.auth.loggedOut.subscribe((success) => {
-      if(success) {}
-       this.toasr.success('Successfully logged out.')
+      if (success) {
+        this.toasr.success('Successfully logged out.');
+      }
     })
   }
 

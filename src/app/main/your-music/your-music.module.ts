@@ -20,7 +20,6 @@ import { MostPlayedComponent } from './most-played/most-played.component';
     CommonModule,
     AppRoutingModule,
     FormsModule
-
   ],
   declarations: [
     YourMusicComponent,
