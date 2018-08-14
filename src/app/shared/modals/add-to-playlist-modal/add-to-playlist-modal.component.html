@@ -11,7 +11,8 @@
           <div class="card clickable" (click)="addToPlaylist(playlist)">
             <div class="card-image">
               <figure class="image is-square">
-                <img src="{{playlist?.images[0].url}}"  *ngIf="playlist.images[0].url" alt="Placeholder image">
+                <img src="{{playlist?.images[0].url}}"  *ngIf="playlist.images.length" alt="Placeholder image">
+                <img src="http://bulma.io/images/placeholders/480x480.png" alt="" *ngIf="!playlist.images.length">
               </figure>
             </div>
             <div class="card-content">
