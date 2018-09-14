@@ -8,12 +8,14 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.3.6",
     "@angular/cdk": "^2.0.0-beta.10",
+    "@angular/cli": "6.2.1",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
@@ -30,7 +32,7 @@
     "bulma-switch": "0.0.2",
     "bulma-tooltip": "0.0.4",
     "core-js": "^2.4.1",
-    "express": "^4.16.0",
+    "express": "^4.16.3",
     "firebase": "^5.0.2",
     "firebase-tools": "^3.18.4",
     "font-awesome": "^4.7.0",
