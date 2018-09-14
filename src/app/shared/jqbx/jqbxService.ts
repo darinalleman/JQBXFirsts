@@ -1,6 +1,8 @@
+
+import {map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Http, Headers, Response, Request} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {SafeResourceUrl} from '@angular/platform-browser';
 
 
@@ -18,7 +20,7 @@ export class JQBXService {
 
   constructor(private http: Http) {
     //http://jqbx.fm/tracks/first/spotify:track:61egJrQMB26pi9farhhTLp
-    this.apiBase = '//jqbx.fm/tracks/first/';
+    this.apiBase = 'https://jqbx.fm/tracks/first/';
   }
 
   //#region albums
@@ -31,7 +33,7 @@ export class JQBXService {
     return this.api({
       method: 'get',
       url: `${uri}`
-    }).map(res => res);
+    }).pipe(map(res => res));
   }
 
   

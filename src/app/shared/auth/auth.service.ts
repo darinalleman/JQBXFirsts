@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 import {AppConfig} from '../config/app.config';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
+
+
+
+import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class AuthService {

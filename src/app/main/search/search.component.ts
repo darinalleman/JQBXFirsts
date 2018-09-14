@@ -5,7 +5,7 @@ import * as moment from 'moment';
 import {ActiveSongService} from '../music-player/active-song.service';
 import {NavigationService} from '../../shared/navigation/navigation.service';
 import {AddSongToPlaylistService} from '../../shared/modals/add-to-playlist-modal/add-song-to-playlist.service';
-import {Subject} from "rxjs/Subject";
+import {Subject} from "rxjs";
 
 
 @Component({

@@ -1,3 +1,7 @@
+
+import {throwError as observableThrowError} from 'rxjs';
+
+import {catchError, map} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -21,13 +25,13 @@ export class AppConfig {
    */
   public load() {
     return new Promise((resolve, reject) => {
-      this.http.get('config.json')
-        .map( res => res.json() )
-        .catch((error: any) => {
+      this.http.get('config.json').pipe(
+        map( res => res.json() ),
+        catchError((error: any) => {
           console.error('Error reading configuration file');
           resolve(error);
-          return Observable.throw(error.json().error || 'Server error');
-        })
+          return observableThrowError(error.json().error || 'Server error');
+        }),)
         .subscribe((responseData) => {
           this.config = responseData;
             resolve(true);
