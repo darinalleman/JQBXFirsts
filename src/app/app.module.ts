@@ -25,11 +25,11 @@ import {EditPlaylistModalComponent} from "./shared/modals/edit-playlist-modal/ed
 import {EditPlayListService} from "./shared/modals/edit-playlist-modal/edit-play-list-service";
 import {ToastrModule} from "ngx-toastr";
 import {HomeModule} from "./home/home.module";
-import {BrowseModule} from "./main/browse/browse.module";
 import {MusicPlayerComponent} from "./main/music-player/music-player.component";
 import {MainModule} from "./main/main.module";
 import {ControlPanelComponent} from "./main/control-panel/control-panel.component";
 import {ControlPanelServiceService} from "./main/control-panel/control-panel-service.service";
+import {JQBXService} from "./shared/jqbx/jqbxService";
 
 
 @NgModule({
@@ -51,7 +51,6 @@ import {ControlPanelServiceService} from "./main/control-panel/control-panel-ser
     BrowserAnimationsModule,
     HomeModule,
     ReactiveFormsModule,
-    BrowseModule,
     CommonModule,
     MainModule,
     ToastrModule.forRoot({
@@ -66,6 +65,7 @@ import {ControlPanelServiceService} from "./main/control-panel/control-panel-ser
   ],
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
+    JQBXService,
     ActiveSongService,
     SpotifyService,
     LoadArtistService,

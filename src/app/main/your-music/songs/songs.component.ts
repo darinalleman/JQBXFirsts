@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import {ActiveSongService} from '../../music-player/active-song.service';
 import {NavigationService} from '../../../shared/navigation/navigation.service';
 import {AddSongToPlaylistService} from '../../../shared/modals/add-to-playlist-modal/add-song-to-playlist.service';
+import {JQBXService} from "../../../shared/jqbx/jqbxService";
 
 @Component({
   selector: 'app-songs',
@@ -20,7 +21,8 @@ export class SongsComponent implements OnInit {
   album: any;
   selectedRow: any;
 
-  constructor(private spotifyService: SpotifyService,
+  constructor(private jqbxService: JQBXService,
+              private spotifyService: SpotifyService,
               private activeSongService: ActiveSongService,
               private navigationService: NavigationService,
               private addSongToPlaylistService: AddSongToPlaylistService) {
@@ -99,7 +101,10 @@ export class SongsComponent implements OnInit {
 
   setClickedRow(index, track) {
     this.selectedRow = index;
-    this.activeSongService.currentSong.next(track.track);
+    //this.activeSongService.currentSong.next(track.track);
+    this.jqbxService.getFirstData(track.track.uri).subscribe(data=>{
+        console.log(data);
+    });
   };
 
 }

@@ -12,134 +12,98 @@ import {AlbumsComponent} from './main/your-music/albums/albums.component';
 import {ArtistsComponent} from './main/your-music/artists/artists.component';
 import {PlaylistComponent} from './main/your-music/playlists/playlist/playlist.component';
 import {AlbumComponent} from './main/your-music/albums/album/album.component';
-import {BrowseComponent} from './main/browse/browse.component';
-import {FeaturedComponent} from './main/browse/featured/featured.component';
-import {GenreMoodsComponent} from './main/browse/genre-moods/genre-moods.component';
-import {NewReleasesComponent} from './main/browse/new-releases/new-releases.component';
 import {AuthGuard} from './shared/auth';
-import {CategoryComponent} from './main/browse/genre-moods/category/category.component';
 import {ArtistComponent} from './main/your-music/artists/artist/artist.component';
 import {OverviewComponent} from './main/your-music/artists/artist/overview/overview.component';
 import {RelatedArtistsComponent} from './main/your-music/artists/artist/related-artists/related-artists.component';
 import {UserComponent} from './main/your-music/playlists/user/user.component';
-import {MostPlayedComponent} from "./main/your-music/most-played/most-played.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'callback',
-    component: CallbackComponent,
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    data: { title: 'Home'}
-  },
-  {
-    path: 'main',
-    component: MainComponent,
-    children: [
-      { path: '', redirectTo: 'your-music', pathMatch: 'full' },
-      {
-        path: 'search',
-        component: SearchComponent,
-        canActivate: [AuthGuard],
-        data: { title: 'Search Spotify'}
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    {
+        path: 'callback',
+        component: CallbackComponent,
       },
       {
-        path: 'playlist',
-        component: PlaylistComponent,
-        canActivate: [AuthGuard]
+        path: 'home',
+        component: HomeComponent,
+        data: { title: 'Home'}
       },
       {
-        path: 'album',
-        component: AlbumComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'category',
-        component: CategoryComponent,
-        canActivate: [AuthGuard]
-
-      },
-      {
-        path: 'user',
-        component: UserComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'artist',
-        component: ArtistComponent,
+        path: 'main',
+        component: MainComponent,
         children: [
-          { path: '', redirectTo: 'overview', pathMatch: 'full' },
+          { path: '', redirectTo: 'your-music', pathMatch: 'full' },
           {
-            path: 'overview',
-            component: OverviewComponent
+            path: 'search',
+            component: SearchComponent,
+            canActivate: [AuthGuard],
+            data: { title: 'Search Spotify'}
           },
           {
-            path: 'related-artists',
-            component: RelatedArtistsComponent
-          }
-        ],
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'your-music',
-        component: YourMusicComponent,
-        children: [
-          { path: '', redirectTo: 'playlists', pathMatch: 'full' },
-          {
-            path: 'playlists',
-            component: PlaylistsComponent
+            path: 'playlist',
+            component: PlaylistComponent,
+            canActivate: [AuthGuard]
           },
           {
-            path: 'songs',
-            component: SongsComponent
-          }
-          ,
-          {
-            path: 'albums',
-            component: AlbumsComponent
+            path: 'album',
+            component: AlbumComponent,
+            canActivate: [AuthGuard]
           },
           {
-            path: 'artists',
-            component: ArtistsComponent
-          },
-          {  path: 'most-played',
-            component: MostPlayedComponent
-          }
-        ],
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'browse',
-        component: BrowseComponent,
-        children: [
-          { path: '', redirectTo: 'featured', pathMatch: 'full' },
-          {
-            path: 'featured',
-            component: FeaturedComponent
+            path: 'user',
+            component: UserComponent,
+            canActivate: [AuthGuard]
           },
           {
-            path: 'genre-moods',
-            component: GenreMoodsComponent
-          }
-          ,
+            path: 'artist',
+            component: ArtistComponent,
+            children: [
+              { path: '', redirectTo: 'overview', pathMatch: 'full' },
+              {
+                path: 'overview',
+                component: OverviewComponent
+              },
+              {
+                path: 'related-artists',
+                component: RelatedArtistsComponent
+              }
+            ],
+            canActivate: [AuthGuard]
+          },
           {
-            path: 'new-releases',
-            component: NewReleasesComponent
-          }
+            path: 'your-music',
+            component: YourMusicComponent,
+            children: [
+              { path: '', redirectTo: 'playlists', pathMatch: 'full' },
+              {
+                path: 'playlists',
+                component: PlaylistsComponent
+              },
+              {
+                path: 'songs',
+                component: SongsComponent
+              }
+              ,
+              {
+                path: 'albums',
+                component: AlbumsComponent
+              },
+              {
+                path: 'artists',
+                component: ArtistsComponent
+              },
+            ],
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'profile',
+            component: ProfileComponent,
+            canActivate: [AuthGuard]
+          },
         ],
         canActivate: [AuthGuard]
       }
-    ],
-    canActivate: [AuthGuard]
-  }
 ];
 
 @NgModule({

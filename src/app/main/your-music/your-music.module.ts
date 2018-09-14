@@ -13,8 +13,6 @@ import {AppRoutingModule} from "../../app-routing.module";
 import {FormsModule} from '@angular/forms';
 import {RelatedArtistsComponent} from "./artists/artist/related-artists/related-artists.component";
 import {OverviewComponent} from "./artists/artist/overview/overview.component";
-import { MostPlayedComponent } from './most-played/most-played.component';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -33,7 +31,6 @@ import { MostPlayedComponent } from './most-played/most-played.component';
     PlaylistComponent,
     UserComponent,
     SongsComponent,
-    MostPlayedComponent
   ]
 })
 export class YourMusicModule { }

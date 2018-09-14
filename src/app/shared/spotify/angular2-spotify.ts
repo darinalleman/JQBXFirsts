@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, Response, Request} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {SafeResourceUrl} from '@angular/platform-browser';
+import {environment} from '../../../environments/environment'
 
 export interface SpotifyConfig {
   clientId: string;
@@ -45,9 +46,17 @@ export class SpotifyService {
   public playListInfo: any;
   public playerUrl: SafeResourceUrl;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, ) {
     this.clientId = '9d7ee30778da43ce8b048be43fb84050';
-    this.redirectUri = 'http://' + window.location.host + '/callback';
+    if (environment.production){
+      console.log(window.location.host);
+      this.redirectUri = 'http://' + window.location.host + '/firsts/callback';
+    }
+    else {
+        this.redirectUri = 'http://' + window.location.host + '/callback';
+    }
+    console.log(this.redirectUri);
+
     this.scope = 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public ' +
       'playlist-modify-private user-library-read user-library-modify user-read-private user-read-playback-state user-modify-playback-state';
     this.showDialog = true;
