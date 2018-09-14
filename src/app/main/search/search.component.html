@@ -102,9 +102,10 @@
             <th></th>
             <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
             <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
+            <th>First</th>
           </tr>
           <tbody>
-          <tr *ngFor="let track of tracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)"
+          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track)"
               [class.is-selected]="i === selectedRow">
             <td class="table-truncate">
               <span class="table-truncate__body">{{track.name}}</span>
@@ -118,6 +119,8 @@
             <td class="popularity">
               <progress class="progress  is-info" value="{{track?.popularity}}" max="100"></progress>
             </td>
+            <td *ngIf="track.firstUsername">{{track.firstUsername}}</td>
+            <td><img *ngIf="track.loading" style="max-width:2em" src="../../../assets/images/spinner.svg"></td>
           </tr>
           </tbody>
         </table>

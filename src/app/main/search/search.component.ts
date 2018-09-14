@@ -4,6 +4,7 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 import {ActiveSongService} from '../music-player/active-song.service';
 import {NavigationService} from '../../shared/navigation/navigation.service';
+import {JQBXService} from '../../shared/jqbx/jqbx.service';
 import {AddSongToPlaylistService} from '../../shared/modals/add-to-playlist-modal/add-song-to-playlist.service';
 import {Subject} from "rxjs";
 
@@ -11,7 +12,8 @@ import {Subject} from "rxjs";
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
+  providers: [JQBXService],
 })
 export class SearchComponent implements OnInit {
   searchQuery: string;
@@ -30,8 +32,11 @@ export class SearchComponent implements OnInit {
   selectedRow: any;
   user: any;
 
-  constructor(private spotifyService: SpotifyService, private activeSongService: ActiveSongService,
-              private navigationService: NavigationService, private addSongToPlaylistService: AddSongToPlaylistService) {
+  constructor(private jqbxService: JQBXService, 
+              private spotifyService: SpotifyService, 
+              private activeSongService: ActiveSongService,
+              private navigationService: NavigationService,
+              private addSongToPlaylistService: AddSongToPlaylistService) {
   }
 
   ngOnInit() {
@@ -136,7 +141,21 @@ export class SearchComponent implements OnInit {
 
   setClickedRow(index, track) {
     this.selectedRow = index;
-    this.activeSongService.currentSong.next(track);
+    
+    this.jqbxService.getFirstData(track.uri).subscribe(data=>{
+          if (data){
+            try {
+              track.firstUsername = JSON.parse(data['_body'].toString()).user.username;
+              if (!track.firstUsername){
+                track.firstUsername = "Not yet played!";
+              }
+            }
+            catch (e){
+              track.firstUsername = "Not yet played!";
+            }
+            track.loading = false;
+        }
+    });
   };
 
   toggleAddToPlaylistModal(track) {

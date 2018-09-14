@@ -29,7 +29,7 @@ import {MusicPlayerComponent} from "./main/music-player/music-player.component";
 import {MainModule} from "./main/main.module";
 import {ControlPanelComponent} from "./main/control-panel/control-panel.component";
 import {ControlPanelServiceService} from "./main/control-panel/control-panel-service.service";
-import {JQBXService} from "./shared/jqbx/jqbxService";
+import {JQBXService} from "./shared/jqbx/jqbx.service";
 
 
 @NgModule({
