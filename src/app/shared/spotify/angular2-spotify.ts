@@ -51,7 +51,7 @@ export class SpotifyService {
 
   constructor(private http: Http) {
     this.clientId = '178e1b39ae454cfaa0fc35650922554d';
-    this.redirectUri = 'http://' + window.location.host + '/callback';
+    this.redirectUri = 'https://' + window.location.host + '/callback';
     this.scope = 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public ' +
       'playlist-modify-private user-library-read user-library-modify user-read-private user-read-playback-state user-modify-playback-state';
     this.showDialog = true;
