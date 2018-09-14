@@ -6,7 +6,8 @@
     "baseUrl": "",
     "types": [],
     "allowJs": true,
-    "experimentalDecorators":false
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "exclude": [
     "test.ts",
