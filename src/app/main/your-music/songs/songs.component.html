@@ -9,10 +9,11 @@
         <th>Album</th>
         <th></th>
         <th><i class="fa fa-clock-o"></i></th>
+        <th>First</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let track of tracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)"
+      <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track)"
           [class.is-selected]="i == selectedRow">
         <td>{{i + 1}}</td>
         <td class="table-truncate"><span class="table-truncate__body">{{track?.track.name}}</span></td>
@@ -21,6 +22,9 @@
         <td><span class="td-hover" (click)="goToAlbum(track.track.album)">{{track?.track.album.name}}</span></td>
         <td><i class="fa fa-plus" aria-hidden="true" (click)="toggleAddToPlaylistModal(track.track)"></i></td>
         <td>{{track?.track.duration_ms}}</td>
+        <td *ngIf="track.firstUsername">{{track.firstUsername}}</td>
+        <td><img *ngIf="track.loading" style="max-width:2em" src="../../../assets/images/spinner.svg"></td>
+
       </tr>
       </tbody>
     </table>

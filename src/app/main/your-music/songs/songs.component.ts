@@ -5,7 +5,7 @@ import * as _ from 'lodash';
 import {ActiveSongService} from '../../music-player/active-song.service';
 import {NavigationService} from '../../../shared/navigation/navigation.service';
 import {AddSongToPlaylistService} from '../../../shared/modals/add-to-playlist-modal/add-song-to-playlist.service';
-import {JQBXService} from "../../../shared/jqbx/jqbxService";
+import {JQBXService} from "../../../shared/jqbx/jqbx.service";
 
 @Component({
   selector: 'app-songs',
@@ -47,7 +47,19 @@ export class SongsComponent implements OnInit {
         this.tracks = data.items;
         this.totalTracks = data.total;
         _.each(this.tracks, (track: any) => {
-          track.track.duration_ms = moment(track.track.duration_ms).format('m:ss')
+          track.track.duration_ms = moment(track.track.duration_ms).format('m:ss');
+          // this.jqbxService.getFirstData(track.track.uri).subscribe(data=>{
+          //     if (data){
+          //       try {
+          //         track.firstUsername = JSON.parse(data['_body'].toString()).user.username;
+          //         console.log(track.firstUsername);
+          //       }
+          //       catch (e){
+          //         track.firstUsername = "";
+          //       }
+          //     }
+          //     // track.firstUser = JSON.parse(data['_body'].toString())['user']['username'];
+          // });
         })
       },
       error => {
@@ -102,8 +114,21 @@ export class SongsComponent implements OnInit {
   setClickedRow(index, track) {
     this.selectedRow = index;
     //this.activeSongService.currentSong.next(track.track);
-    this.jqbxService.getFirstData(track.track.uri).subscribe(data=>{
-        console.log(data);
+    track.loading = true;
+
+        this.jqbxService.getFirstData(track.uri).subscribe(data=>{
+          if (data){
+            try {
+              track.firstUsername = JSON.parse(data['_body'].toString()).user.username;
+              if (!track.firstUsername){
+                track.firstUsername = "Not yet played!";
+              }
+            }
+            catch (e){
+              track.firstUsername = "Not yet played!";
+            }
+            track.loading = false;
+        }
     });
   };
 
