@@ -19,8 +19,12 @@ import {RelatedArtistsComponent} from './main/your-music/artists/artist/related-
 import {UserComponent} from './main/your-music/playlists/user/user.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    {
+      { 
+        path: '', 
+        redirectTo: 'home', 
+        pathMatch: 'full' 
+      },
+      {
         path: 'callback',
         component: CallbackComponent,
       },

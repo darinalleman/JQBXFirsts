@@ -10,6 +10,7 @@ export class CallbackComponent {
 
   constructor(public router: Router) {
     let hash = window.location.hash;
+    console.log('shits in here');
     if (hash) {
       if (window.location.search.substring(1).indexOf('error') !== -1) {
         // login failure
