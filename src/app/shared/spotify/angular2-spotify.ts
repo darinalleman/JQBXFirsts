@@ -37,6 +37,10 @@ interface HttpRequestOptions {
   headers?: Headers;
 }
 
+function setToken(token) {
+  console.log('setting token here');
+}
+
 @Injectable()
 export class SpotifyService {
   public clientId: string;
@@ -713,8 +717,6 @@ export class SpotifyService {
 
   private openDialog(uri, name, options, cb) {
     let win = window.open(uri, name, options);
-    win.postMessage("thingshereandthingsthere", "https://jqbxfirsts.herokuapp.com");
-    win.addEventListener("message", this.receiveMessage, false);
     let interval = window.setInterval(() => {
       try {
         if (!win || win.closed) {
@@ -726,10 +728,6 @@ export class SpotifyService {
       }
     }, 100000000);
     return win;
-  }
-
-  private receiveMessage(event){
-    console.log(event);
   }
 
   private auth(isJson?: boolean): Object {
