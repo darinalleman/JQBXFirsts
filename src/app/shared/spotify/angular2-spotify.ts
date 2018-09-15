@@ -37,10 +37,6 @@ interface HttpRequestOptions {
   headers?: Headers;
 }
 
-function setToken(token) {
-  console.log('setting token here');
-}
-
 @Injectable()
 export class SpotifyService {
   public clientId: string;
@@ -682,6 +678,7 @@ export class SpotifyService {
       );
 
       let storageChanged = (e) => {
+        console.log('changed storage!');
         if (e.key === 'angular2-spotify-token') {
           if (authWindow) {
             authWindow.close();
