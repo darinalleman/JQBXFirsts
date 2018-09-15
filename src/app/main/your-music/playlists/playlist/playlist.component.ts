@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import { ActiveSongService } from '../../../music-player/active-song.service';
 import { UtilitiesService } from '../../../../shared/utilities/utilities.service';
 import { NavigationService } from '../../../../shared/navigation/navigation.service';
+import { JQBXService } from '../../../../shared/jqbx/jqbx.service';
 import { EditPlayListService } from '../../../../shared/modals/edit-playlist-modal/edit-play-list-service';
 
 @Component({
@@ -25,7 +26,7 @@ export class PlaylistComponent implements OnInit {
 
     constructor(private spotifyService: SpotifyService, private activeSongService: ActiveSongService,
                 private utilities: UtilitiesService, private navigationService: NavigationService,
-                private editPlaylistService: EditPlayListService) {
+                private editPlaylistService: EditPlayListService, private jqbxService: JQBXService) {
     }
 
     ngOnInit() {
@@ -145,7 +146,23 @@ export class PlaylistComponent implements OnInit {
 
     setClickedRow(index, track) {
         this.selectedRow = index;
-        this.activeSongService.currentSong.next(track.track);
+        //this.activeSongService.currentSong.next(track.track);
+        track.loading = true;
+
+            this.jqbxService.getFirstData(track.uri).subscribe(data=>{
+            if (data){
+                try {
+                track.firstUsername = JSON.parse(data['_body'].toString()).user.username;
+                if (!track.firstUsername){
+                    track.firstUsername = "Not yet played!";
+                }
+                }
+                catch (e){
+                track.firstUsername = "Not yet played!";
+                }
+                track.loading = false;
+            }
+        });
     };
 
   goToUser(id) {

@@ -36,6 +36,7 @@
         <th>Artist</th>
         <th>Album</th>
         <th><i class="fa fa-clock-o"></i></th>
+        <th>First</th>
       </tr>
       </thead>
       <tbody>
@@ -54,6 +55,8 @@
           <span class="td-hover table-truncate__body" (click)="goToAlbum(track.track.album)">{{track.track.album.name}}</span>
         </td>
         <td>{{track.track.duration_ms}}</td>
+        <td *ngIf="track.firstUsername">{{track.firstUsername}}</td>
+        <td><img *ngIf="track.loading" style="max-width:2em" src="../../../assets/images/spinner.svg"></td>
       </tr>
       </tbody>
     </table>
