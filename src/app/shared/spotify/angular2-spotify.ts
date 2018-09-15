@@ -714,7 +714,7 @@ export class SpotifyService {
   private openDialog(uri, name, options, cb) {
     let win = window.open(uri, name, options);
     win.postMessage("thingshereandthingsthere", "https://jqbxfirsts.herokuapp.com");
-    win.addEventListener("message", receiveMessage, false);
+    win.addEventListener("message", this.receiveMessage, false);
     let interval = window.setInterval(() => {
       try {
         if (!win || win.closed) {
@@ -728,7 +728,7 @@ export class SpotifyService {
     return win;
   }
 
-  function receiveMessage(event){
+  private receiveMessage(event){
     console.log(event);
   }
 
