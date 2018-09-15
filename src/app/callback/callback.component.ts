@@ -16,6 +16,7 @@ export class CallbackComponent {
         window.close();
       } else if (hash) {
         // login success
+        console.log('storage changed');
         let token = window.location.hash.split('&')[0].split('=')[1];
         localStorage.setItem('angular2-spotify-token', token);
       }

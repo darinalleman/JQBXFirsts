@@ -678,7 +678,7 @@ export class SpotifyService {
       );
 
       let storageChanged = (e) => {
-        console.log('changed storage!');
+        console.log('changed storage heard');
         if (e.key === 'angular2-spotify-token') {
           if (authWindow) {
             authWindow.close();
