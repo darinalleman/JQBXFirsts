@@ -3,6 +3,7 @@
   window.onload = function () {
     console.log('hello');
     var hash = window.location.hash;
+    console.log(hash);
     if (hash) {
       if (window.location.search.substring(1).indexOf('error') !== -1) {
         // login failure
