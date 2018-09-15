@@ -78,8 +78,8 @@ import {JQBXService} from "./shared/jqbx/jqbx.service";
     {
       provide: 'SpotifyConfig',
       useValue: {
-        clientId: '9d7ee30778da43ce8b048be43fb84050',
-        redirectUri: 'localhost:4200/callback',
+        clientId: '178e1b39ae454cfaa0fc35650922554d',
+        redirectUri: 'http://' + window.location.host + '/callback',
         scope: 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative ' +
         'playlist-modify-public playlist-modify-private ' +
         'user-library-read user-library-modify user-read-private user-modify-playback-state',
