@@ -8,5 +8,5 @@ app.use(express.static(__dirname + '/dist'));
 app.listen(process.env.PORT || 8080);
 
 app.get('/callback*', function(req, res) {
-  res.sendfile('./src/index.html', {'root':'./'});
+  res.sendFile('./src/index.html', {'root':'./'});
 });
