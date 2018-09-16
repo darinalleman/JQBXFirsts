@@ -5,7 +5,6 @@ import {catchError, map} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Http, Headers, Response, Request} from '@angular/http';
 import {SafeResourceUrl} from '@angular/platform-browser';
-import {environment} from '../../../environments/environment'
 
 export interface SpotifyConfig {
   clientId: string;
@@ -686,12 +685,12 @@ export class SpotifyService {
           authCompleted = true;
 
           this.authToken = e.newValue;
-          window.removeEventListener('storage', storageChanged, false);
+          authWindow.removeEventListener('storage', storageChanged, false);
 
           return resolve(e.newValue);
         }
       };
-      window.addEventListener('storage', storageChanged, false);
+      authWindow.addEventListener('storage', storageChanged, false);
     });
 
     return observableFrom(promise).pipe(catchError(this.handleError));
