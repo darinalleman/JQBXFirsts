@@ -19,7 +19,7 @@ export class CallbackComponent {
         // login success
         console.log('storage changed');
         let token = window.location.hash.split('&')[0].split('=')[1];
-        localStorage.setItem('angular2-spotify-token', token);
+        window.localStorage.setItem('angular2-spotify-token', token);
       }
     } else {
       window.close();
