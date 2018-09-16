@@ -675,6 +675,7 @@ export class SpotifyService {
           }
         }
       );
+
       let storageChanged = (e) => {
         console.log('changed storage heard');
         if (e.key === 'angular2-spotify-token') {
@@ -682,15 +683,46 @@ export class SpotifyService {
             authWindow.close();
           }
           authCompleted = true;
+
           this.authToken = e.newValue;
           window.removeEventListener('storage', storageChanged, false);
 
           return resolve(e.newValue);
         }
       };
-      authWindow.addEventListener('storage', storageChanged, false);
       window.addEventListener('storage', storageChanged, false);
-      console.log(window);
+
+
+      var leftDomain = false;
+      var interval = setInterval(function() {
+          try {
+              if (authWindow.document.domain === document.domain)
+              {
+                  if (leftDomain && authWindow.document.readyState === "complete")
+                  {
+                      // we're here when the child window returned to our domain
+                      clearInterval(interval);
+                      return resolve(authWindow.localStorage.getItem('angular2-spotify-token'));
+                  }
+              }
+              else {
+                  // this code should never be reached, 
+                  // as the x-site security check throws
+                  // but just in case
+                  leftDomain = true;
+              }
+          }
+          catch(e) {
+              // we're here when the child window has been navigated away or closed
+              if (authWindow.closed) {
+                  clearInterval(interval);
+                  alert("closed");
+                  return; 
+              }
+              // navigated to another domain  
+              leftDomain = true;
+          }
+      }, 500);
     });
 
     return observableFrom(promise).pipe(catchError(this.handleError));
@@ -723,8 +755,6 @@ export class SpotifyService {
         console.log(e);
       }
     }, 100000000);
-    console.log(win);
-
     return win;
   }
 
