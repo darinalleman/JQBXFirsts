@@ -675,7 +675,6 @@ export class SpotifyService {
           }
         }
       );
-
       let storageChanged = (e) => {
         console.log('changed storage heard');
         if (e.key === 'angular2-spotify-token') {
@@ -685,16 +684,16 @@ export class SpotifyService {
           authCompleted = true;
 
           this.authToken = e.newValue;
+          window.localStorage.setItem('angular2-spotify-token',e.newValue);
           window.removeEventListener('storage', storageChanged, false);
 
           return resolve(e.newValue);
         }
       };
+      authWindow.addEventListener('storage', storageChanged, false);
+      window.addEventListener('storage', storageChanged, false);
       console.log(authWindow);
       console.log(window);
-      authWindow.addEventListener('storage', storageChanged, false);
-
-      window.addEventListener('storage', storageChanged, false);
     });
 
     return observableFrom(promise).pipe(catchError(this.handleError));
