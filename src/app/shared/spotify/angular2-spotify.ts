@@ -682,9 +682,7 @@ export class SpotifyService {
             authWindow.close();
           }
           authCompleted = true;
-
           this.authToken = e.newValue;
-          window.localStorage.setItem('angular2-spotify-token',e.newValue);
           window.removeEventListener('storage', storageChanged, false);
 
           return resolve(e.newValue);
@@ -692,7 +690,6 @@ export class SpotifyService {
       };
       authWindow.addEventListener('storage', storageChanged, false);
       window.addEventListener('storage', storageChanged, false);
-      console.log(authWindow);
       console.log(window);
     });
 
@@ -726,6 +723,8 @@ export class SpotifyService {
         console.log(e);
       }
     }, 100000000);
+    console.log(win);
+
     return win;
   }
 
