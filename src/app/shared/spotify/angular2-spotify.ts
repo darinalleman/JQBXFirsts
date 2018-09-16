@@ -47,10 +47,8 @@ export class SpotifyService {
   public userInfo: any;
   public playListInfo: any;
   public playerUrl: SafeResourceUrl;
-  public windowAccess;
 
   constructor(private http: Http) {
-    this.windowAccess = window;
     this.clientId = '178e1b39ae454cfaa0fc35650922554d';
     this.redirectUri = 'http://' + window.location.host + '/callback';
     this.scope = 'user-follow-modify user-follow-read playlist-read-private playlist-read-collaborative playlist-modify-public ' +
@@ -687,12 +685,16 @@ export class SpotifyService {
           authCompleted = true;
 
           this.authToken = e.newValue;
-          this.windowAccess.removeEventListener('storage', storageChanged, false);
+          window.removeEventListener('storage', storageChanged, false);
 
           return resolve(e.newValue);
         }
       };
-      this.windowAccess.addEventListener('storage', storageChanged, false);
+      console.log(authWindow);
+      console.log(window);
+      authWindow.addEventListener('storage', storageChanged, false);
+
+      window.addEventListener('storage', storageChanged, false);
     });
 
     return observableFrom(promise).pipe(catchError(this.handleError));
