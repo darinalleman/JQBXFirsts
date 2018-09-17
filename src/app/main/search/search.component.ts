@@ -141,7 +141,7 @@ export class SearchComponent implements OnInit {
 
   setClickedRow(index, track) {
     this.selectedRow = index;
-    
+    track.loading = true;
     this.jqbxService.getFirstData(track.uri).subscribe(data=>{
           if (data){
             try {
