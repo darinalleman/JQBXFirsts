@@ -30,6 +30,48 @@
       </div>
     </div>
   </div>
+  <div class="section tracks" *ngIf="hasQuery && tracks?.length > 0 && !noResults">
+    <div class="columns">
+      <div class="column">
+        <table class="table search-table is-fullwidth">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Album</th>
+            <th></th>
+            <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
+            <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
+            <th>First</th>
+          </tr>
+          <tbody>
+          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track)"
+              [class.is-selected]="i === selectedRow">
+            <td class="table-truncate">
+              <span class="table-truncate__body">{{track.name}}</span>
+            </td>
+            <td><span class="td-hover" (click)="goToArtist(track?.artists[0])">{{track?.artists[0].name}}</span></td>
+            <td class="table-truncate">
+              <span class="td-hover table-truncate__body" (click)="goToAlbum(track?.album)">{{track?.album.name}}</span>
+            </td>
+            <td><i class="fa fa-plus" aria-hidden="true" (click)="toggleAddToPlaylistModal(track)"></i></td>
+            <td>{{track.duration_ms}}</td>
+            <td class="popularity">
+              <progress class="progress  is-info" value="{{track?.popularity}}" max="100"></progress>
+            </td>
+            <td *ngIf="track.firstUsername">{{track.firstUsername}}</td>
+            <td><img *ngIf="track.loading" style="max-width:2em" src="../../../assets/images/spinner.svg"></td>
+          </tr>
+          </tbody>
+        </table>
+        <br>
+        <button id="loadMoreSearchTracks" class="button is-primary is-outlined is-fullwidth"
+                *ngIf="tracks?.length < tracksTotal"
+                (click)="loadMoreTracks()">Load More Tracks
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="section artists" *ngIf="hasQuery && artists?.length > 0 && !noResults">
     <p class="title is-2 has-text-centered">Artists</p>
     <div class="columns is-multiline">
@@ -90,46 +132,5 @@
       </div>
     </div>
   </div>
-  <div class="section tracks" *ngIf="hasQuery && tracks?.length > 0 && !noResults">
-    <div class="columns">
-      <div class="column">
-        <table class="table search-table is-fullwidth">
-          <thead>
-          <tr>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Album</th>
-            <th></th>
-            <th><i class="fa fa-clock-o" aria-hidden="true"></i></th>
-            <th><i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
-            <th>First</th>
-          </tr>
-          <tbody>
-          <tr *ngFor="let track of tracks; let i = index" class="clickable" (click)="setClickedRow(i, track)"
-              [class.is-selected]="i === selectedRow">
-            <td class="table-truncate">
-              <span class="table-truncate__body">{{track.name}}</span>
-            </td>
-            <td><span class="td-hover" (click)="goToArtist(track?.artists[0])">{{track?.artists[0].name}}</span></td>
-            <td class="table-truncate">
-              <span class="td-hover table-truncate__body" (click)="goToAlbum(track?.album)">{{track?.album.name}}</span>
-            </td>
-            <td><i class="fa fa-plus" aria-hidden="true" (click)="toggleAddToPlaylistModal(track)"></i></td>
-            <td>{{track.duration_ms}}</td>
-            <td class="popularity">
-              <progress class="progress  is-info" value="{{track?.popularity}}" max="100"></progress>
-            </td>
-            <td *ngIf="track.firstUsername">{{track.firstUsername}}</td>
-            <td><img *ngIf="track.loading" style="max-width:2em" src="../../../assets/images/spinner.svg"></td>
-          </tr>
-          </tbody>
-        </table>
-        <br>
-        <button id="loadMoreSearchTracks" class="button is-primary is-outlined is-fullwidth"
-                *ngIf="tracks?.length < tracksTotal"
-                (click)="loadMoreTracks()">Load More Tracks
-        </button>
-      </div>
-    </div>
-  </div>
+  
 </div>
