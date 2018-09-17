@@ -149,7 +149,7 @@ export class PlaylistComponent implements OnInit {
         //this.activeSongService.currentSong.next(track.track);
         track.loading = true;
 
-            this.jqbxService.getFirstData(track.uri).subscribe(data=>{
+            this.jqbxService.getFirstData(track.track.uri).subscribe(data=>{
             if (data){
                 try {
                 track.firstUsername = JSON.parse(data['_body'].toString()).user.username;

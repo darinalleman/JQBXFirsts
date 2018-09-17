@@ -665,7 +665,7 @@ export class SpotifyService {
         show_dialog: this.showDialog
       };
       let authCompleted = false;
-      window.localStorage.removeItem('angular2-spotify-token');
+      // window.localStorage.removeItem('angular2-spotify-token');
       window.location.href = 'https://accounts.spotify.com/authorize?' + this.toQueryString(params);
     });
 
