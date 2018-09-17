@@ -5,6 +5,8 @@ import { SpotifyService } from '../../../../shared/spotify/angular2-spotify';
 import { Router } from '@angular/router';
 import { ActiveSongService } from '../../../music-player/active-song.service';
 import { NavigationService } from '../../../../shared/navigation/navigation.service';
+import { JQBXService } from '../../../../shared/jqbx/jqbx.service';
+
 
 @Component({
     selector: 'app-album',
@@ -21,7 +23,8 @@ export class AlbumComponent implements OnInit {
     constructor(public spotifyService: SpotifyService,
                 public router: Router,
                 private activeSongService: ActiveSongService,
-                private navigationService: NavigationService) {
+                private navigationService: NavigationService,
+                private jqbxService: JQBXService) {
     }
 
     ngOnInit() {
@@ -88,7 +91,22 @@ export class AlbumComponent implements OnInit {
 
     setClickedRow(index, track) {
         this.selectedRow = index;
-        this.activeSongService.currentSong.next(track);
+        track.loading = true;
+
+            this.jqbxService.getFirstData(track.uri).subscribe(data=>{
+            if (data){
+                try {
+                track.firstUsername = JSON.parse(data['_body'].toString()).user.username;
+                if (!track.firstUsername){
+                    track.firstUsername = "Not yet played!";
+                }
+                }
+                catch (e){
+                track.firstUsername = "Not yet played!";
+                }
+                track.loading = false;
+            }
+        });
     };
 
 }
