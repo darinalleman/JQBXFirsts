@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, Renderer} from '@angular/core';
-import {ControlPanelServiceService} from "../control-panel/control-panel-service.service";
 
 @Component({
   selector: 'app-side-nav',
@@ -8,13 +7,9 @@ import {ControlPanelServiceService} from "../control-panel/control-panel-service
 })
 export class SideNavComponent implements OnInit {
 
-  constructor(private controlPanelService: ControlPanelServiceService) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  toggleControl() {
-    this.controlPanelService.toggleControlPanel.next(true);
   }
 
 }

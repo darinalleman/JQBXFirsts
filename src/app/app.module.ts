@@ -27,8 +27,6 @@ import {ToastrModule} from "ngx-toastr";
 import {HomeModule} from "./home/home.module";
 import {MusicPlayerComponent} from "./main/music-player/music-player.component";
 import {MainModule} from "./main/main.module";
-import {ControlPanelComponent} from "./main/control-panel/control-panel.component";
-import {ControlPanelServiceService} from "./main/control-panel/control-panel-service.service";
 import {JQBXService} from "./shared/jqbx/jqbx.service";
 
 
@@ -40,8 +38,7 @@ import {JQBXService} from "./shared/jqbx/jqbx.service";
     MainComponent,
     AddToPlaylistModalComponent,
     EditPlaylistModalComponent,
-    MusicPlayerComponent,
-    ControlPanelComponent
+    MusicPlayerComponent
   ],
   imports: [
     AppRoutingModule,
@@ -73,7 +70,6 @@ import {JQBXService} from "./shared/jqbx/jqbx.service";
     NavigationService,
     UserService,
     AddSongToPlaylistService,
-    ControlPanelServiceService,
     EditPlayListService,
     {
       provide: 'SpotifyConfig',
