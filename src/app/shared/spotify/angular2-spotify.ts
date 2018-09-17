@@ -665,33 +665,8 @@ export class SpotifyService {
         show_dialog: this.showDialog
       };
       let authCompleted = false;
+      window.localStorage.removeItem('angular2-spotify-token');
       window.location.href = 'https://accounts.spotify.com/authorize?' + this.toQueryString(params);
-      // let authWindow = this.openDialog(
-      //   'https://accounts.spotify.com/authorize?' + this.toQueryString(params),
-      //   'Spotify',
-      //   'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=' + w + ',height=' + h + ',top=' + top + ',left=' + left,
-      //   () => {
-      //     if (!authCompleted) {
-      //       return reject('Login rejected error');
-      //     }
-      //   }
-      // );
-
-    //   let storageChanged = (e) => {
-    //     console.log('changed storage heard');
-    //     if (e.key === 'angular2-spotify-token') {
-    //       if (authWindow) {
-    //         authWindow.close();
-    //       }
-    //       authCompleted = true;
-
-    //       this.authToken = e.newValue;
-    //       window.removeEventListener('storage', storageChanged, false);
-
-    //       return resolve(e.newValue);
-    //     }
-    //   };
-    //   window.addEventListener('storage', storageChanged, false);
     });
 
     return observableFrom(promise).pipe(catchError(this.handleError));
