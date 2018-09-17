@@ -26,21 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   public login() {
-    this.spotifyService.login().subscribe(
-      token => {
-        this.spotifyService.getCurrentUser()
-          .subscribe(data => {
-              localStorage.setItem('user', JSON.stringify(data));
-              this.router.navigate(['main'])
-            },
-            err => console.error(err));
-      },
-      err => {
-        console.error(err);
-      },
-      () => {
-      }
-    );
+    this.spotifyService.login();
   }
 
   ngOnInit() {

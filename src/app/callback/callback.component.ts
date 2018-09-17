@@ -15,20 +15,18 @@ export class CallbackComponent {
     if (hash) {
       if (window.location.search.substring(1).indexOf('error') !== -1) {
         // login failure
-        window.close();
       } else if (hash) {
         // login success
         let token = window.location.hash.split('&')[0].split('=')[1];
         window.localStorage.setItem('angular2-spotify-token', token);
+        this.spotifyService.setAuthToken(token);
         this.spotifyService.getCurrentUser()
           .subscribe(data => {
               localStorage.setItem('user', JSON.stringify(data));
-              this.router.navigate(['main'])
+              this.router.navigate(['main']);
             },
             err => console.error(err));
       }
-    } else {
-      window.close();
     }
   }
 }

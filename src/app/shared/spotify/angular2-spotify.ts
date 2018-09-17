@@ -651,25 +651,18 @@ export class SpotifyService {
   //#region login
 
   login() {
-    let promise = new Promise((resolve, reject) => {
-      let w = 800,
-        h = 500,
-        left = (screen.width / 2) - (w / 2),
-        top = (screen.height / 2) - (h / 2);
+    let params = {
+      client_id: this.clientId,
+      redirect_uri: this.redirectUri,
+      scope: this.scope || '',
+      response_type: 'token',
+      show_dialog: this.showDialog
+    };
+    window.location.href = 'https://accounts.spotify.com/authorize?' + this.toQueryString(params);
+  }
 
-      let params = {
-        client_id: this.clientId,
-        redirect_uri: this.redirectUri,
-        scope: this.scope || '',
-        response_type: 'token',
-        show_dialog: this.showDialog
-      };
-      let authCompleted = false;
-      // window.localStorage.removeItem('angular2-spotify-token');
-      window.location.href = 'https://accounts.spotify.com/authorize?' + this.toQueryString(params);
-    });
-
-    return observableFrom(promise).pipe(catchError(this.handleError));
+  public setAuthToken(token) {
+    this.authToken = token;
   }
 
   //#endregion
