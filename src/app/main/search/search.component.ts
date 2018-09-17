@@ -143,18 +143,21 @@ export class SearchComponent implements OnInit {
     this.selectedRow = index;
     track.loading = true;
     this.jqbxService.getFirstData(track.uri).subscribe(data=>{
-          if (data){
-            try {
-              track.firstUsername = JSON.parse(data['_body'].toString()).user.username;
-              if (!track.firstUsername){
-                track.firstUsername = "Not yet played!";
-              }
-            }
-            catch (e){
-              track.firstUsername = "Not yet played!";
-            }
-            track.loading = false;
+      if (data){
+        if (data.user.username){
+          track.firstUsername = data.user.username;
         }
+        else if (data.track.username) {
+          track.firstUsername = data.track.username;
+        } 
+        else {
+          track.firstUsername = "Not yet played!";
+        }
+      }
+      else {
+        track.firstUsername = "Not yet played!";
+      }
+      track.loading = false;
     });
   };
 

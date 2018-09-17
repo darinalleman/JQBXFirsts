@@ -4,6 +4,7 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, Response, Request} from '@angular/http';
 import {Observable} from 'rxjs';
 import {SafeResourceUrl} from '@angular/platform-browser';
+import { JQBXFirst } from '../utilities/models';
 
 
 interface HttpRequestOptions {
@@ -23,21 +24,20 @@ export class JQBXService {
     this.apiBase = 'https://jqbx.fm/tracks/first/';
   }
 
-  //#region albums
-
-  /**
-   * Gets an album
-   * Pass in album id or spotify uri
-   */
-  getFirstData(uri: string) {
+  getFirstData(uri: string): Observable<JQBXFirst> {
     return this.api({
       method: 'get',
       url: `${uri}`
-    }).pipe(map(res => res));
+    }).pipe(map(res => {
+          let response: JQBXFirst;
+          try {
+            response = res.json();
+          }
+          catch (e) {
+          }
+          return response;
+      }));
   }
-
-  
-  //#region utils
 
   private toQueryString(obj: Object): string {
     let parts = [];
@@ -50,7 +50,6 @@ export class JQBXService {
     return parts.join('&');
   };
 
-
   private api(requestOptions: HttpRequestOptions) {
     return this.http.request(new Request({
       url: this.apiBase + requestOptions.url,
@@ -60,6 +59,4 @@ export class JQBXService {
       headers: requestOptions.headers
     }));
   }
-
-  //#endregion
 }
