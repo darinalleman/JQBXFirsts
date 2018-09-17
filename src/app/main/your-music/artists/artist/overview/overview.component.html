@@ -4,10 +4,11 @@
       <p class="title section-title is-1 has-text-centered">Popular</p>
       <table class="table is-fullwidth">
         <tbody>
-        <tr *ngFor="let track of topTracks; let i = index" class="clickable" (dblclick)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
+        <tr *ngFor="let track of topTracks; let i = index" class="clickable" (click)="setClickedRow(i, track)" [class.is-selected]="i == selectedRow">
           <td>{{i + 1}}</td>
           <td>{{track?.name}}</td>
           <td>{{track?.duration_ms}}</td>
+          <td>{{track?.firstUsername}}<img *ngIf="track.loading" style="max-width:2em" src="../../../assets/images/spinner.svg"></td>
         </tr>
         </tbody>
       </table>

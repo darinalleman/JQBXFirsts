@@ -5,6 +5,8 @@ import * as _ from 'lodash';
 import { Router } from '@angular/router';
 import { ActiveSongService } from '../../../../music-player/active-song.service';
 import { NavigationService } from '../../../../../shared/navigation/navigation.service';
+import { JQBXService } from '../../../../../shared/jqbx/jqbx.service';
+
 import { LoadArtistService } from '../load-artist.service';
 
 @Component({
@@ -26,7 +28,7 @@ export class OverviewComponent implements OnInit {
 
     constructor(public spotifyService: SpotifyService, public router: Router,
                 private activeSongService: ActiveSongService, private navigationService: NavigationService,
-                private loadArtistService: LoadArtistService) {
+                private loadArtistService: LoadArtistService, private jqbxService: JQBXService) {
     }
 
     ngOnInit() {
@@ -121,7 +123,22 @@ export class OverviewComponent implements OnInit {
 
     setClickedRow(index, track) {
         this.selectedRow = index;
-        this.activeSongService.currentSong.next(track);
+        track.loading = true;
+
+            this.jqbxService.getFirstData(track.uri).subscribe(data=>{
+            if (data){
+                try {
+                track.firstUsername = JSON.parse(data['_body'].toString()).user.username.trim();
+                if (!track.firstUsername){
+                    track.firstUsername = "Not yet played!";
+                }
+                }
+                catch (e){
+                track.firstUsername = "Not yet played!";
+                }
+                track.loading = false;
+            }
+        });
     };
 
 }
