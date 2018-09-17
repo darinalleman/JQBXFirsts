@@ -665,64 +665,33 @@ export class SpotifyService {
         show_dialog: this.showDialog
       };
       let authCompleted = false;
-      let authWindow = this.openDialog(
-        'https://accounts.spotify.com/authorize?' + this.toQueryString(params),
-        'Spotify',
-        'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=' + w + ',height=' + h + ',top=' + top + ',left=' + left,
-        () => {
-          if (!authCompleted) {
-            return reject('Login rejected error');
-          }
-        }
-      );
+      window.location.href = 'https://accounts.spotify.com/authorize?' + this.toQueryString(params);
+      // let authWindow = this.openDialog(
+      //   'https://accounts.spotify.com/authorize?' + this.toQueryString(params),
+      //   'Spotify',
+      //   'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no,width=' + w + ',height=' + h + ',top=' + top + ',left=' + left,
+      //   () => {
+      //     if (!authCompleted) {
+      //       return reject('Login rejected error');
+      //     }
+      //   }
+      // );
 
-      let storageChanged = (e) => {
-        console.log('changed storage heard');
-        if (e.key === 'angular2-spotify-token') {
-          if (authWindow) {
-            authWindow.close();
-          }
-          authCompleted = true;
+    //   let storageChanged = (e) => {
+    //     console.log('changed storage heard');
+    //     if (e.key === 'angular2-spotify-token') {
+    //       if (authWindow) {
+    //         authWindow.close();
+    //       }
+    //       authCompleted = true;
 
-          this.authToken = e.newValue;
-          window.removeEventListener('storage', storageChanged, false);
+    //       this.authToken = e.newValue;
+    //       window.removeEventListener('storage', storageChanged, false);
 
-          return resolve(e.newValue);
-        }
-      };
-      window.addEventListener('storage', storageChanged, false);
-
-
-      var leftDomain = false;
-      var interval = setInterval(function() {
-          try {
-              if (authWindow.document.domain === document.domain)
-              {
-                  if (leftDomain && authWindow.document.readyState === "complete")
-                  {
-                      // we're here when the child window returned to our domain
-                      clearInterval(interval);
-                      return resolve(authWindow.localStorage.getItem('angular2-spotify-token'));
-                  }
-              }
-              else {
-                  // this code should never be reached, 
-                  // as the x-site security check throws
-                  // but just in case
-                  leftDomain = true;
-              }
-          }
-          catch(e) {
-              // we're here when the child window has been navigated away or closed
-              if (authWindow.closed) {
-                  clearInterval(interval);
-                  alert("closed");
-                  return; 
-              }
-              // navigated to another domain  
-              leftDomain = true;
-          }
-      }, 500);
+    //       return resolve(e.newValue);
+    //     }
+    //   };
+    //   window.addEventListener('storage', storageChanged, false);
     });
 
     return observableFrom(promise).pipe(catchError(this.handleError));
